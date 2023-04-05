@@ -8353,6 +8353,9 @@ h1, h2, h3, h4, h5,
 #cancel-button {
   background: #cd4dcc; }
 
+#cancel-button-entry {
+  background: #cd4dcc; }
+
 #add-button {
   display: block;
   position: absolute;
@@ -8473,7 +8476,30 @@ h1, h2, h3, h4, h5,
     .dialog {
       width: 100%; } }
 
+.dialog-entry {
+  z-index: 5;
+  background: #000;
+  width: 34%;
+  height: 500px;
+  top: 0;
+  right: 0;
+  display: none;
+}
+      
+  @media (max-width: 767.98px) {
+    .dialog-entry {
+      width: 100%;
+    }
+  }
+      
+
 .dialog-header {
+  margin: 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 28px; }
+
+.dialog-entry-header {
   margin: 20px;
   color: #fff;
   text-align: center;

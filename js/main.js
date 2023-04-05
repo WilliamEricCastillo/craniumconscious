@@ -11,6 +11,7 @@ $(document).ready(function(){
     $(".left-button").click({date: date}, prev_year);
     $(".month").click({date: date}, month_click);
     $("#add-button").click({date: date}, new_event);
+    $("#add-button-entry").click({date: date}, new_entry);
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date);
@@ -154,6 +155,41 @@ function new_event(event) {
         }
     });
 }
+
+function prev_year(event) {
+    $("#dialog").hide(250);
+    var date = event.data.date;
+    var new_year = date.getFullYear()-1;
+    $("year").html(new_year);
+    date.setFullYear(new_year);
+    init_calendar(date);
+}
+
+// Event handler for clicking the new event button
+function new_entry(event) {
+    // if a date isn't selected then do nothing
+    if ($(".active-date").length === 0) return;
+  
+    // remove red error input on click
+    $("input").click(function () {
+      $(this).removeClass("error-input");
+    });
+  
+    // empty inputs and hide events
+    $("#dialog-entry input[type=text]").val("");
+    $(".journal-container").hide(250);
+  
+    // show the dialog
+    $("#dialog-entry").show(250);
+  }
+  
+  // Event handler for cancel button
+  $("#cancel-button-entry").click(function () {
+    $("#name").removeClass("error-input");
+    $("#count").removeClass("error-input");
+    $(".journal-container").show(250);
+  });
+  
 
 // Adds a json event to event_data
 function new_event_json(name, date, day) {
