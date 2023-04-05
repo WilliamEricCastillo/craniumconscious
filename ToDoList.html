@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        form input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        form button:hover {
+            background-color: #3e8e41;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        li span {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        li button {
+            padding: 5px 10px;
+            font-size: 14px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        li button:hover {
+            background-color: #d32f2f;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Todo List</h1>
+    <form>
+        <input type="text" placeholder="Add new todo" id="todo-input">
+        <button type="submit" id="add-btn">Add</button>
+    </form>
+    <ul id="todo-list">
+    </ul>
+</div>
+<script>
+    const form = document.querySelector('form');
+    const input = document.querySelector('input');
+    const ul = document.querySelector('ul');
+    const clearBtn = document.querySelector('.clear');
+    const itemsLeft = document.querySelector('.items-left');
+    const filter = document.querySelector('.filter');
+
+    let todos = [];
+
+    // Load the todos from local storage on page load
+    window.addEventListener('load', () => {
+        const savedTodos = localStorage.getItem('todos');
+        if (savedTodos) {
+            todos = JSON.parse(savedTodos);
+            updateUI();
+        }
+    });
+
+    function addTodo (todo) {
+        todos.push(todo);
+
+        // Save the updated todos to local storage
+        localStorage.setItem('todos', JSON.stringify(todos));
+
+        // update the UI
+        updateUI();
+    }
+
+    function updateUI () {
+        // clear the existing list items
+        ul.innerHTML = '';
+
+        // add new items to the list
+        todos.forEach((todo, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+      <span>${todo}</span>
+      <button class="delete" data-index="${index}">Delete</button>
+    `;
+            ul.appendChild(li);
+        });
+
+        // update the items left count
+        itemsLeft.textContent = `${todos.length} item(s) left`;
+    }
+
+    function deleteTodo (index) {
+        todos.splice(index, 1);
+
+        // Save the updated todos to local storage
+        localStorage.setItem('todos', JSON.stringify(todos));
+
+        // update the UI
+        updateUI();
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // get the todo text from the input field
+        const todo = input.value.trim();
+
+        // add the todo to the list if it is not empty
+        if (todo !== '') {
+            addTodo(todo);
+
+            // clear the input field
+            input.value = '';
+        }
+    });
+
+    ul.addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete')) {
+            // get the index of the todo item to be deleted
+            const index = e.target.dataset.index;
+
+            // delete the todo item
+            deleteTodo(index);
+        }
+    });
+
+    clearBtn.addEventListener('click', () => {
+        // clear the todos array
+        todos = [];
+
+        // Save the updated todos to local storage
+        localStorage.setItem('todos', JSON.stringify(todos));
+
+        // update the UI
+        updateUI();
+    });
+
+    filter.addEventListener('change', () => {
+        // get the filter value
+        const filterValue = filter.value;
+
+        // filter the todos array based on the filter value
+        let filteredTodos = [];
+
+        if (filterValue === 'all') {
+            filteredTodos = todos;
+        } else if (filterValue === 'active') {
+            filteredTodos = todos.filter((todo) => !todo.completed);
+        } else if (filterValue === 'completed') {
+            filteredTodos = todos.filter((todo) => todo.completed);
+        }
+
+        // update the UI
+        todos = filteredTodos;
+        updateUI();
+    });
+
+
+</script>
+</body>
+</html>

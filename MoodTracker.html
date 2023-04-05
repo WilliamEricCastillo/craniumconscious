@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <meta charset="UTF-8">
+  <title>Mood Tracker</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    h1,#submit-button {
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+
+  fieldset {
+    border: none;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+    label {
+      display: inline;
+      width: 100px;
+      height: 70px;
+      margin: 10px;
+      font-size: 40px;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 100%;
+      border: 3px solid #ccc;
+      transition: all 0.3s ease-in-out;
+    }
+
+  label:hover {
+    border-color: #555;
+  }
+
+  input[type="radio"]:checked + label {
+    border-color: #007bff;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  canvas {
+    margin-top: 30px;
+    border: 1px solid #ccc;
+  }
+  </style>
+</head>
+<body>
+<h1>Mood Tracker</h1>
+<form>
+  <fieldset>
+    <legend>How are you feeling today?</legend>
+    <input type="radio" id="emoji1" name="mood" value="0">
+    <label for="emoji1"><img src="images/icons8-in-love-96.png" alt="Happy"></label>
+    <input type="radio" id="emoji2" name="mood" value="1">
+    <label for="emoji2"><img src="images/icons8-smiling-96.png" alt="In Love"></label>
+    <input type="radio" id="emoji3" name="mood" value="2">
+    <label for="emoji3"><img src="images/icons8-neutral-96.png" alt="Neutral"></label>
+    <input type="radio" id="emoji4" name="mood" value="3">
+    <label for="emoji4"><img src="images/icons8-frowning-face-96.png" alt="Sad"></label>
+    <input type="radio" id="emoji5" name="mood" value="4">
+    <label for="emoji5"><img src="images/icons8-angry-96.png" alt="Angry"></label>
+    <br>
+    <button type="button" id="submit-button">Submit</button>
+  </fieldset>
+</form>
+
+
+<canvas id="chart"></canvas>
+<script>
+
+  // Get the chart canvas and initialize the Chart object
+  const chartCanvas = document.getElementById('chart');
+  const moodChart = new Chart(chartCanvas, {
+    type: 'line',
+    data: {
+      labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      datasets: [{
+        label: 'Mood',
+        data: [1,2,3,4,5,6,7,8],
+        borderColor: 'black',
+        backgroundColor: '#007bff',
+        fill: false,
+        pointBackgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#red', '#343a40', '#17a2b8'],
+        pointBorderColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff']
+      }]
+
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Mood Tracker'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            max: 4,
+            stepSize: 1,
+            callback: function(value) {
+              switch (value) {
+                case 0:
+                  return {text: '&#x1F621;', color: 'red'};
+                case 1:
+                  return {text: '&#x1F622;', color: 'orange'};
+                case 2:
+                  return {text: '&#x1F610;', color: 'yellow'};
+                case 3:
+                  return {text: '&#x1F60D;', color: 'lightgreen'};
+                case 4:
+                  return {text: '&#x1F60E;', color: 'green'};
+                default:
+                  return '';
+              }
+            }
+          },
+          scaleLabel: {
+            display: true,
+            labelString: 'Mood'
+          }
+        }],
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Day of the week'
+          }
+        }]
+      }
+    }
+  });
+
+
+  // Add an event listener to the Submit button
+  const submitButton = document.getElementById('submit-button');
+  submitButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    const moodRadios = document.getElementsByName('mood');
+    let moodValue;
+    for (let i = 0; i < moodRadios.length; i++) {
+      if (moodRadios[i].checked) {
+        moodValue = moodRadios[i].value;
+        break;
+      }
+    }
+    if (moodValue) {
+      const currentDate = new Date();
+      const currentDayOfWeek = currentDate.getDay();
+      moodChart.data.datasets[0].data[currentDayOfWeek] = [4, 3, 2, 1, 0].indexOf(parseInt(moodValue));
+      moodChart.update();
+    }
+  });
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
