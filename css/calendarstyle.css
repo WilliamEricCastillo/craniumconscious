@@ -8207,20 +8207,21 @@ h1, h2, h3, h4, h5,
       height: auto; } }
 
 .journal-container {
-      overflow-y: scroll;
-      height: 100%;
-      width: 33%;
-      float: center;
-      margin: 0px auto;
-      display: inline-block;
-      padding: 0px;
-      border-bottom-right-radius: 3px;
-      border-top-right-radius: 3px;
-      padding: 0; }
-      @media (max-width: 767.98px) {
-        .journal-container {
-          width: 100%;
-          height: auto; } }
+  overflow-y: scroll;
+  height: 100%;
+  width: 33%;
+  float: center;
+  margin: 0px auto;
+  display: inline-block;
+  padding: 0px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 0;
+  position: relative; }
+  @media (max-width: 767.98px) {
+    .journal-container {
+      width: 100%;
+      height: auto; } }
 
 .events-container:after {
   clear: both; }
@@ -8358,12 +8359,19 @@ h1, h2, h3, h4, h5,
   right: 20px;
   bottom: 20px; }
 
-#add-button:hover, #ok-button:hover, #cancel-button:hover {
+#add-button-entry {
+
+  display: block;
+  position: absolute;
+  right: 20px;
+  bottom: 20px; }
+
+#add-button:hover, #ok-button:hover, #cancel-button:hover, #add-button-entry:hover {
   -webkit-transform: scale(1.03);
   -ms-transform: scale(1.03);
   transform: scale(1.03); }
 
-#add-button:active, #ok-button:active, #cancel-button:active {
+#add-button:active, #ok-button:active, #cancel-button:active, #add-button-entry:active {
   -webkit-transform: translateY(3px) scale(0.97);
   -ms-transform: translateY(3px) scale(0.97);
   transform: translateY(3px) scale(0.97); }
