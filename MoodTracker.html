@@ -4,7 +4,13 @@
   <meta charset="UTF-8">
   <title>Mood Tracker</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/css/NavBarStyle.css">
+
   <style>
+    * {
+      font-family: Arial, sans-serif;
+    }
+
     h1,#submit-button {
     text-align: center;
   }
@@ -18,6 +24,7 @@
 
   fieldset {
     border: none;
+    white-space: nowrap;
   }
 
   input[type="radio"] {
@@ -65,30 +72,83 @@
     margin-top: 30px;
     border: 1px solid #ccc;
   }
+
+  #graph-style{
+    width: 80%;
+    margin: auto;
+  }
+
+    .radio-group {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .radio-value {
+      margin-top: 10px;
+      font-size: 16px;
+      text-align: center;
+    }
+
   </style>
 </head>
 <body>
+
+    <nav>
+      <div class="nav-content">
+        <div class="logo">
+          <a href="index.html">Cranium Conscious</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="HomePage.html">Home</a></li>
+          <li><a href="Diary.html">Diary</a></li>
+          <li><a href="Calendar.html">Calendar</a></li>
+          <li><a href="MindfulActivities.html">MindfulActivities</a></li>
+        </ul>
+      </div>
+    </nav>
+
+<br><br><br><br>
 <h1>Mood Tracker</h1>
-<form>
-  <fieldset>
-    <legend>How are you feeling today?</legend>
-    <input type="radio" id="emoji1" name="mood" value="0">
-    <label for="emoji1"><img src="images/icons8-in-love-96.png" alt="Happy"></label>
-    <input type="radio" id="emoji2" name="mood" value="1">
-    <label for="emoji2"><img src="images/icons8-smiling-96.png" alt="In Love"></label>
-    <input type="radio" id="emoji3" name="mood" value="2">
-    <label for="emoji3"><img src="images/icons8-neutral-96.png" alt="Neutral"></label>
-    <input type="radio" id="emoji4" name="mood" value="3">
-    <label for="emoji4"><img src="images/icons8-frowning-face-96.png" alt="Sad"></label>
-    <input type="radio" id="emoji5" name="mood" value="4">
-    <label for="emoji5"><img src="images/icons8-angry-96.png" alt="Angry"></label>
-    <br>
-    <button type="button" id="submit-button">Submit</button>
-  </fieldset>
+
+    <form>
+      <fieldset>
+        <h3><legend>How are you feeling today?</legend></h3>
+        <div class="radio-group">
+          <input type="radio" id="emoji1" name="mood" value="0">
+          <label for="emoji1"><img src="images/icons8-in-love-96.png" alt="Happy"></label>
+          <div class="radio-value">Value 4</div>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="emoji2" name="mood" value="1">
+          <label for="emoji2"><img src="images/icons8-smiling-96.png" alt="In Love"></label>
+          <div class="radio-value">Value 3</div>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="emoji3" name="mood" value="2">
+          <label for="emoji3"><img src="images/icons8-neutral-96.png" alt="Neutral"></label>
+          <div class="radio-value">Value 2</div>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="emoji4" name="mood" value="3">
+          <label for="emoji4"><img src="images/icons8-frowning-face-96.png" alt="Sad"></label>
+          <div class="radio-value">Value 1</div>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="emoji5" name="mood" value="4">
+          <label for="emoji5"><img src="images/icons8-angry-96.png" alt="Angry"></label>
+          <div class="radio-value">Value 0</div>
+        </div>
+        <br>
+        <button type="button" id="submit-button">Submit</button>
+      </fieldset>
+
+  <div id="graph-style">
+    <canvas id="chart"></canvas>
+  </div>
+
 </form>
 
 
-<canvas id="chart"></canvas>
 <script>
 
   // Get the chart canvas and initialize the Chart object
@@ -172,7 +232,6 @@
       moodChart.update();
     }
   });
-
 
 </script>
 </body>
