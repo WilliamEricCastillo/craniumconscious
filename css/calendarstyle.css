@@ -8182,7 +8182,7 @@ h1, h2, h3, h4, h5,
 .content {
   overflow: none;
   width: 100%;
-  max-width: 790px;
+  max-width: 1200px;
   padding: 0px 0;
   height: 500px;
   position: relative;
@@ -8193,7 +8193,7 @@ h1, h2, h3, h4, h5,
 .events-container {
   overflow-y: scroll;
   height: 100%;
-  width: 50%;
+  width: 33%;
   float: right;
   margin: 0px auto;
   display: inline-block;
@@ -8205,6 +8205,22 @@ h1, h2, h3, h4, h5,
     .events-container {
       width: 100%;
       height: auto; } }
+
+.journal-container {
+      overflow-y: scroll;
+      height: 100%;
+      width: 33%;
+      float: center;
+      margin: 0px auto;
+      display: inline-block;
+      padding: 0px;
+      border-bottom-right-radius: 3px;
+      border-top-right-radius: 3px;
+      padding: 0; }
+      @media (max-width: 767.98px) {
+        .journal-container {
+          width: 100%;
+          height: auto; } }
 
 .events-container:after {
   clear: both; }
@@ -8247,7 +8263,7 @@ h1, h2, h3, h4, h5,
   position: relative;
   margin: 0 auto;
   height: 100%;
-  width: 50%;
+  width: 33%;
   background: #fff;
   font: 13px Helvetica, Arial, san-serif;
   display: inline-block;
@@ -8322,9 +8338,9 @@ h1, h2, h3, h4, h5,
   -webkit-transition: .2s ease all;
   -o-transition: .2s ease all;
   transition: .2s ease all;
-  color: white;
+  color: black;
   border: none;
-  background: #7e0cf5; }
+  background: #fff; }
   .button.button-white {
     background: #fff;
     color: #000; }
@@ -8440,7 +8456,7 @@ h1, h2, h3, h4, h5,
   z-index: 5;
   background: #000;
   position: absolute;
-  width: 50%;
+  width: 34%;
   height: 500px;
   top: 0;
   right: 0;
