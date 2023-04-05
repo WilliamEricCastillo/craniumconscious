@@ -11,6 +11,27 @@
       font-family: Arial, sans-serif;
     }
 
+    body {
+
+      padding: 6em 0 6em 0;
+      background-color: #4686a0;
+      color: rgba(255, 255, 255, 0.75);
+      background-attachment: fixed, fixed, fixed;
+      background-image:
+              url("images/overlay2.png"),
+              url("images/overlay4.svg"),
+              linear-gradient(45deg, #4361c2, #4fa49a 50%, #9dc66b 95%);
+      background-position:
+              top left,
+              center center,
+              center center;
+      background-size:
+              auto,
+              cover,
+              cover;
+
+    }
+
     h1,#submit-button {
     text-align: center;
   }
@@ -71,6 +92,7 @@
   canvas {
     margin-top: 30px;
     border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.6); /* slightly transparent white background */
   }
 
   #graph-style{
@@ -232,6 +254,7 @@
       moodChart.update();
     }
   });
+
 
 </script>
 </body>
