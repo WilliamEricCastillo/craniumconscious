@@ -103,7 +103,9 @@
     </ul>
   </div>
 </nav>
-<section class="home"></section>
+<section class="home">
+  <div id="poem" style="text-align: center; margin-top: 100px;"></div>
+</section>
 
 <script>
   const API = "https://poetrydb.org/random";
@@ -118,6 +120,13 @@
   })
   .then(data => {
     console.log(data[0].lines)
+    const poem = data[0].lines;
+
+    const poemElement = document.getElementById("poem");
+
+    const poemText = poem.join('<br>');
+
+    poemElement.innerHTML = poemText;
   });
 </script>
 
