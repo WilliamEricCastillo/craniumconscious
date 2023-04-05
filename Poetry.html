@@ -105,7 +105,21 @@
 </nav>
 <section class="home"></section>
 
+<script>
+  const API = "https://poetrydb.org/random";
 
+  fetch(API)
+  .then(response => {
+    if (!response.ok) {
+      console.log("Error!");
+      return;
+    }
+    return response.json()
+  })
+  .then(data => {
+    console.log(data[0].lines)
+  });
+</script>
 
 <script>
   let nav = document.querySelector("nav");
