@@ -3,16 +3,31 @@
 <head>
     <!-- <meta charset="UTF-8"> -->
     <title>Crisis Support Information</title>
-
+    <link rel="stylesheet" href="assets/css/NavBarStyle.css">
     <style>
+
         body {
             background-color: #4686a0;
-            font-family: Arial;
             color: rgba(255, 255, 255, 0.75);
-            background-image: url(images/overlay2.png), url(images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
-            margin: 0;
-            padding: 0;
+            background-attachment: fixed, fixed, fixed;
+            background-image: url(assets/css/images/overlay2.png), url(assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+
+            background-position:
+                    top left,
+                    center center,
+                    center center;
+            background-size:
+                    auto,
+                    cover,
+                    cover;
         }
+
+        .container_text {
+            text-align: left;
+            margin: 0 auto;
+            max-width: 800px; /* adjust this value as needed */
+        }
+
         h1 {
             color: #FFFFFF;
             text-align: center;
@@ -39,10 +54,34 @@
             color: #008080;
             margin-right: 10px;
         }
+        .container_images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
-    
+
 </head>
 <body>
+<div id="navigation">
+    <nav>
+        <div id="nav-block">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="index.html">Cranium Conscious</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="HomePage.html">Home</a></li>
+                    <li><a href="Diary.html">Diary</a></li>
+                    <li><a href="Calendar.html">Calendar</a></li>
+                    <li><a href="MindfulActivities.html">MindfulActivities</a></li>
+                    <li><a href="CrisisSupportInformation.html">CrisisSupport</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</div>
 
     <div class = "container_text">
         <h1>Crisis Support Information</h1>
@@ -56,13 +95,14 @@
         </ul>
     </div>
 
-    <div class = "containter_images">
+    <div class="container_images">
         <img src="images/help2.jpg" alt="Example image" width="300" height="200">
         <img src="images/help3.jpg" alt="Example image" width="300" height="200">
         <img src="images/help1.jpg" alt="Example image" width="315" height="200">
         <img src="images/help4.jpg" alt="Example image" width="300" height="200">
         <img src="images/help5.jpg" alt="Example image" width="300" height="200">
     </div>
+
 
 </body>
 </html>
