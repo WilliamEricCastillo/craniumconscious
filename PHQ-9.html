@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHQ-9</title>
+    <style>
+        /* CSS styles go here */
+        body {
+            background-color: #4686a0;
+            color: rgba(255, 255, 255, 0.75);
+            background-attachment: fixed, fixed, fixed;
+            background-image: url(assets/css/images/overlay2.png), url(assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+
+            background-position:
+                    top left,
+                    center center,
+                    center center;
+            background-size:
+                    auto,
+                    cover,
+                    cover;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        fieldset {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: black;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 0 auto;
+        }
+        fieldset {
+            margin: 0 auto;
+            padding: 10px;
+            width: 50%;
+            border: 2px solid #ccc;
+        }
+
+        legend {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        input[type="submit"] {
+            display: block;
+            margin: 20px auto;
+        }
+
+
+    </style>
+</head>
+<body>
+<h1>PHQ-9 Questionnaire</h1>
+
+<legend>Over the last two weeks, how often have you been bothered by any of the following problems?</legend>
+<br>
+<form>
+    <fieldset>
+
+        <label for="q1">Little interest or pleasure in doing things</label>
+        <input type="radio" name="q1" value="0">Not at all<br>
+        <input type="radio" name="q1" value="1">Several days<br>
+        <input type="radio" name="q1" value="2">More than half the days<br>
+        <input type="radio" name="q1" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q2">Feeling down, depressed, or hopeless</label>
+        <input type="radio" name="q2" value="0">Not at all<br>
+        <input type="radio" name="q2" value="1">Several days<br>
+        <input type="radio" name="q2" value="2">More than half the days<br>
+        <input type="radio" name="q2" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q3">Trouble falling or staying asleep, or sleeping too much</label>
+        <input type="radio" name="q3" value="0">Not at all<br>
+        <input type="radio" name="q3" value="1">Several days<br>
+        <input type="radio" name="q3" value="2">More than half the days<br>
+        <input type="radio" name="q3" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q4">Feeling tired or having little energy</label>
+        <input type="radio" name="q4" value="0">Not at all<br>
+        <input type="radio" name="q4" value="1">Several days<br>
+        <input type="radio" name="q4" value="2">More than half the days<br>
+        <input type="radio" name="q4" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q5">Poor appetite or overeating</label>
+        <input type="radio" name="q5" value="0">Not at all<br>
+        <input type="radio" name="q5" value="1">Several days<br>
+        <input type="radio" name="q5" value="2">More than half the days<br>
+        <input type="radio" name="q5" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q6">Feeling bad about yourself — or that you are a failure or have let yourself or your family down</label>
+        <input type="radio" name="q6" value="0">Not at all<br>
+        <input type="radio" name="q6" value="1">Several days<br>
+        <input type="radio" name="q6" value="2">More than half the days<br>
+        <input type="radio" name="q6" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q7">Trouble concentrating on things, such as reading the newspaper or watching television</label>
+        <input type="radio" name="q7" value="0">Not at all<br>
+        <input type="radio" name="q7" value="1">Several days<br>
+        <input type="radio" name="q7" value="2">More than half the days<br>
+        <input type="radio" name="q7" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q8">Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual</label>
+        <input type="radio" name="q8" value="0">Not at all<br>
+        <input type="radio" name="q8" value="1">Several days<br>
+        <input type="radio" name="q8" value="2">More than half the days<br>
+        <input type="radio" name="q8" value="3">Nearly every day<br>
+    </fieldset>
+
+    <fieldset>
+        <legend></legend>
+
+        <label for="q9">Thoughts that you would be better off dead, or of hurting yourself in some way</label>
+        <input type="radio" name="q9" value="0">Not at all<br>
+        <input type="radio" name="q9" value="1">Several days<br>
+        <input type="radio" name="q9" value="2">More than half the days<br>
+        <input type="radio" name="q9" value="3">Nearly every day<br>
+    </fieldset>
+
+    <input type="submit" value="Submit">
+    <div id="result"></div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</form>
+
+<script>
+    const form = document.querySelector('form');
+    const submitButton = document.querySelector('input[type="submit"]');
+    const resultDiv = document.createElement('div');
+    form.appendChild(resultDiv);
+
+    submitButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const q1Value = parseInt(document.querySelector('input[name="q1"]:checked').value);
+        const q2Value = parseInt(document.querySelector('input[name="q2"]:checked').value);
+        const q3Value = parseInt(document.querySelector('input[name="q3"]:checked').value);
+        const q4Value = parseInt(document.querySelector('input[name="q4"]:checked').value);
+        const q5Value = parseInt(document.querySelector('input[name="q5"]:checked').value);
+        const q6Value = parseInt(document.querySelector('input[name="q6"]:checked').value);
+        const q7Value = parseInt(document.querySelector('input[name="q7"]:checked').value);
+        const q8Value = parseInt(document.querySelector('input[name="q8"]:checked').value);
+        const q9Value = parseInt(document.querySelector('input[name="q9"]:checked').value);
+
+        const totalScore = q1Value + q2Value + q3Value + q4Value + q5Value + q6Value + q7Value + q8Value + q9Value;
+
+        let resultText = '';
+
+        if (totalScore >= 0 && totalScore <= 4) {
+            resultText = 'Minimal depression';
+        } else if (totalScore >= 5 && totalScore <= 9) {
+            resultText = 'Mild depression';
+        } else if (totalScore >= 10 && totalScore <= 14) {
+            resultText = 'Moderate depression';
+        } else if (totalScore >= 15 && totalScore <= 19) {
+            resultText = 'Moderately severe depression';
+        } else {
+            resultText = 'Severe depression';
+        }
+
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = `Your total score is ${totalScore}. You have ${resultText}.`;
+        resultDiv.style.textAlign = 'center';
+        resultDiv.style.fontSize = '24px';
+        resultDiv.style.background ='black';
+    });
+
+</script>
+</body>
+</html>
