@@ -8208,6 +8208,7 @@ h1, h2, h3, h4, h5,
 
 .journal-container {
   overflow-y: scroll;
+  z-index: 1;
   height: 100%;
   width: 33%;
   float: center;
@@ -8217,7 +8218,7 @@ h1, h2, h3, h4, h5,
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
   padding: 0;
-  position: relative; }
+  position: absolute; }
   @media (max-width: 767.98px) {
     .journal-container {
       width: 100%;
@@ -8479,18 +8480,15 @@ h1, h2, h3, h4, h5,
 .dialog-entry {
   z-index: 5;
   background: #000;
+  position: static;
   width: 34%;
   height: 500px;
   top: 0;
   right: 0;
-  display: none;
-}
-      
+  display: none; }
   @media (max-width: 767.98px) {
     .dialog-entry {
-      width: 100%;
-    }
-  }
+      width: 100%; } }
       
 
 .dialog-header {

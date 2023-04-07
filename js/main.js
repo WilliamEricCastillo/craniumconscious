@@ -187,6 +187,7 @@ function new_entry(event) {
   $("#cancel-button-entry").click(function () {
     $("#name").removeClass("error-input");
     $("#count").removeClass("error-input");
+    $("#dialog-entry").hide(250);
     $(".journal-container").show(250);
   });
   
