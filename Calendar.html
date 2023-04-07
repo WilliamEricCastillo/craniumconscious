@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Calendar 04</title>
+  	<title>Calendar</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,7 +17,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Calendar #04</h2>
+					<h2 class="heading-section">Calendar</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -64,19 +64,31 @@
 			              </tbody> 
 				          </table>
 				        </div> 
-				        <button class="button" id="add-button">Add Event</button>
 				      </div>
 				    </div>
-				    <div class="events-container">
+				    <div class="journal-container">
 				    </div>
+					<button class="button" id="add-button-entry">Add Entry</button>
+					<div class="dialog-entry" id="dialog-entry">
+				        <h2 class="dialog-entry-header"> Add New Entry </h2>
+				        <form class="form" id="form-entry">
+				          	<div class="form-container" align="center">
+				            	<label class="form-label" id="valueFromMyButton" for="name">Entry: </label>
+				            	<input class="input" type="text" id="entry" maxlength="500">
+				            	<input type="button" value="Cancel" class="button" id="cancel-button-entry">
+				            	<input type="button" value="OK" class="button button-white" id="ok-button-entry">
+				          	</div>
+				        </form>
+					</div>
+					<div class="events-container">
+				    </div>
+					<button class="button" id="add-button">Add Reminder</button>
 				    <div class="dialog" id="dialog">
-				        <h2 class="dialog-header"> Add New Event </h2>
+				        <h2 class="dialog-header"> Add New Reminder </h2>
 				        <form class="form" id="form">
 				          <div class="form-container" align="center">
-				            <label class="form-label" id="valueFromMyButton" for="name">Event name</label>
+				            <label class="form-label" id="valueFromMyButton" for="name">Reminder: </label>
 				            <input class="input" type="text" id="name" maxlength="36">
-				            <label class="form-label" id="valueFromMyButton" for="count">Number of people to invite</label>
-				            <input class="input" type="number" id="count" min="0" max="1000000" maxlength="7">
 				            <input type="button" value="Cancel" class="button" id="cancel-button">
 				            <input type="button" value="OK" class="button button-white" id="ok-button">
 				          </div>

@@ -8182,7 +8182,7 @@ h1, h2, h3, h4, h5,
 .content {
   overflow: none;
   width: 100%;
-  max-width: 790px;
+  max-width: 1200px;
   padding: 0px 0;
   height: 500px;
   position: relative;
@@ -8193,7 +8193,7 @@ h1, h2, h3, h4, h5,
 .events-container {
   overflow-y: scroll;
   height: 100%;
-  width: 50%;
+  width: 33%;
   float: right;
   margin: 0px auto;
   display: inline-block;
@@ -8203,6 +8203,24 @@ h1, h2, h3, h4, h5,
   padding: 0; }
   @media (max-width: 767.98px) {
     .events-container {
+      width: 100%;
+      height: auto; } }
+
+.journal-container {
+  overflow-y: scroll;
+  z-index: 1;
+  height: 100%;
+  width: 33%;
+  float: center;
+  margin: 0px auto;
+  display: inline-block;
+  padding: 0px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 0;
+  position: absolute; }
+  @media (max-width: 767.98px) {
+    .journal-container {
       width: 100%;
       height: auto; } }
 
@@ -8247,7 +8265,7 @@ h1, h2, h3, h4, h5,
   position: relative;
   margin: 0 auto;
   height: 100%;
-  width: 50%;
+  width: 33%;
   background: #fff;
   font: 13px Helvetica, Arial, san-serif;
   display: inline-block;
@@ -8322,9 +8340,9 @@ h1, h2, h3, h4, h5,
   -webkit-transition: .2s ease all;
   -o-transition: .2s ease all;
   transition: .2s ease all;
-  color: white;
+  color: black;
   border: none;
-  background: #7e0cf5; }
+  background: #fff; }
   .button.button-white {
     background: #fff;
     color: #000; }
@@ -8336,18 +8354,29 @@ h1, h2, h3, h4, h5,
 #cancel-button {
   background: #cd4dcc; }
 
+#cancel-button-entry {
+  background: #cd4dcc; }
+
 #add-button {
   display: block;
   position: absolute;
   right: 20px;
   bottom: 20px; }
 
-#add-button:hover, #ok-button:hover, #cancel-button:hover {
+#add-button-entry {
+  z-index: 4;
+  display: block;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  right: 36%; }
+
+#add-button:hover, #ok-button:hover, #cancel-button:hover, #add-button-entry:hover {
   -webkit-transform: scale(1.03);
   -ms-transform: scale(1.03);
   transform: scale(1.03); }
 
-#add-button:active, #ok-button:active, #cancel-button:active {
+#add-button:active, #ok-button:active, #cancel-button:active, #add-button-entry:active {
   -webkit-transform: translateY(3px) scale(0.97);
   -ms-transform: translateY(3px) scale(0.97);
   transform: translateY(3px) scale(0.97); }
@@ -8440,7 +8469,7 @@ h1, h2, h3, h4, h5,
   z-index: 5;
   background: #000;
   position: absolute;
-  width: 50%;
+  width: 34%;
   height: 500px;
   top: 0;
   right: 0;
@@ -8449,7 +8478,27 @@ h1, h2, h3, h4, h5,
     .dialog {
       width: 100%; } }
 
+.dialog-entry {
+  z-index: 5;
+  background: #000;
+  position: fixed;
+  width: 14.4%;
+  height: 500px;
+  top: 17.18%;
+  right: 43%;
+  display: none; }
+  @media (max-width: 767.98px) {
+    .dialog-entry {
+      width: 100%; } }
+      
+
 .dialog-header {
+  margin: 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 28px; }
+
+.dialog-entry-header {
   margin: 20px;
   color: #fff;
   text-align: center;
