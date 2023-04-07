@@ -8364,11 +8364,12 @@ h1, h2, h3, h4, h5,
   bottom: 20px; }
 
 #add-button-entry {
-
+  z-index: 4;
   display: block;
   position: absolute;
   right: 20px;
-  bottom: 20px; }
+  bottom: 20px;
+  right: 36%; }
 
 #add-button:hover, #ok-button:hover, #cancel-button:hover, #add-button-entry:hover {
   -webkit-transform: scale(1.03);
@@ -8480,11 +8481,11 @@ h1, h2, h3, h4, h5,
 .dialog-entry {
   z-index: 5;
   background: #000;
-  position: static;
-  width: 34%;
+  position: fixed;
+  width: 30%;
   height: 500px;
-  top: 0;
-  right: 0;
+  top: 17%;
+  right: 35%;
   display: none; }
   @media (max-width: 767.98px) {
     .dialog-entry {

@@ -17,6 +17,7 @@ $(document).ready(function(){
     init_calendar(date);
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
+    show_entries(entries, months[date.getMonth()], today);
 });
 
 // Initialize the calendar by appending the HTML dates
@@ -51,9 +52,11 @@ function init_calendar(date) {
         else {
             var curr_date = $("<td class='table-date'>"+day+"</td>");
             var events = check_events(day, month+1, year);
+            var entries = [];
             if(today===day && $(".active-date").length===0) {
                 curr_date.addClass("active-date");
                 show_events(events, months[month], day);
+                show_entries(entries, months[date.getMonth()], today);
             }
             // If this date has any events, style it with .event-date
             if(events.length!==0) {
@@ -83,6 +86,7 @@ function date_click(event) {
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
     show_events(event.data.events, event.data.month, event.data.day);
+    show_entries(entries, months[date.getMonth()], today);
 };
 
 // Event handler for when a month is clicked
@@ -178,7 +182,7 @@ function new_entry(event) {
     // empty inputs and hide events
     $("#dialog-entry input[type=text]").val("");
     $(".journal-container").hide(250);
-  
+
     // show the dialog
     $("#dialog-entry").show(250);
   }
@@ -231,6 +235,21 @@ function show_events(events, month, day) {
             $(event_card).append(event_name).append(event_count);
             $(".events-container").append(event_card);
         }
+    }
+}
+
+function show_entries(entries, month, day) {
+    // Clear the dates container
+    $(".journal-container").empty();
+    $(".journal-container").show(250);
+    var entries = [];
+    // If there are no events for this date, notify the user
+    if(entries.length===0) {
+        var event_card = $("<div class='event-card'></div>");
+        var event_name = $("<div class='event-name'>There are no journal entries for "+month+" "+day+".</div>");
+        $(event_card).css({ "border-left": "10px solid #FF1744" });
+        $(event_card).append(event_name);
+        $(".journal-container").append(event_card);
     }
 }
 
