@@ -1,10 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html>
+  <head>
+    <title>Mindful Activites</title>
+    <style>
+      body {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        color: #007bff;
+      }
+      form {
+        margin-top: 20px;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+      input[type="checkbox"] {
+        margin-right: 10px;
+      }
+      button {
+        display: block;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+      h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        color: #007bff;
+      }
+      ul {
+        margin-top: 0;
+        padding-left: 20px;
+        list-style: disc;
+      }
+      li {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Activity Suggestion Generator</h1>
+      <form>
+        <label>
+          <input type="checkbox" name="emotion" value="happy">
+          Happy
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="sad">
+          Sad
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="angry">
+          Angry
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="stressed">
+          Stressed
+        </label>
+        <button type="button" onclick="suggestActivity()">Suggest Activity</button>
+      </form>
+      <div id="suggestions"></div>
+    </div>
+    <script>
+      function suggestActivity() {
+        var emotions = document.querySelectorAll('input[type="checkbox"]:checked');
+        var suggestions = [];
+        for (var i = 0; i < emotions.length; i++) {
+          switch (emotions[i].value) {
+            case 'happy':
+              suggestions.push('Take a walk in the park', 'Have a picnic', 'Listen to your favorite music');
+              break;
+            case 'sad':
+              suggestions.push('Watch a feel-good movie', 'Read a book', 'Call a friend');
+              break;
+            case 'angry':
+              suggestions.push('Take deep breaths', 'Practice yoga', 'Write in a journal');
+              break;
+            case 'stressed':
+              suggestions.push('Meditate', 'Take a warm bath', 'Do some gentle stretches');
+              break;
+          }
+        }
+        var list = document.createElement('ul');
+        for (var j = 0; j < suggestions.length; j++) {
+          var item = document.createElement('li');
+          item.textContent = suggestions[j];
+          list.appendChild(item);
+        }
+        var suggestionsDiv = document.getElementById('suggestions');
+        suggestionsDiv.innerHTML = '<h2>Suggested Activities:</h2>';
+        suggestionsDiv.appendChild(list);
+      }
+    </script>
+  </body>
 </html>
