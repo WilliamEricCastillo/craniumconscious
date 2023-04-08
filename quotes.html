@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <title>Quotes</title>
+  <link rel="stylesheet" href="assets/css/NavBarStyle.css">
+
+  <style>
+    body {
+
+      background-color: #4686a0;
+      color: rgba(255, 255, 255, 0.75);
+      background-attachment: fixed, fixed, fixed;
+      background-image: url(assets/css/images/overlay2.png), url(assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+
+      background-position:
+              top left,
+              center center,
+              center center;
+      background-size:
+              auto,
+              cover,
+              cover;
+    }
+
+    .quote-container {
+      text-align: center;
+      background-color: #000000;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .quote {
+      font-size: 24px;
+      text-align: center;
+
+    }
+
+    .author {
+      margin-top: 10px;
+      text-align: center;
+      font-style: italic;
+    }
+    .button-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ddd;
+    }
+    .emoji {
+      font-size: 30px;
+      margin-left: 5px;
+    }
+
+    h1{
+      padding-top: 10%;
+      padding-bottom: 5%;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-content">
+    <div class="logo">
+      <a href="index.html">Cranium Conscious</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="HomePage.html">Home</a></li>
+      <li><a href="Diary.html">Diary</a></li>
+      <li><a href="Calendar.html">Calendar</a></li>
+      <li><a href="MindfulActivities.html">MindfulActivities</a></li>
+      <li><a href="CrisisSupportInformation.html">CrisisSupport</a></li>
+    </ul>
+  </div>
+</nav>
+
+<h1>Quotes</h1>
+
+<div class="quote-container">
+  <div class="quote" id="quote"></div>
+  <div class="author" id="author"></div>
+</div>
+
+<div class="button-container">
+  <button id="like"><span class="like emoji">&#x1F44D;</span></button>
+  <button id="dislike"><span class="dislike emoji">&#x1F44E;</span></button>
+</div>
+<script>
+  const quoteElem = document.getElementById("quote");
+  const authorElem = document.getElementById("author");
+  const newQuoteButton = document.getElementById("like");
+  const newQuotedislike = document.getElementById("dislike");
+  const likeButton = document.getElementById("like");
+  const dislikeButton = document.getElementById("dislike");
+
+  function getQuote() {
+    fetch("https://type.fit/api/quotes")
+            .then(response => response.json())
+            .then(data => {
+              const randomIndex = Math.floor(Math.random() * data.length);
+              const quote = data[randomIndex].text;
+              const author = data[randomIndex].author || "Unknown";
+              quoteElem.textContent = quote;
+              authorElem.textContent = "- " + author;
+            })
+            .catch(error => {
+              console.error("Error fetching quote:", error);
+              quoteElem.textContent = "Error fetching quote";
+            });
+  }
+
+  newQuoteButton.addEventListener("click", getQuote);
+  newQuotedislike.addEventListener("click", getQuote);
+  likeButton.addEventListener("click", () => {
+    dislikeButton.innerHTML = '<span class="dislike emoji">&#x1F44E;</span>';
+  });
+
+  dislikeButton.addEventListener("click", () => {
+    likeButton.innerHTML = '<span class="like emoji">&#x1F44D;</span>';
+  });
+
+
+  getQuote(); // fetch initial quote on page load
+
+</script>
+</body>
+</html>
