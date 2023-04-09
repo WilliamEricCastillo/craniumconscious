@@ -141,32 +141,6 @@
   </section>
 
 <script>
-//  function fetchNewPoem() {
-//    const API = "https://poetrydb.org/random";
-//
-//    fetch(API)
-//    .then(response => {
-//      if (!response.ok) {
-//        console.log("Error!");
-//        return;
-//      }
-//      return response.json()
-//    })
-//    .then(data => {
-//      
-//      console.log(data[0].lines)
-//      const poem = data[0].lines;
-//    
-//      const poemElement = document.getElementById("poem");
-//    
-//      const poemText = poem.join('<br>');
-//    
-//      poemElement.innerHTML = poemText;
-//    });
-//  }
-//
-//
-
   async function fetchNewPoem() {
     const MAX_LINES = 50;
     let poem;
