@@ -86,6 +86,20 @@
       padding: 40px 80px;
       box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
     }
+    .button-container {
+      text-align: center;
+    }
+    #likePoem, #dislikePoem {
+      margin-left: 20px;
+      margin-right: 20px;
+      background-color: #4070f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -104,12 +118,14 @@
   </div>
 </nav>
 <section class="home">
-  <div id="poem" style="text-align: center; margin-top: 100px;">
-    <br><br>
+  <div id="poem" style="text-align: center; margin-top: 100px;"></div>
+  <br><br>
+  <div class="button-container">
     <input type="button" id="likePoem" value="Like" onclick="fetchNewPoem()">
     <input type="button" id="dislikePoem" value="Dislike" onclick="fetchNewPoem()">
   </div>
-</section>
+  <br> <br>
+  </section>
 
 <script>
 //  function fetchNewPoem() {
@@ -142,6 +158,9 @@
     const MAX_LINES = 50;
     let poem;
     let data;
+
+    // clear the poem container
+    document.getElementById("poem").innerHTML = "";
 
     // keep fetching poems until we get one that's short enough
     do {
