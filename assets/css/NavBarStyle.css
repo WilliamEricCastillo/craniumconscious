@@ -9,7 +9,6 @@
     font-family: Arial, sans-serif;
 }
 
-
 nav {
     position: fixed;
     top: 0;
@@ -39,7 +38,7 @@ nav .nav-content {
 nav .logo a {
     min-width: 100%;
     font-weight: 500;
-    font-size: 35px;
+    font-size: 30px;
     color: #4070f4;
 }
 
@@ -112,6 +111,7 @@ h2 {
     margin: 0;
     padding: 0;
 }
+
 
 
 
