@@ -86,6 +86,33 @@
       padding: 40px 80px;
       box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
     }
+    .poem {
+      text-align: center;
+      padding: 15px;
+      background-color: lightgray;
+      display: inline-block;
+      margin: 10px;
+      border-radius: 5px;
+      margin-top: 100px;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+    #likePoem, #dislikePoem {
+      margin-left: 20px;
+      margin-right: 20px;
+      background-color: #4070f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+      border-radius: 5px;
+    }
+    #likePoem:hover, #dislikePoem:hover {
+      background-color: #0E2431;
+    }
   </style>
 </head>
 <body>
@@ -103,9 +130,59 @@
     </ul>
   </div>
 </nav>
-<section class="home"></section>
+<section class="home">
+  <div id="poem" style="text-align: center; margin-top: 100px;"></div>
+  <br><br>
+  <div class="button-container">
+    <input type="button" id="likePoem" value="Like" onclick="fetchNewPoem()">
+    <input type="button" id="dislikePoem" value="Dislike" onclick="fetchNewPoem()">
+  </div>
+  <br> <br>
+  </section>
 
+<script>
+  async function fetchNewPoem() {
+    const MAX_LINES = 50;
+    let poem;
+    let data;
 
+    // clear the poem container
+    document.getElementById("poem").innerHTML = "";
+
+    // keep fetching poems until we get one that's short enough
+    do {
+      const response = await fetch("https://poetrydb.org/random");
+      if (!response.ok) {
+        console.log("Error!");
+        return;
+      }
+      data = await response.json();
+      poem = data[0].lines;
+      console.log(poem);
+
+      } while (data[0].linecount > MAX_LINES);
+
+      const poemContainer = document.getElementById("poem");
+
+      const title = document.createElement("h2");
+      title.innerText = data[0].title;
+      poemContainer.appendChild(title);
+
+      const author = document.createElement("h4");
+      author.innerText = data[0].author;
+      poemContainer.appendChild(author);
+
+      // appending some line breaks between poem author and content
+      poemContainer.appendChild(document.createElement("br"));
+
+      const poemElement = document.createElement("p");
+      poemElement.innerHTML = poem.join("<br>");
+      poemContainer.appendChild(poemElement);
+
+  }
+
+  fetchNewPoem();
+</script>
 
 <script>
   let nav = document.querySelector("nav");
@@ -120,4 +197,3 @@
 
 </body>
 </html>
-
