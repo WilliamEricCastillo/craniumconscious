@@ -42,13 +42,13 @@
         ul {
             list-style-type: none;
             margin-top: 0;
-            padding-left: 10;
+            padding-left: 10%;
         }
         li {
             font-size: 16px;
-            line-height: 1.5;
             margin-bottom: 10px;
         }
+
         li:before {
             content: "\2022";
             color: #008080;
@@ -60,6 +60,108 @@
             justify-content: center;
             align-items: center;
         }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 4px;
+            transition: all 0.3s ease;
+            margin: 0 8px;
+        }
+
+        .nav-links a:hover {
+            color: #4070f4;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            padding: 5px;
+            transition: all 0.4s ease;
+            background-color: black; /* slightly transparent white background */
+        }
+
+        nav .nav-content {
+            height: 100%;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav .logo a {
+            font-weight: 500;
+            font-size: 30px;
+            color: #4070f4;
+            text-decoration: none;
+        }
+
+        .nav-content .nav-links {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-content .nav-links li {
+            list-style: none;
+            margin: 0 8px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #4070f4;
+        }
+
+        nav.sticky .nav-links li a {
+            color: #fff;
+            transition: all 0.4s ease;
+        }
+
+        nav.sticky .nav-links li a:hover {
+            color: #0E2431;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 6px;
+            color: #4070f4;
+        }
+
+        #navigation{
+            padding-bottom: 8%;
+        }
+
+        .logo a:hover {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
     </style>
 
 </head>
@@ -71,14 +173,19 @@
                 <div class="logo">
                     <a href="index.html">Cranium Conscious</a>
                 </div>
-                <ul class="nav-links">
-                    <li><a href="HomePage.html">Home</a></li>
-                    <li><a href="Diary.html">Diary</a></li>
-                    <li><a href="Calendar.html">Calendar</a></li>
-                    <li><a href="MindfulActivities.html">MindfulActivities</a></li>
-                    <li><a href="CrisisSupportInformation.html">CrisisSupport</a></li>
-            </ul>
-        </div>
+                <p class="nav-links">
+                    <a href="HomePage.html">Home</a>
+                    <a href="GAD-7.html">GAD7</a>
+                    <a href="PHQ-9.html">PHQ9</a>
+                    <a href="Calendar.html">Calendar</a>
+                    <a href="ToDoList.html">ToDo</a>
+                    <a href="MoodTracker.html">MoodTracker</a>
+                    <a href="MindfulActivities.html">MindfulActivities</a>
+                    <a href="Poetry.html">Poetry</a>
+                    <a href="quotes.html">Quotes</a>
+                    <a href="CrisisSupportInformation.html">CrisisSupport</a>
+                </p>
+            </div>
         </div>
     </nav>
 </div>

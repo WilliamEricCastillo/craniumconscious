@@ -6,6 +6,24 @@
   <style>
     /* Google Font Import Link */
     @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+    body {
+
+      background-color: #4686a0;
+      color: rgba(255, 255, 255, 0.75);
+      background-attachment: fixed, fixed, fixed;
+      background-image: url(assets/css/images/overlay2.png), url(assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+
+      background-position:
+              top left,
+              center center,
+              center center;
+      background-size:
+              auto,
+              cover,
+              cover;
+    }
+
     *{
       margin: 0;
       padding: 0;
@@ -86,15 +104,13 @@
       padding: 40px 80px;
       box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
     }
-    .poem {
+    #poem {
+      width: 40%;
       text-align: center;
-      padding: 15px;
-      background-color: lightgray;
-      display: inline-block;
-      margin: 10px;
-      border-radius: 5px;
-      margin-top: 100px;
+      background-color: black;
+      margin: 0 auto;
     }
+
 
     .button-container {
       text-align: center;
@@ -114,6 +130,8 @@
       background-color: #0E2431;
     }
   </style>
+  <link rel="stylesheet" href="assets/css/NavBarStyle.css">
+
 </head>
 <body>
 <nav>
@@ -121,17 +139,22 @@
     <div class="logo">
       <a href="#">Cranium Conscious</a>
     </div>
-    <ul class="nav-links">
-      <li><a href="HomePage.html">Home</a></li>
-      <li><a href="HomePage.html">Diary</a></li>
-      <li><a href="#">Calendar</a></li>
-      <li><a href="#">MindfulActivities</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+      <ul class="nav-links">
+        <li><a href="HomePage.html">Home</a></li>
+        <li><a href="GAD-7.html">GAD7</a></li>
+        <li><a href="PHQ-9.html">PHQ9</a></li>
+        <li><a href="Calendar.html">Calendar</a></li>
+        <li><a href="ToDoList.html">ToDo</a></li>
+        <li><a href="MoodTracker.html">MoodTracker</a></li>
+        <li><a href="MindfulActivities.html">MindfulActivities</a></li>
+        <li><a href="Poetry.html">Poetry</a></li>
+        <li><a href="quotes.html">Quotes</a></li>
+        <li><a href="CrisisSupportInformation.html">CrisisSupport</a></li>
+      </ul>
   </div>
 </nav>
 <section class="home">
-  <div id="poem" style="text-align: center; margin-top: 100px;"></div>
+  <div id="poem" style="text-align: center; margin-top: 100px; background-color: black"></div>
   <br><br>
   <div class="button-container">
     <input type="button" id="likePoem" value="Like" onclick="fetchNewPoem()">

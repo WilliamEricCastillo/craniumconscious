@@ -8,8 +8,19 @@
 
 	<style>
 		.major-icons li a:hover .icon {
-		box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
-	}
+			box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+		}
+		.icon-label {
+			display: block;
+			text-align: center;
+			margin-top: -30%;
+			font-size: 14px;
+		}
+
+		nav {
+			position: fixed;
+			z-index: 1;
+		}
 	</style>
 </head>
 
@@ -22,9 +33,14 @@
 				</div>
 				<ul class="nav-links">
 					<li><a href="HomePage.html">Home</a></li>
-					<li><a href="MoodTracker.html">Mood Tracker</a></li>
+					<li><a href="GAD-7.html">GAD7</a></li>
+					<li><a href="PHQ-9.html">PHQ9</a></li>
 					<li><a href="Calendar.html">Calendar</a></li>
+					<li><a href="ToDoList.html">ToDo</a></li>
+					<li><a href="MoodTracker.html">MoodTracker</a></li>
 					<li><a href="MindfulActivities.html">MindfulActivities</a></li>
+					<li><a href="Poetry.html">Poetry</a></li>
+					<li><a href="quotes.html">Quotes</a></li>
 					<li><a href="CrisisSupportInformation.html">CrisisSupport</a></li>
 				</ul>
 			</div>
@@ -37,22 +53,22 @@
 				<div class="container">
 					<div class="row gtr-150">
 						<div class="col-6 col-12-medium">
-							
+
 							<ul class="major-icons">
-								<li><a href="Diary.html"><span class="icon solid style1 major fa-book"></span></a></li>
-								<li><a href="Calendar.html"><span class="icon solid style2 major fa-calendar"></span></a></li>
-								<li><a href="MoodTracker.html"><span class="icon solid style3 major fa-smile"></span></a></li>
-								<li><a href="settings.html"><span class="icon solid style4 major fa-cog"></span></a></li>
+								<li><a href="Calendar.html"><span class="icon solid style1 major fa-pen-square"></span><span class="icon-label">Diary</span></a></li>
+								<li><a href="MoodTracker.html"><span class="icon solid style3 major fa-smile"></span><span class="icon-label">Mood Tracker</span></a></li>
+								<li><a href="Poetry.html"><span class="icon solid style2 major fa-book"></span><span class="icon-label">Poetry</span></a></li>
+								<li><a href="CrisisSupportInformation.html"><span class="icon solid style4 major fa-exclamation-triangle"></span><span class="icon-label">Crisis Support</span></a></li>
 							</ul>
 
 						</div>
 						<div class="col-6 col-12-medium">
 
 							<header class="major">
-								<h2>Lorem ipsum dolor adipiscing<br />
-								amet dolor consequat</h2>
+								<h2>Welcome To You Home Page</h2>
 							</header>
-							<p>Adipiscing a commodo ante nunc accumsan interdum mi ante adipiscing. A nunc lobortis non nisl amet vis volutpat aclacus nascetur ac non. Lorem curae eu ante amet sapien in tempus ac. Adipiscing id accumsan adipiscing ipsum.</p>
+							<p>On the left side, you can explore several prominent features of our website, such as your Diary, Mood Tracker, personalized Poetry collection, and information about our Crisis Support services.
+							</p>
 						</div>
 					</div>
 				</div>
@@ -81,6 +97,7 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+
 
 </body>
 </html>
