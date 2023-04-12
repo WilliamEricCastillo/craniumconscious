@@ -28,12 +28,14 @@
     fieldset {
       margin-bottom: 20px;
       padding: 10px;
-      background: black;
+      background: steelblue;
+      border-radius: 10px;
     }
 
     label {
       display: block;
       margin-bottom: 10px;
+      font-weight: bold;
     }
 
     input[type="radio"] {
@@ -43,32 +45,48 @@
     input[type="submit"] {
       display: block;
       margin: 0 auto;
-    }
-    fieldset {
-      margin: 0 auto;
+      font-size: 18px;
       padding: 10px;
-      width: 50%;
-      border: 2px solid #ccc;
+      border-radius: 10px;
+      background-color: #4fa49a;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s ease-in-out;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #9dc66b;
+    }
+
+    form {
+      margin: 0 auto;
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
 
     legend {
       text-align: center;
       font-weight: bold;
-    }
-    #result-container {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 24px;
-      background: black;
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
     .disclaimer {
-      background-color: black;
+      background-color: #fff;
       border: 1px solid #ddd;
       padding: 10px;
       margin: 20px auto;
-      width: 50%;
+      width: 80%;
+      max-width: 600px;
       text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
 
     .disclaimer p {
@@ -76,6 +94,15 @@
       margin: 0;
       font-weight: bold;
       color: red;
+    }
+
+    #result-container {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 24px;
+      color: black;
+      border-radius: 10px;
+      padding: 10px;
     }
 
   </style>
@@ -186,7 +213,7 @@
 
   <input type="submit" value="Submit">
   <div id="result-container"></div>
-<br><br><br><br>
+<br><br>
 </form>
 
 <script>
@@ -210,19 +237,19 @@
     let result = '';
 
     if (totalScore < 5) {
-      result = 'Your anxiety level is minimal.';
+      result = 'minimal anxiety.';
     } else if (totalScore < 10) {
-      result = 'Your anxiety level is mild.';
+      result = 'mild anxiety.';
     } else if (totalScore < 15) {
-      result = 'Your anxiety level is moderate.';
+      result = 'moderate anxiety.';
     } else {
-      result = 'Your anxiety level is severe.';
+      result = 'severe anxiety.';
     }
 
     const output = document.createElement('p');
     output.textContent = result;
 
-    resultContainer.innerHTML = `${result}`;
+    resultContainer.innerHTML = `Your total score is ${totalScore}. You may have  ${result}`;
 
     const inputs = document.querySelectorAll('form input[type="radio"]');
 
