@@ -61,7 +61,21 @@
             display: block;
             margin: 20px auto;
         }
+        .disclaimer {
+            background-color: black;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 20px auto;
+            width: 50%;
+            text-align: center;
+        }
 
+        .disclaimer p {
+            font-size: 14px;
+            margin: 0;
+            font-weight: bold;
+            color: red;
+        }
 
     </style>
 </head>
@@ -92,8 +106,12 @@
 
 <h1>PHQ-9 Questionnaire</h1>
 
-<legend>Over the last two weeks, how often have you been bothered by any of the following problems?</legend>
+<legend>How often have you been bothered by the following over the past 2 weeks?</legend>
 <br>
+<div class="disclaimer">
+    <p>The PHQ-9 questionnaire provided on this website is intended for informational purposes only and should not be used to diagnose or treat any medical or mental health conditions. It is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+</div>
+
 <form>
     <fieldset>
 
@@ -216,19 +234,19 @@
         let resultText = '';
 
         if (totalScore >= 0 && totalScore <= 4) {
-            resultText = 'Minimal depression';
+            resultText = 'minimal depression';
         } else if (totalScore >= 5 && totalScore <= 9) {
-            resultText = 'Mild depression';
+            resultText = 'mild depression';
         } else if (totalScore >= 10 && totalScore <= 14) {
-            resultText = 'Moderate depression';
+            resultText = 'moderate depression';
         } else if (totalScore >= 15 && totalScore <= 19) {
-            resultText = 'Moderately severe depression';
+            resultText = 'moderately severe depression';
         } else {
-            resultText = 'Severe depression';
+            resultText = 'severe depression';
         }
 
         const resultDiv = document.getElementById('result');
-        resultDiv.textContent = `Your total score is ${totalScore}. You have ${resultText}.`;
+        resultDiv.textContent = `Your total score is ${totalScore}. You may have ${resultText}.`;
         resultDiv.style.textAlign = 'center';
         resultDiv.style.fontSize = '24px';
         resultDiv.style.background ='black';

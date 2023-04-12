@@ -62,6 +62,21 @@
       background: black;
     }
 
+    .disclaimer {
+      background-color: black;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 20px auto;
+      width: 50%;
+      text-align: center;
+    }
+
+    .disclaimer p {
+      font-size: 14px;
+      margin: 0;
+      font-weight: bold;
+      color: red;
+    }
 
   </style>
 </head>
@@ -92,8 +107,13 @@
 
 <h1>GAD-7 Questionnaire</h1>
 
-<legend>How often have they been bothered by the following over the past 2 weeks?</legend>
+<legend>How often have you been bothered by the following over the past 2 weeks?</legend>
 <br>
+
+<div class="disclaimer">
+  <p>The GAD-7 questionnaire provided on this website is intended for informational purposes only and should not be used to diagnose or treat any medical or mental health conditions. It is not a substitute for professional medical advice, diagnosis, or treatment.</p>
+</div>
+
 <form onsubmit="clearForm()">
   <fieldset>
 
