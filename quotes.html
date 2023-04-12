@@ -5,13 +5,16 @@
   <link rel="stylesheet" href="assets/css/NavBarStyle.css">
 
   <style>
-    body {
 
+    * {
+      font-family: Arial, sans-serif;
+    }
+    body {
       background-color: #4686a0;
       color: rgba(255, 255, 255, 0.75);
       background-attachment: fixed, fixed, fixed;
       background-image: url(assets/css/images/overlay2.png), url(assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
-
+      padding-top: 60px; /* Change this value to match the height of your navigation bar */
       background-position:
               top left,
               center center,
@@ -24,10 +27,12 @@
 
     .quote-container {
       text-align: center;
-      background-color: #000000;
+      background-color: rgba(0, 0, 0, 0.5);
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     }
 
     .quote {
@@ -35,34 +40,42 @@
       text-align: center;
 
     }
-
     .author {
       margin-top: 10px;
       text-align: center;
       font-style: italic;
     }
+
     .button-container {
       margin-top: 30px;
       text-align: center;
     }
     button {
-      font-size: 20px;
-      padding: 10px 20px;
+      font-size: 12px;
+      padding: 10px 30px;
       margin: 0 10px;
       border: none;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #ddd;
+
+    #like:hover, #dislike:hover {
+      background-color: #0E2431;
     }
-    .emoji {
-      font-size: 30px;
-      margin-left: 5px;
+    #like, #dislike {
+      margin-left: 20px;
+      margin-right: 20px;
+      background-color: #4070f4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.5s ease;
+      border-radius: 5px;
     }
 
     h1{
-      padding-top: 10%;
-      padding-bottom: 5%;
+      padding-top: 70px;
+      padding-bottom: 20px;
       text-align: center;
     }
   </style>
@@ -90,16 +103,16 @@
 </nav>
 
 <h1>Quotes</h1>
-
 <div class="quote-container">
   <div class="quote" id="quote"></div>
   <div class="author" id="author"></div>
 </div>
 
 <div class="button-container">
-  <button id="like"><span class="like emoji">&#x1F44D;</span></button>
-  <button id="dislike"><span class="dislike emoji">&#x1F44E;</span></button>
+  <button id="like"><span class="like">Like</span></button>
+  <button id="dislike"><span class="dislike">Dislike</span></button>
 </div>
+
 <script>
   const quoteElem = document.getElementById("quote");
   const authorElem = document.getElementById("author");
@@ -127,16 +140,15 @@
   newQuoteButton.addEventListener("click", getQuote);
   newQuotedislike.addEventListener("click", getQuote);
   likeButton.addEventListener("click", () => {
-    dislikeButton.innerHTML = '<span class="dislike emoji">&#x1F44E;</span>';
+    dislikeButton.innerHTML = '<span class="dislike">Dislike</span>';
   });
 
   dislikeButton.addEventListener("click", () => {
-    likeButton.innerHTML = '<span class="like emoji">&#x1F44D;</span>';
+    likeButton.innerHTML = '<span class="like">Like</span>';
   });
 
-
   getQuote(); // fetch initial quote on page load
-
 </script>
+
 </body>
 </html>
