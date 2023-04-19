@@ -96,6 +96,19 @@
             font-weight: bold;
             color: red;
         }
+
+        .unique-link {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+            border-bottom: 2px solid blue;
+        }
+
+        .unique-link:hover {
+            color: blue;
+        }
+
     </style>
 
 </head>
@@ -225,10 +238,8 @@
     <input type="submit" value="Submit">
     <br>
     <div id="result"></div>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br>
+    <br><br><br><br>
 
 </form>
 
@@ -267,14 +278,17 @@
         }
 
         const resultDiv = document.getElementById('result');
-        resultDiv.textContent = `Your total score is ${totalScore}. You may have ${resultText}.`;
+        resultDiv.innerHTML = `Based on the information provided, we have suggested content for you.
+<br>
+<a href="Poetry.html" class="unique-link">Poetry</a>
+<br>
+<a href="quotes.html" class="unique-link">Quotes</a>`;
+
         resultDiv.style.textAlign = 'center';
         resultDiv.style.fontSize = '24px';
         resultDiv.style.color ='black';
         document.getElementById("phq9-form").reset();
     });
-
-
 </script>
 </body>
 </html>
