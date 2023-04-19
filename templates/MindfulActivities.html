@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,7 +10,7 @@
       body {
           background-color: #4686a0;
           background-attachment: fixed, fixed, fixed;
-          background-image: url(assets/css/images/overlay2.png), url(assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+          background-image: url(../assets/css/images/overlay2.png), url(../assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
 
           background-position:
                   top left,
@@ -87,7 +88,7 @@
         }
 
     </style>
-      <link rel="stylesheet" href="assets/css/NavBarStyle.css">
+      <link rel="stylesheet" href="../assets/css/NavBarStyle.css">
 
   </head>
   <body>
@@ -119,19 +120,35 @@
       <h1>Activity Suggestion Generator</h1>
       <form>
         <label>
-          <input type="checkbox" name="emotion" value="happy">
-          Happy
-        </label>
-        <label>
-          <input type="checkbox" name="emotion" value="sad">
-          Sad
-        </label>
-        <label>
-          <input type="checkbox" name="emotion" value="angry">
+          <input type="checkbox" name="emotion" value="Angry">
           Angry
         </label>
         <label>
-          <input type="checkbox" name="emotion" value="stressed">
+          <input type="checkbox" name="emotion" value="Anxious">
+          Anxious
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="Bored">
+          Bored
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="Depressed">
+          Depressed
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="Frustrated">
+          Frustrated
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="Out of Control">
+          Out of Control
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="Overwhelmed">
+          Overwhelmed
+        </label>
+        <label>
+          <input type="checkbox" name="emotion" value="Stressed">
           Stressed
         </label>
         <button type="button" onclick="suggestActivity()">Suggest Activity</button>
@@ -144,16 +161,28 @@
         var suggestions = [];
         for (var i = 0; i < emotions.length; i++) {
           switch (emotions[i].value) {
-            case 'happy':
-              suggestions.push('Take a walk in the park', 'Have a picnic', 'Listen to your favorite music');
+            case 'Angry':
+              suggestions.push('Take deep breaths', 'Do 10 pushups', 'Listen to your favorite music');
               break;
-            case 'sad':
+            case 'Anxious':
               suggestions.push('Watch a feel-good movie', 'Read a book', 'Call a friend');
               break;
-            case 'angry':
+            case 'Bored':
               suggestions.push('Take deep breaths', 'Practice yoga', 'Write in a journal');
               break;
-            case 'stressed':
+            case 'Depressed':
+              suggestions.push('Meditate', 'Take a warm bath', 'Do some gentle stretches');
+              break;
+            case 'Frustrated':
+              suggestions.push('Take a walk in the park', 'Have a picnic', 'Listen to your favorite music');
+              break;
+            case 'Out of Control':
+              suggestions.push('Watch a feel-good movie', 'Read a book', 'Call a friend');
+              break;
+            case 'Overwhelmed':
+              suggestions.push('Take deep breaths', 'Practice yoga', 'Write in a journal');
+              break;
+            case 'Stressed':
               suggestions.push('Meditate', 'Take a warm bath', 'Do some gentle stretches');
               break;
           }

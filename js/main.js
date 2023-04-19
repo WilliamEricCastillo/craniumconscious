@@ -52,11 +52,11 @@ function init_calendar(date) {
         else {
             var curr_date = $("<td class='table-date'>"+day+"</td>");
             var events = check_events(day, month+1, year);
-            var entries = [];
+            //var entries = [];
             if(today===day && $(".active-date").length===0) {
                 curr_date.addClass("active-date");
                 show_events(events, months[month], day);
-                show_entries(entries, months[date.getMonth()], today);
+                //show_entries(entries, months[date.getMonth()], today);
             }
             // If this date has any events, style it with .event-date
             if(events.length!==0) {
@@ -155,7 +155,7 @@ function new_event(event) {
             console.log("new event");
             new_event_json(name, date, day);
             date.setDate(day);
-            init_calendar(date);
+            //init_calendar(date);      //BUG: Caused some of the days on the calendar to no appear
         }
     });
 }
