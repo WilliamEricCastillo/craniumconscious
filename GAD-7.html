@@ -105,6 +105,18 @@
       padding: 10px;
     }
 
+    .unique-link {
+      color: black;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: bold;
+      border-bottom: 2px solid blue;
+    }
+
+    .unique-link:hover {
+      color: blue;
+    }
+
   </style>
 </head>
 <body>
@@ -213,7 +225,9 @@
 
   <input type="submit" value="Submit">
   <div id="result-container"></div>
-<br><br>
+<br><br><br><br>
+  <br><br><br><br>
+
 </form>
 
 <script>
@@ -236,20 +250,24 @@
 
     let result = '';
 
-    if (totalScore < 5) {
-      result = 'minimal anxiety.';
-    } else if (totalScore < 10) {
-      result = 'mild anxiety.';
-    } else if (totalScore < 15) {
-      result = 'moderate anxiety.';
-    } else {
-      result = 'severe anxiety.';
-    }
+    // if (totalScore < 5) {
+    //   result = 'minimal anxiety.';
+    // } else if (totalScore < 10) {
+    //   result = 'mild anxiety.';
+    // } else if (totalScore < 15) {
+    //   result = 'moderate anxiety.';
+    // } else {
+    //   result = 'severe anxiety.';
+    // }
 
     const output = document.createElement('p');
     output.textContent = result;
 
-    resultContainer.innerHTML = `Your total score is ${totalScore}. You may have  ${result}`;
+    resultContainer.innerHTML = `Based on the information provided, we have suggested content for you.
+<br>
+<a href="Poetry.html" class="unique-link">Poetry</a>
+<br>
+<a href="quotes.html" class="unique-link">Quotes</a>`;
 
     const inputs = document.querySelectorAll('form input[type="radio"]');
 
