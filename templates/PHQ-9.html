@@ -2,7 +2,7 @@
 <html lang="eng">
 <head>
     <title>PHQ-9</title>
-    <link rel="stylesheet" href="assets/css/NavBarStyle.css">
+    <link rel="stylesheet" href="../assets/css/NavBarStyle.css">
 
     <style>
         /* CSS styles go here */
@@ -10,7 +10,7 @@
             background-color: #4686a0;
             color: rgba(255, 255, 255, 0.75);
             background-attachment: fixed, fixed, fixed;
-            background-image: url(assets/css/images/overlay2.png), url(assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+            background-image: url(../assets/css/images/overlay2.png), url(../assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
 
             background-position:
                     top left,
@@ -96,6 +96,19 @@
             font-weight: bold;
             color: red;
         }
+
+        .unique-link {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+            border-bottom: 2px solid blue;
+        }
+
+        .unique-link:hover {
+            color: blue;
+        }
+
     </style>
 
 </head>
@@ -225,10 +238,8 @@
     <input type="submit" value="Submit">
     <br>
     <div id="result"></div>
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br>
+    <br><br><br><br>
 
 </form>
 
@@ -267,14 +278,17 @@
         }
 
         const resultDiv = document.getElementById('result');
-        resultDiv.textContent = `Your total score is ${totalScore}. You may have ${resultText}.`;
+        resultDiv.innerHTML = `Based on the information provided, we have suggested content for you.
+<br>
+<a href="Poetry.html" class="unique-link">Poetry</a>
+<br>
+<a href="quotes.html" class="unique-link">Quotes</a>`;
+
         resultDiv.style.textAlign = 'center';
         resultDiv.style.fontSize = '24px';
         resultDiv.style.color ='black';
         document.getElementById("phq9-form").reset();
     });
-
-
 </script>
 </body>
 </html>
