@@ -27,10 +27,6 @@ class Person(db.Model, UserMixin):
     
     def is_active(self):
         return True
-    
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
