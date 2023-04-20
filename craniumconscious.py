@@ -191,7 +191,7 @@ def moodtracker():
     
 @app.route('/mindfulactivites')
 def mindfulactivites():
-    
+    #this shouldnt need more code
     return render_template (
         "MindfulActivites.html"
     )
