@@ -9,8 +9,8 @@
     <title>Cranium Conscious: Mental Health Website</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+    <noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
 </head>
 <body class="is-preload">
 
@@ -45,7 +45,8 @@
         <li><a href="https://facebook.com/CraniumConscious" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
         <li><a href="https://www.instagram.com/CraniumConscious/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
         <li><a href="https://github.com/WilliamEricCastillo/craniumconscious" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-        <li><a href="mailto:craniumconscious@gmail.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>				</ul>
+        <li><a href="mailto:craniumconscious@gmail.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>				
+    </ul>
     <ul class="copyright">
         <li>&copy; CraniumConscious</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
     </ul>
@@ -55,12 +56,12 @@
 </section>
 
 <!-- Scripts -->
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/jquery.scrolly.min.js"></script>
-<script src="../assets/js/browser.min.js"></script>
-<script src="../assets/js/breakpoints.min.js"></script>
-<script src="../assets/js/util.js"></script>
-<script src="../assets/js/main.js"></script>
+<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
 
 </body>
 </html>
