@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../css/calendarstyle.css">
-	  <link rel="stylesheet" href="../assets/css/NavBarStyle.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/calendarstyle.css') }}">
+	  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
 
 <style>
 	body {
@@ -15,8 +15,8 @@
 		background-color: #4686a0;
 		color:black;
 		background-attachment: fixed, fixed, fixed;
-		background-image: url(../assets/css/images/overlay2.png), url(../assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
-
+		background-image: url('static/assets/css/images/overlay2.png'),
+		url('static/assets/css/images/overlay3.svg');
 		background-position:
 				top left,
 				center center,
@@ -140,10 +140,10 @@
 		</div>
 	</section>
 
-	<script src="../js/jquery.min.js"></script>
-  <script src="../js/popper.js"></script>
-  <script src="../js/bootstrap.min.js"></script>
-  <script src="../js/main.js"></script>
+	<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/popper.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
 
 	</body>
 </html>

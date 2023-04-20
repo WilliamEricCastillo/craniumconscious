@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Mood Tracker</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="../assets/css/NavBarStyle.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
 
   <style>
     * {
@@ -12,12 +12,13 @@
     }
 
     body {
-
-      padding: 6em 0 6em 0;
+      padding: 9em 0 9em 0;
       background-color: #4686a0;
       color: rgba(255, 255, 255, 0.75);
       background-attachment: fixed, fixed, fixed;
-      background-image: url(../assets/css/images/overlay2.png), url(../assets/css/images/overlay3.svg),linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+      background-image: url('static/assets/css/images/overlay2.png'),
+      url('static/assets/css/images/overlay3.svg'),
+      linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
 
       background-position:
               top left,
@@ -27,7 +28,6 @@
               auto,
               cover,
               cover;
-
     }
 
     h1, h2, h3 ,#submit-button {
@@ -202,27 +202,27 @@
       <fieldset>
         <div class="radio-group">
           <input type="radio" id="emoji1" name="mood" value="0">
-          <label for="emoji1"><img src="../images/icons8-in-love-96.png" alt="Happy"></label>
+          <label for="emoji1"><img src="static/images/icons8-in-love-96.png" alt="Happy"></label>
           <div class="radio-value">Value 4</div>
         </div>
         <div class="radio-group">
           <input type="radio" id="emoji2" name="mood" value="1">
-          <label for="emoji2"><img src="../images/icons8-smiling-96.png" alt="In Love"></label>
+          <label for="emoji2"><img src="static/images/icons8-smiling-96.png" alt="In Love"></label>
           <div class="radio-value">Value 3</div>
         </div>
         <div class="radio-group">
           <input type="radio" id="emoji3" name="mood" value="2">
-          <label for="emoji3"><img src="../images/icons8-neutral-96.png" alt="Neutral"></label>
+          <label for="emoji3"><img src="static/images/icons8-neutral-96.png" alt="Neutral"></label>
           <div class="radio-value">Value 2</div>
         </div>
         <div class="radio-group">
           <input type="radio" id="emoji4" name="mood" value="3">
-          <label for="emoji4"><img src="../images/icons8-frowning-face-96.png" alt="Sad"></label>
+          <label for="emoji4"><img src="static/images/icons8-frowning-face-96.png" alt="Sad"></label>
           <div class="radio-value">Value 1</div>
         </div>
         <div class="radio-group">
           <input type="radio" id="emoji5" name="mood" value="4">
-          <label for="emoji5"><img src="../images/icons8-angry-96.png" alt="Angry"></label>
+          <label for="emoji5"><img src="static/images/icons8-angry-96.png" alt="Angry"></label>
           <div class="radio-value">Value 0</div>
         </div>
         <br>
