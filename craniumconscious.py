@@ -161,14 +161,14 @@ def phq():
     
 @app.route('/journal')
 def journal():
-    
+    #insert a bunch of database stuff
     return render_template (
         "Journal.html"
     )
     
 @app.route('/todo')
 def todo():
-    
+    #dont really need any more code here unless we want lists to persist
     return render_template (
         "ToDoList.html"
     )
