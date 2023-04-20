@@ -158,25 +158,46 @@
         for (var i = 0; i < emotions.length; i++) {
           switch (emotions[i].value) {
             case 'Angry':
-              suggestions.push('Do a high energy workout like weightlifting or running', 'Putting your feelings into words by journaling', 'Express your emotion through art by drawing or painting');
+              const angryArray = ['Do a high energy workout like weightlifting or running', 'Putting your feelings into words by journaling', 'Express your emotion through art by drawing or painting'];
+              var randomIndex = Math.floor(Math.random() * angryArray.length);
+              var randomSuggestion = angryArray[randomIndex];
+              suggestions.push(randomSuggestion)
               break;
             case 'Anxious':
-              suggestions.push('Spend time meditating', 'Go for a bike ride to clear the mind', 'Dancing is a great way to get energy out');
+              const anxiousArray = ['Spend time meditating', 'Go for a bike ride to clear the mind', 'Dance to your favorite music'];
+              var randomIndex = Math.floor(Math.random() * anxiousArray.length);
+              var randomSuggestion = anxiousArray[randomIndex];
+              suggestions.push(randomSuggestion)
               break;
             case 'Bored':
-              suggestions.push('Try jumping into a new hobby that can become a passion', 'Put yourself out there to meet and talk to new people', 'Do not be afraid to reach out to friends and family to talk to and strengthen connections');
+              const boredArray = ['Try jumping into a new hobby', 'Try to meet and talk to new people', 'Reach out to friends and family to talk and strengthen connections'];
+              var randomIndex = Math.floor(Math.random() * boredArray.length);
+              var randomSuggestion = boredArray[randomIndex];
+              suggestions.push(randomSuggestion)
               break;
             case 'Depressed':
-              suggestions.push('Remember to treat yourself with kindness and respect', 'Make sure to get enough sleep every night, ideally 8 hours', 'Spending time doing household chores can be calming and therapeutic');
+              const depressedArray = ['Treat yourself with kindness and respect', 'Make sure to get enough sleep every night, ideally 8 hours', 'Spend some time doing household chores to help alleviate negative emotions'];
+              var randomIndex = Math.floor(Math.random() * depressedArray.length);
+              var randomSuggestion = depressedArray[randomIndex];
+              suggestions.push(randomSuggestion)
               break;
             case 'Frustrated':
-              suggestions.push('Spending time with animals helps decrease frustration', 'Taking a nap gives the brain some rest and helps reset your emotions', 'Listen to your favorite music has positive affects on the brain and emotions');
+              const frustratedArray = ['Spend time with animals to decrease frustrations', 'Take a nap to rest and reset your emotions', 'Listen to your favorite music'];
+              var randomIndex = Math.floor(Math.random() * frustratedArray.length);
+              var randomSuggestion = frustratedArray[randomIndex];
+              suggestions.push(randomSuggestion)
               break;
             case 'Overwhelmed':
-              suggestions.push('Spend time outdoors and with nature', 'Do not be afraid to reach out to a loved one for support', 'Stepping away from the problem to destress and reavaluate is a great starting point');
+              const overwhelmedArray = ['Spend time outdoors and with nature', 'Reach out to a loved one for support', 'Step away from the problem to destress and reavaluate'];
+              var randomIndex = Math.floor(Math.random() * overwhelmedArray.length);
+              var randomSuggestion = overwhelmedArray[randomIndex];
+              suggestions.push(randomSuggestion)
               break;
             case 'Stressed':
-              suggestions.push('Going for a walk or light stroll has great benefits for the mind', 'Attempt to surround yourself with a good support structure whether it be friends or family', 'Give yourself time to be spent on your own hobbies and passions');
+              const stressedArray = ['Go for a walk or light stroll', 'Attempt to surround yourself with a good support structure whether it be friends or family', 'Spend some time on your own hobbies and passions'];
+              var randomIndex = Math.floor(Math.random() * stressedArray.length);
+              var randomSuggestion = stressedArray[randomIndex];
+              suggestions.push(randomSuggestion)
               break;
           }
         }
