@@ -145,6 +145,7 @@ def home():
     
 @app.route('/gad')
 def gad():
+    #Insert code to get the result integer and put it into the database
     
     return render_template (
         "GAD-7.html"
@@ -152,6 +153,7 @@ def gad():
     
 @app.route('/phq')
 def phq():
+    #Insert code to get the result integer and put it into the database
     
     return render_template (
         "PHQ_9.html"

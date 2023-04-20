@@ -125,19 +125,19 @@
     <div id="nav-block">
       <div class="nav-content">
         <div class="logo">
-          <a href="index.html">Cranium Conscious</a>
+          <a href="{{ url_for('index') }}">Cranium Conscious</a>
         </div>
         <ul class="nav-links">
-          <li><a href="HomePage.html">Home</a></li>
-          <li><a href="GAD-7.html">GAD7</a></li>
-          <li><a href="PHQ-9.html">PHQ9</a></li>
-          <li><a href="Calendar.html">Calendar</a></li>
-          <li><a href="ToDoList.html">ToDo</a></li>
-          <li><a href="MoodTracker.html">MoodTracker</a></li>
-          <li><a href="MindfulActivities.html">MindfulActivities</a></li>
-          <li><a href="Poetry.html">Poetry</a></li>
-          <li><a href="quotes.html">Quotes</a></li>
-          <li><a href="CrisisSupportInformation.html">CrisisSupport</a></li>
+					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('gad') }}">GAD7</a></li>
+					<li><a href="{{ url_for('phq') }}">PHQ9</a></li>
+					<li><a href="{{ url_for('journal') }}">Journal</a></li>
+					<li><a href="{{ url_for('todo') }}">ToDo</a></li>
+					<li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
+					<li><a href="{{ url_for('mindfulactivites') }}">MindfulActivities</a></li>
+					<li><a href="{{ url_for('poetry') }}">Poetry</a></li>
+					<li><a href="{{ url_for('quotes') }}">Quotes</a></li>
+					<li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
         </ul>
       </div>
     </div>
@@ -248,7 +248,7 @@
 
     const totalScore = scores.reduce((a, b) => a + b, 0);
 
-    let result = '';
+    //let result = '';
 
     // if (totalScore < 5) {
     //   result = 'minimal anxiety.';
@@ -265,9 +265,9 @@
 
     resultContainer.innerHTML = `Based on the information provided, we have suggested content for you.
 <br>
-<a href="Poetry.html" class="unique-link">Poetry</a>
+<a href="{{ url_for('poetry') }}" class="unique-link">Poetry</a>
 <br>
-<a href="quotes.html" class="unique-link">Quotes</a>`;
+<a href="{{ url_for('quotes') }}" class="unique-link">Quotes</a>`;
 
     const inputs = document.querySelectorAll('form input[type="radio"]');
 
