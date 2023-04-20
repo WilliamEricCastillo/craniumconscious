@@ -7,7 +7,6 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, curren
 load_dotenv(find_dotenv())
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
@@ -21,22 +20,18 @@ def load_user(id):
 
 
 #DATABASE MODELS
-class Person(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    
-    def is_active(self):
-        return True
-
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     gad7_score = db.Column(db.Integer)
-    phq9_score = db.Column(db.Interger)
+    phq9_score = db.Column(db.Integer)
     diary_entries = db.relationship('DiaryEntry', backref='user', lazy=True)
     reminders = db.relationship('Reminder', backref='user', lazy=True)
+    
+    def is_active(self):
+        return True
 
 class DiaryEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -105,7 +100,7 @@ def signup():
         if "Sign Up" in request.form.values():
             email = request.form.get("email")
             username = request.form.get("username")
-            password = request.form.get("username")
+            password = request.form.get("password")
             return redirect(url_for("login", username=username, password=password, email=email))
     
     
