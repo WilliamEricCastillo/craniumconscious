@@ -4,12 +4,9 @@ from dotenv import load_dotenv, find_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
 
-metadata.clear()
-
 load_dotenv(find_dotenv())
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
@@ -23,13 +20,6 @@ def load_user(id):
 
 
 #DATABASE MODELS
-class Person(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    
-    def is_active(self):
-        return True
-
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
@@ -39,6 +29,9 @@ class Person(db.Model):
     phq9_score = db.Column(db.Integer)
     diary_entries = db.relationship('DiaryEntry', backref='user', lazy=True)
     reminders = db.relationship('Reminder', backref='user', lazy=True)
+    
+    def is_active(self):
+        return True
 
 class DiaryEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
