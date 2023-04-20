@@ -30,7 +30,7 @@
 
     }
 
-    h1, h3 ,#submit-button {
+    h1, h2, h3 ,#submit-button {
     text-align: center;
 
   }
@@ -130,6 +130,41 @@
       clear: both;
     }
 
+    #date-range {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+
+    #next-button,
+    #prev-button {
+      background-color: #a8b7b9;
+      color: black;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 8px;
+    }
+
+    #next-button:hover,
+    #prev-button:hover {
+      background-color: #0069d9;
+    }
+
+    #weeklydate {
+      color: #4070f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #prev-button::before {
+      content: '\2190 ';
+    }
+
+    #next-button::after {
+      content: ' \2192';
+    }
 
 
   </style>
@@ -160,7 +195,8 @@
     <br>
 <div id="formdiv">
   <br>
-  <h3>How are you feeling today?</h3>
+  <h2>How are you feeling today?</h2>
+<br>
 
   <form method="post" action="/submit-mood">
       <fieldset>
@@ -193,11 +229,71 @@
         <button type="button" id="submit-button">Submit</button>
       </fieldset>
 
+
+
   <div id="graph-style">
     <canvas id="chart"></canvas>
   </div>
 </form>
+  <br><br>
+  <div id="iscurrent" style="text-align: center; background-color: black; font-weight: bold;"></div>
+  <div id="weeklydate" style="background-color: black">
+    <button id="prev-button"></button>
+    <div id="date-range"></div>
+    <button id="next-button"></button>
+  </div>
 </div>
+
+    <script>
+      const weekStart = new Date();
+      weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+      const weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekEnd.getDate() + 6);
+
+      const dateRangeElem = document.getElementById('date-range');
+      dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+
+      const nextButton = document.getElementById('next-button');
+      nextButton.addEventListener('click', function() {
+        weekStart.setDate(weekStart.getDate() + 7);
+        weekEnd.setDate(weekEnd.getDate() + 7);
+        dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+        updateCurrentWeekText();
+      });
+
+      const prevButton = document.getElementById('prev-button');
+      prevButton.addEventListener('click', function() {
+        weekStart.setDate(weekStart.getDate() - 7);
+        weekEnd.setDate(weekEnd.getDate() - 7);
+        dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+        updateCurrentWeekText();
+      });
+
+      function formatDate(date) {
+        const year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        if (month < 10) {
+          month = '0' + month;
+        }
+        let day = date.getDate();
+        if (day < 10) {
+          day = '0' + day;
+        }
+        return `${month}/${day}/${year % 100}`;
+      }
+
+      function updateCurrentWeekText() {
+        const today = new Date();
+        if (today >= weekStart && today <= weekEnd) {
+          document.getElementById('iscurrent').innerText = 'Current Week';
+        } else {
+          document.getElementById('iscurrent').innerText = '';
+        }
+      }
+
+      updateCurrentWeekText();
+    </script>
+
 
 <script>
 
@@ -285,6 +381,7 @@
 
 
 </script>
+
 
 </body>
 </html>
