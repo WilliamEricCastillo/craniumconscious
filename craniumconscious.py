@@ -138,7 +138,7 @@ def logout():
 
 @app.route('/home')
 def home():
-    
+          
     return render_template (
         "HomePage.html"
     )
@@ -157,11 +157,11 @@ def phq():
         "PHQ_9.html"
     )
     
-@app.route('/calendar')
-def calendar():
+@app.route('/journal')
+def journal():
     
     return render_template (
-        "Calendar.html"
+        "Journal.html"
     )
     
 @app.route('/todo')
@@ -176,6 +176,13 @@ def moodtracker():
     
     return render_template (
         "MoodTracker.html"
+    )
+    
+@app.route('/mindfulactivites')
+def mindfulactivites():
+    
+    return render_template (
+        "MindfulActivites.html"
     )
     
 @app.route('/poetry')
