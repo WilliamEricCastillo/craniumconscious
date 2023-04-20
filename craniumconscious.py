@@ -30,10 +30,10 @@ class Person(db.Model, UserMixin):
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    gad7_score = db.Column(db.Integer, nullable=False)
+    gad7_score = db.Column(db.Integer)
     phq9_score = db.Column(db.Interger)
     diary_entries = db.relationship('DiaryEntry', backref='user', lazy=True)
     reminders = db.relationship('Reminder', backref='user', lazy=True)
@@ -96,10 +96,18 @@ def login():
         return redirect(url_for('home'))
     else:
         flash("No user found.")
-        return redirect(url_for("loginpage"))
+        return redirect(url_for("index"))
     
 @app.route('/signup')
 def signup():
+    
+    if request.method == 'POST':
+        if "Sign Up" in request.form.values():
+            email = request.form.get("email")
+            username = request.form.get("username")
+            password = request.form.get("username")
+            return redirect(url_for("login", username=username, password=password, email=email))
+    
     
     return render_template (
         "SignUpPage.html"
@@ -108,18 +116,20 @@ def signup():
 
 @app.route('/register')
 def register():
+    email = request.args.get('email')
     username = request.args.get('username')
+    password = request.args.get('password')
     user = Person.query.filter_by(username=username).first()
     
     if user:
         flash("User already exists.")
-        return redirect(url_for('loginpage/'))
+        return redirect(url_for('index'))
     elif user is None:
-        user = Person(username=username)
+        user = Person(email=email, username=username, password=password)
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return redirect(url_for("home"))
+        return redirect(url_for("gad"))
     
 @app.route('/logout')
 def logout():
