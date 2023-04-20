@@ -3,8 +3,8 @@
 <head>
 	<title>Home</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-	<link href="../assets/css/NavBarStyle.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+	<link href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}" rel="stylesheet">
 
 	<style>
 		body{
@@ -92,12 +92,12 @@
 	</section>
 
 <!-- Scripts -->
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/jquery.scrolly.min.js"></script>
-<script src="../assets/js/browser.min.js"></script>
-<script src="../assets/js/breakpoints.min.js"></script>
-<script src="../assets/js/util.js"></script>
-<script src="../assets/js/main.js"></script>
+<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/browser.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/breakpoints.min.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
 
 
 </body>

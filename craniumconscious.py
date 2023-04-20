@@ -151,7 +151,7 @@ def phq():
     #Insert code to get the result integer and put it into the database
     
     return render_template (
-        "PHQ_9.html"
+        "PHQ-9.html"
     )
     
 @app.route('/journal')
@@ -184,11 +184,11 @@ def moodtracker():
         "MoodTracker.html"
     )
     
-@app.route('/mindfulactivites')
+@app.route('/mindfulactivities', methods = ['GET'])
 def mindfulactivites():
     #this shouldnt need more code
     return render_template (
-        "MindfulActivites.html"
+        "MindfulActivities.html"
     )
     
 @app.route('/poetry', methods = ['POST', 'GET'])
