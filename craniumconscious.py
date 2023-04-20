@@ -53,7 +53,7 @@ class Reminder(db.Model):
 with app.app_context():
     db.create_all()
     
-@app.route('/')
+@app.route('/' methods = ['POST', 'GET'])
 def index():
     
     if request.method == 'POST':
@@ -67,7 +67,7 @@ def index():
         "index.html"
     )
 
-@app.route('/loginpage')
+@app.route('/loginpage' methods = ['POST', 'GET'])
 def loginpage():
     
     if request.method == 'POST':
@@ -93,7 +93,7 @@ def login():
         flash("No user found.")
         return redirect(url_for("index"))
     
-@app.route('/signup')
+@app.route('/signup' methods = ['POST', 'GET'])
 def signup():
     
     if request.method == 'POST':
@@ -170,7 +170,7 @@ def todo():
         "ToDoList.html"
     )
     
-@app.route('/moodtracker')
+@app.route('/moodtracker' methods = ['POST', 'GET'])
 def moodtracker():
     
     #insert code to load previous tracked moods from this week and stuff
@@ -191,7 +191,7 @@ def mindfulactivites():
         "MindfulActivites.html"
     )
     
-@app.route('/poetry')
+@app.route('/poetry' methods = ['POST', 'GET'])
 def poetry():
     
     if request.method == 'POST':
@@ -208,7 +208,7 @@ def poetry():
         "Poetry.html"
     )
     
-@app.route('/quotes')
+@app.route('/quotes' methods = ['POST', 'GET'])
 def quotes():
     
     if request.method == 'POST':
@@ -232,3 +232,5 @@ def crisis():
     return render_template (
         "CrisisSupportInformation.html"
     )
+    
+app.run(debug=True)
