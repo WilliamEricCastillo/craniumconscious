@@ -139,20 +139,20 @@
     <nav>
       <div class="nav-content">
         <div class="logo">
-          <a href="index.html">Cranium Conscious</a>
-        </div>
-        <ul class="nav-links">
-          <li><a href="HomePage.html">Home</a></li>
-          <li><a href="GAD-7.html">GAD7</a></li>
-          <li><a href="PHQ-9.html">PHQ9</a></li>
-          <li><a href="Calendar.html">Calendar</a></li>
-          <li><a href="ToDoList.html">ToDo</a></li>
-          <li><a href="MoodTracker.html">MoodTracker</a></li>
-          <li><a href="MindfulActivities.html">MindfulActivities</a></li>
-          <li><a href="Poetry.html">Poetry</a></li>
-          <li><a href="quotes.html">Quotes</a></li>
-          <li><a href="CrisisSupportInformation.html">CrisisSupport</a></li>
-        </ul>
+					<a href="{{ url_for('index') }}">Cranium Conscious</a>
+				</div>
+				<ul class="nav-links">
+					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('gad') }}">GAD7</a></li>
+					<li><a href="{{ url_for('phq') }}">PHQ9</a></li>
+					<li><a href="{{ url_for('journal') }}">Journal</a></li>
+					<li><a href="{{ url_for('todo') }}">ToDo</a></li>
+					<li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
+					<li><a href="{{ url_for('mindfulactivites') }}">MindfulActivities</a></li>
+					<li><a href="{{ url_for('poetry') }}">Poetry</a></li>
+					<li><a href="{{ url_for('quotes') }}">Quotes</a></li>
+					<li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
+				</ul>
       </div>
     </nav>
 
@@ -162,7 +162,7 @@
   <br>
   <h3>How are you feeling today?</h3>
 
-  <form>
+  <form method="post" action="/submit-mood">
       <fieldset>
         <div class="radio-group">
           <input type="radio" id="emoji1" name="mood" value="0">
@@ -209,7 +209,7 @@
       labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       datasets: [{
         label: 'Mood',
-        data: [1,2,2,4,1,3,4,1],
+        data: [1,2,2,4,1,3,4],
         borderColor: 'black',
         backgroundColor: '#007bff',
         fill: false,

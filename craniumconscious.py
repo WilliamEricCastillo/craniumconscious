@@ -161,7 +161,9 @@ def phq():
     
 @app.route('/journal')
 def journal():
-    #insert a bunch of database stuff
+    #insert code to load journal and reminder information and display it
+    #insert a bunch of database stuff and grabbing info from submissions
+    
     return render_template (
         "Journal.html"
     )
@@ -175,6 +177,13 @@ def todo():
     
 @app.route('/moodtracker')
 def moodtracker():
+    
+    #insert code to load previous tracked moods from this week and stuff
+    
+    if request.method == 'POST':
+        selected_mood = request.form.get('mood')
+        
+        #do things with mood, like add to database and stuff
     
     return render_template (
         "MoodTracker.html"
