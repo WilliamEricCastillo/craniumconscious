@@ -199,6 +199,16 @@ def mindfulactivites():
 @app.route('/poetry')
 def poetry():
     
+    if request.method == 'POST':
+        if "Like" in request.form.values():
+            like = True
+            dislike = False
+            #do something machine learning or whatever
+        if "Dislike" in request.form.values():
+            dislike = True
+            like = False
+            #do something machine learning or whatever
+        
     return render_template (
         "Poetry.html"
     )
