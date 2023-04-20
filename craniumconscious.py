@@ -61,13 +61,20 @@ with app.app_context():
 @app.route('/')
 def index():
     
+    if request.method == 'POST':
+        if "Log In" in request.form.values():
+            return redirect(url_for("loginpage"))
+    
+        if "Sign Up" in request.form.values():
+            return redirect(url_for("signup"))
+    
     return render_template (
         "index.html"
     )
 
 @app.route('/loginpage')
 def loginpage():
-    
+        
     return render_template (
         "LogInPage.html"
     )
