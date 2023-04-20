@@ -30,10 +30,10 @@ class Person(db.Model, UserMixin):
 
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
+    username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    gad7_score = db.Column(db.Integer, nullable=False)
+    gad7_score = db.Column(db.Integer)
     phq9_score = db.Column(db.Interger)
     diary_entries = db.relationship('DiaryEntry', backref='user', lazy=True)
     reminders = db.relationship('Reminder', backref='user', lazy=True)
@@ -61,6 +61,13 @@ with app.app_context():
 @app.route('/')
 def index():
     
+    if request.method == 'POST':
+        if "Log In" in request.form.values():
+            return redirect(url_for("loginpage"))
+    
+        if "Sign Up" in request.form.values():
+            return redirect(url_for("signup"))
+    
     return render_template (
         "index.html"
     )
@@ -68,6 +75,12 @@ def index():
 @app.route('/loginpage')
 def loginpage():
     
+    if request.method == 'POST':
+        if "Login" in request.form.values():
+            username = request.form.get("username")
+            password = request.form.get("password")
+            return redirect(url_for("login", username=username, password=password))
+        
     return render_template (
         "LogInPage.html"
     )
@@ -75,6 +88,7 @@ def loginpage():
 @app.route('/login')
 def login():
     username = request.args.get('username')
+    password = request.args.get('password')
     user = Person.query.filter_by(username=username).first()
     
     if user:
@@ -82,10 +96,18 @@ def login():
         return redirect(url_for('home'))
     else:
         flash("No user found.")
-        return redirect(url_for("loginpage"))
+        return redirect(url_for("index"))
     
 @app.route('/signup')
 def signup():
+    
+    if request.method == 'POST':
+        if "Sign Up" in request.form.values():
+            email = request.form.get("email")
+            username = request.form.get("username")
+            password = request.form.get("username")
+            return redirect(url_for("login", username=username, password=password, email=email))
+    
     
     return render_template (
         "SignUpPage.html"
@@ -94,18 +116,20 @@ def signup():
 
 @app.route('/register')
 def register():
+    email = request.args.get('email')
     username = request.args.get('username')
+    password = request.args.get('password')
     user = Person.query.filter_by(username=username).first()
     
     if user:
         flash("User already exists.")
-        return redirect(url_for('loginpage/'))
+        return redirect(url_for('index'))
     elif user is None:
-        user = Person(username=username)
+        user = Person(email=email, username=username, password=password)
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return redirect(url_for("home"))
+        return redirect(url_for("gad"))
     
 @app.route('/logout')
 def logout():
@@ -114,13 +138,14 @@ def logout():
 
 @app.route('/home')
 def home():
-    
+          
     return render_template (
         "HomePage.html"
     )
     
 @app.route('/gad')
 def gad():
+    #Insert code to get the result integer and put it into the database
     
     return render_template (
         "GAD-7.html"
@@ -128,21 +153,24 @@ def gad():
     
 @app.route('/phq')
 def phq():
+    #Insert code to get the result integer and put it into the database
     
     return render_template (
         "PHQ_9.html"
     )
     
-@app.route('/calendar')
-def calendar():
+@app.route('/journal')
+def journal():
+    #insert code to load journal and reminder information and display it
+    #insert a bunch of database stuff and grabbing info from submissions
     
     return render_template (
-        "Calendar.html"
+        "Journal.html"
     )
     
 @app.route('/todo')
 def todo():
-    
+    #dont really need any more code here unless we want lists to persist
     return render_template (
         "ToDoList.html"
     )
@@ -150,13 +178,37 @@ def todo():
 @app.route('/moodtracker')
 def moodtracker():
     
+    #insert code to load previous tracked moods from this week and stuff
+    
+    if request.method == 'POST':
+        selected_mood = request.form.get('mood')
+        
+        #do things with mood, like add to database and stuff
+    
     return render_template (
         "MoodTracker.html"
+    )
+    
+@app.route('/mindfulactivites')
+def mindfulactivites():
+    #this shouldnt need more code
+    return render_template (
+        "MindfulActivites.html"
     )
     
 @app.route('/poetry')
 def poetry():
     
+    if request.method == 'POST':
+        if "Like" in request.form.values():
+            like = True
+            dislike = False
+            #do something machine learning or whatever
+        if "Dislike" in request.form.values():
+            dislike = True
+            like = False
+            #do something machine learning or whatever
+        
     return render_template (
         "Poetry.html"
     )
@@ -164,12 +216,23 @@ def poetry():
 @app.route('/quotes')
 def quotes():
     
+    if request.method == 'POST':
+        if "Like" in request.form.values():
+            like = True
+            dislike = False
+            #do something machine learning or whatever
+        if "Dislike" in request.form.values():
+            dislike = True
+            like = False
+            #do something machine learning or whatever
+    
     return render_template (
         "Quotes.html"
     )
     
 @app.route('/crisissupport')
 def crisis():
+    #this shouldnt need more code, unless we want the website to automatically update based on users locations
     
     return render_template (
         "CrisisSupportInformation.html"
