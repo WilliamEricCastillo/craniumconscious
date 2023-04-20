@@ -74,6 +74,12 @@ def index():
 
 @app.route('/loginpage')
 def loginpage():
+    
+    if request.method == 'POST':
+        if "Login" in request.form.values():
+            username = request.form.get("username")
+            password = request.form.get("password")
+            return redirect(url_for("login", username=username, password=password))
         
     return render_template (
         "LogInPage.html"
@@ -82,6 +88,7 @@ def loginpage():
 @app.route('/login')
 def login():
     username = request.args.get('username')
+    password = request.args.get('password')
     user = Person.query.filter_by(username=username).first()
     
     if user:
