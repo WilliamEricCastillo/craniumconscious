@@ -232,6 +232,7 @@ def quotes():
     
 @app.route('/crisissupport')
 def crisis():
+    #this shouldnt need more code, unless we want the website to automatically update based on users locations
     
     return render_template (
         "CrisisSupportInformation.html"

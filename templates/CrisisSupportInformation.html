@@ -179,19 +179,19 @@
         <div id="nav-block">
             <div class="nav-content">
                 <div class="logo">
-                    <a href="index.html">Cranium Conscious</a>
+                    <a href="{{ url_for('index') }}">Cranium Conscious</a>
                 </div>
                 <p class="nav-links">
-                    <a href="HomePage.html">Home</a>
-                    <a href="GAD-7.html">GAD7</a>
-                    <a href="PHQ-9.html">PHQ9</a>
-                    <a href="Calendar.html">Calendar</a>
-                    <a href="ToDoList.html">ToDo</a>
-                    <a href="MoodTracker.html">MoodTracker</a>
-                    <a href="MindfulActivities.html">MindfulActivities</a>
-                    <a href="Poetry.html">Poetry</a>
-                    <a href="quotes.html">Quotes</a>
-                    <a href="CrisisSupportInformation.html">CrisisSupport</a>
+                    <a href="{{ url_for('home') }}">Home</a>
+                    <a href="{{ url_for('gad') }}">GAD7</a>
+                    <a href="{{ url_for('phq') }}">PHQ9</a>
+                    <a href="{{ url_for('journal') }}">Journal</a>
+                    <a href="{{ url_for('todo') }}">ToDo</a>
+                    <a href="{{ url_for('moodtracker') }}">MoodTracker</a>
+                    <a href="{{ url_for('mindfulactivites') }}">MindfulActivities</a>
+                    <a href="{{ url_for('poetry') }}">Poetry</a>
+                    <a href="{{ url_for('quotes') }}">Quotes</a>
+                    <a href="{{ url_for('crisis') }}">CrisisSupport</a>
                 </p>
             </div>
         </div>
