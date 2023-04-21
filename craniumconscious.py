@@ -33,7 +33,7 @@ class Person(db.Model):
     def is_active(self):
         return True
 
-class DiaryEntry(db.Model):
+class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)
     content = db.Column(db.Text, nullable=False)
