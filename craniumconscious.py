@@ -3,10 +3,12 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
+import datetime
 
 load_dotenv(find_dotenv())
 
 app = Flask(__name__)
+app.secret_key = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
@@ -27,26 +29,20 @@ class Person(db.Model):
     password = db.Column(db.String(120), nullable=False)
     gad7_score = db.Column(db.Integer)
     phq9_score = db.Column(db.Integer)
-    diary_entries = db.relationship('DiaryEntry', backref='user', lazy=True)
-    reminders = db.relationship('Reminder', backref='user', lazy=True)
+    journal_entries = db.relationship('JournalEntry', backref='user', lazy=True)
     
     def is_active(self):
         return True
+    
+    def get_id(self):
+        return str(self.id)
 
 class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(120), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    mood = db.Column(db.String(20), nullable=False)
+    content = db.Column(db.Text)
+    mood = db.Column(db.String(20))
     remind_me_to_tell_my_therapist = db.Column(db.String(80))
     date = db.Column(db.Date, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
-
-class Reminder(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(120), nullable=False)
-    date = db.Column(db.Date, nullable=False)
-    time = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
 
 
@@ -71,10 +67,9 @@ def index():
 def loginpage():
     
     if request.method == 'POST':
-        if "Login" in request.form.values():
-            username = request.form.get("username")
-            password = request.form.get("password")
-            return redirect(url_for("login", username=username, password=password))
+        username = request.form.get("username")
+        password = request.form.get("password")
+        return redirect(url_for("login", username=username, password=password))
         
     return render_template (
         "LogInPage.html"
@@ -97,11 +92,10 @@ def login():
 def signup():
     
     if request.method == 'POST':
-        if "Sign Up" in request.form.values():
-            email = request.form.get("email")
-            username = request.form.get("username")
-            password = request.form.get("password")
-            return redirect(url_for("login", username=username, password=password, email=email))
+        email = request.form['email']
+        username = request.form['username']
+        password = request.form['password']
+        return redirect(url_for("register", username=username, password=password, email=email))
     
     
     return render_template (
@@ -118,7 +112,7 @@ def register():
     
     if user:
         flash("User already exists.")
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     elif user is None:
         user = Person(email=email, username=username, password=password)
         db.session.add(user)
@@ -133,7 +127,7 @@ def logout():
 
 @app.route('/home')
 def home():
-          
+    #shouldnt need more code 
     return render_template (
         "HomePage.html"
     )
@@ -141,7 +135,7 @@ def home():
 @app.route('/gad')
 def gad():
     #Insert code to get the result integer and put it into the database
-    
+
     return render_template (
         "GAD-7.html"
     )
@@ -149,18 +143,24 @@ def gad():
 @app.route('/phq')
 def phq():
     #Insert code to get the result integer and put it into the database
-    
+
     return render_template (
         "PHQ-9.html"
     )
     
 @app.route('/journal')
 def journal():
+    
+    # get current date
+    today = datetime.date.today() #YYYY-MM-DD
+
+
     #insert code to load journal and reminder information and display it
     #insert a bunch of database stuff and grabbing info from submissions
     
     return render_template (
-        "Journal.html"
+        "Journal.html",
+        today = today,
     )
     
 @app.route('/todo')
@@ -173,19 +173,42 @@ def todo():
 @app.route('/moodtracker', methods = ['POST', 'GET'])
 def moodtracker():
     
-    #insert code to load previous tracked moods from this week and stuff
+    # get current date aand week starts and ends YYYY-MM-DD
+    today = datetime.date.today()
+    week_start = today - datetime.timedelta(days=today.weekday() + 1)
+    week_end = week_start + datetime.timedelta(days=6)
+    
+    #insert code to load previous tracked moods from this week and stuff//
     
     if request.method == 'POST':
-        selected_mood = request.form.get('mood')
+        if "Submit" in request.form.values():
+            selected_mood = request.form.get('mood')
+            entry = JournalEntry.query.filter_by(user_id=user_id, date=date).first()
+            if entry:
+                entry.mood = selected_mood
+                db.session.commit()
+            else:
+                new_entry = JournalEntry(
+                    mood=selected_mood,
+                    data=today,
+                    user=current_user.id
+                )
+                db.session.add(new_entry)
+                db.session.commit()
+                
+            
         
         #do things with mood, like add to database and stuff
     
     return render_template (
-        "MoodTracker.html"
+        "MoodTracker.html",
+        today = today,
+        week_start = week_start,
+        week_end = week_end,
     )
     
 @app.route('/mindfulactivities', methods = ['GET'])
-def mindfulactivites():
+def mindfulactivities():
     #this shouldnt need more code
     return render_template (
         "MindfulActivities.html"

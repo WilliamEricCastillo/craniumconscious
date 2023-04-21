@@ -170,7 +170,6 @@
   </style>
 </head>
 <body>
-
     <nav>
       <div class="nav-content">
         <div class="logo">
@@ -183,7 +182,7 @@
 					<li><a href="{{ url_for('journal') }}">Journal</a></li>
 					<li><a href="{{ url_for('todo') }}">ToDo</a></li>
 					<li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
-					<li><a href="{{ url_for('mindfulactivites') }}">MindfulActivities</a></li>
+					<li><a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a></li>
 					<li><a href="{{ url_for('poetry') }}">Poetry</a></li>
 					<li><a href="{{ url_for('quotes') }}">Quotes</a></li>
 					<li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
@@ -198,7 +197,7 @@
   <h2>How are you feeling today?</h2>
 <br>
 
-  <form method="post" action="/submit-mood">
+  <form method="post">
       <fieldset>
         <div class="radio-group">
           <input type="radio" id="emoji1" name="mood" value="0">
@@ -226,7 +225,7 @@
           <div class="radio-value">Value 0</div>
         </div>
         <br>
-        <button type="button" id="submit-button">Submit</button>
+        <input type="submit" value="Submit" style="padding: 10px 20px; font-size: 16px; background-color: blue; color: white; border: none; border-radius: 4px;">
       </fieldset>
 
 
@@ -236,7 +235,7 @@
   </div>
 </form>
   <br><br>
-  <div id="iscurrent" style="text-align: center; background-color: black; font-weight: bold;"></div>
+  <div id="iscurrent" style="text-align: center; background-color: black; font-weight: bold; cursor: pointer;"></div>
   <div id="weeklydate" style="background-color: black">
     <button id="prev-button"></button>
     <div id="date-range"></div>
@@ -244,55 +243,56 @@
   </div>
 </div>
 
-    <script>
-      const weekStart = new Date();
-      weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-      const weekEnd = new Date(weekStart);
-      weekEnd.setDate(weekEnd.getDate() + 6);
+<script>
+  const [startYear, startMonth, startDay] = "{{week_start}}".split("-");
+  const [endYear, endMonth, endDay] = "{{week_end}}".split("-");
+  const weekStart = new Date(startYear, startMonth - 1, startDay);
+  const weekEnd = new Date(endYear, endMonth - 1, endDay);
+  
 
-      const dateRangeElem = document.getElementById('date-range');
+  const dateRangeElem = document.getElementById('date-range');
+  dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+
+  const nextButton = document.getElementById('next-button');
+  nextButton.addEventListener('click', function() {
+      weekStart.setDate(weekStart.getDate() + 7);
+      weekEnd.setDate(weekEnd.getDate() + 7);
       dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-
-      const nextButton = document.getElementById('next-button');
-      nextButton.addEventListener('click', function() {
-        weekStart.setDate(weekStart.getDate() + 7);
-        weekEnd.setDate(weekEnd.getDate() + 7);
-        dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-        updateCurrentWeekText();
-      });
-
-      const prevButton = document.getElementById('prev-button');
-      prevButton.addEventListener('click', function() {
-        weekStart.setDate(weekStart.getDate() - 7);
-        weekEnd.setDate(weekEnd.getDate() - 7);
-        dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-        updateCurrentWeekText();
-      });
-
-      function formatDate(date) {
-        const year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        if (month < 10) {
-          month = '0' + month;
-        }
-        let day = date.getDate();
-        if (day < 10) {
-          day = '0' + day;
-        }
-        return `${month}/${day}/${year % 100}`;
-      }
-
-      function updateCurrentWeekText() {
-        const today = new Date();
-        if (today >= weekStart && today <= weekEnd) {
-          document.getElementById('iscurrent').innerText = 'Current Week';
-        } else {
-          document.getElementById('iscurrent').innerText = '';
-        }
-      }
-
       updateCurrentWeekText();
-    </script>
+  });
+
+  const prevButton = document.getElementById('prev-button');
+  prevButton.addEventListener('click', function() {
+      weekStart.setDate(weekStart.getDate() - 7);
+      weekEnd.setDate(weekEnd.getDate() - 7);
+      dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+      updateCurrentWeekText();
+  });
+
+  function formatDate(date) {
+      const year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      if (month < 10) {
+          month = '0' + month;
+      }
+      let day = date.getDate();
+      if (day < 10) {
+          day = '0' + day;
+      }
+      return `${year}-${month}-${day}`;
+  }
+
+  function updateCurrentWeekText() {
+      const today = new Date();
+      if (today >= weekStart && today <= weekEnd) {
+          document.getElementById('iscurrent').innerText = 'Current Week';
+      } else {
+          document.getElementById('iscurrent').innerText = '';
+      }
+  }
+
+  updateCurrentWeekText();
+</script>
 
 
 <script>
