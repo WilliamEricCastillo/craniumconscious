@@ -245,53 +245,53 @@
 </div>
 
     <script>
-      const weekStart = new Date();
-      weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-      const weekEnd = new Date(weekStart);
-      weekEnd.setDate(weekEnd.getDate() + 6);
+        const weekStart = new Date();
+        weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+        const weekEnd = new Date(weekStart);
+        weekEnd.setDate(weekEnd.getDate() + 6);
 
-      const dateRangeElem = document.getElementById('date-range');
-      dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-
-      const nextButton = document.getElementById('next-button');
-      nextButton.addEventListener('click', function() {
-        weekStart.setDate(weekStart.getDate() + 7);
-        weekEnd.setDate(weekEnd.getDate() + 7);
+        const dateRangeElem = document.getElementById('date-range');
         dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+
+        const nextButton = document.getElementById('next-button');
+        nextButton.addEventListener('click', function() {
+            weekStart.setDate(weekStart.getDate() + 7);
+            weekEnd.setDate(weekEnd.getDate() + 7);
+            dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+            updateCurrentWeekText();
+        });
+
+        const prevButton = document.getElementById('prev-button');
+        prevButton.addEventListener('click', function() {
+            weekStart.setDate(weekStart.getDate() - 7);
+            weekEnd.setDate(weekEnd.getDate() - 7);
+            dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
+            updateCurrentWeekText();
+        });
+
+        function formatDate(date) {
+            const year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            if (month < 10) {
+                month = '0' + month;
+            }
+            let day = date.getDate();
+            if (day < 10) {
+                day = '0' + day;
+            }
+            return `${year}-${month}-${day}`;
+        }
+
+        function updateCurrentWeekText() {
+            const today = new Date();
+            if (today >= weekStart && today <= weekEnd) {
+                document.getElementById('iscurrent').innerText = 'Current Week';
+            } else {
+                document.getElementById('iscurrent').innerText = '';
+            }
+        }
+
         updateCurrentWeekText();
-      });
-
-      const prevButton = document.getElementById('prev-button');
-      prevButton.addEventListener('click', function() {
-        weekStart.setDate(weekStart.getDate() - 7);
-        weekEnd.setDate(weekEnd.getDate() - 7);
-        dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-        updateCurrentWeekText();
-      });
-
-      function formatDate(date) {
-        const year = date.getFullYear();
-        let month = date.getMonth() + 1;
-        if (month < 10) {
-          month = '0' + month;
-        }
-        let day = date.getDate();
-        if (day < 10) {
-          day = '0' + day;
-        }
-        return `${month}/${day}/${year % 100}`;
-      }
-
-      function updateCurrentWeekText() {
-        const today = new Date();
-        if (today >= weekStart && today <= weekEnd) {
-          document.getElementById('iscurrent').innerText = 'Current Week';
-        } else {
-          document.getElementById('iscurrent').innerText = '';
-        }
-      }
-
-      updateCurrentWeekText();
     </script>
 
 
