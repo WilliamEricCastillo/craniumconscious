@@ -239,15 +239,14 @@
     <canvas id="chart"></canvas>
   </div>
 </form>
-  <br><br>
 <form method="post" id="update-date-range">
   {% if current_week %}
     <p style="text-align: center; background-color: black; font-weight: bold; cursor: pointer;">Current Week</p>
   {% endif %}
     <div id="weeklydate" style="background-color: black">
-      <input type="submit" name="prev-button" id="prev-button" value="leftarrow">
+      <input type="submit" name="prev-button" id="prev-button" value="&larr;" style="font-size: 1.5em;">
       <p id="date-range"> {{week_start}} - {{week_end}}</p>
-      <input type="submit" name="next-button" id="next-button" value="rightarrow">
+      <input type="submit" name="next-button" id="next-button" value="&rarr;" style="font-size: 1.5em;">
     </div>
   </div>
 </form>
