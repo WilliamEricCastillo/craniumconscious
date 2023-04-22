@@ -131,16 +131,16 @@
           <a href="{{ url_for('index') }}">Cranium Conscious</a>
         </div>
         <ul class="nav-links">
-					<li><a href="{{ url_for('home') }}">Home</a></li>
-					<li><a href="{{ url_for('gad') }}">GAD7</a></li>
-					<li><a href="{{ url_for('phq') }}">PHQ9</a></li>
-					<li><a href="{{ url_for('journal') }}">Journal</a></li>
-					<li><a href="{{ url_for('todo') }}">ToDo</a></li>
-					<li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
-					<li><a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a></li>
-					<li><a href="{{ url_for('poetry') }}">Poetry</a></li>
-					<li><a href="{{ url_for('quotes') }}">Quotes</a></li>
-					<li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('gad') }}">GAD7</a></li>
+          <li><a href="{{ url_for('phq') }}">PHQ9</a></li>
+          <li><a href="{{ url_for('journal') }}">Journal</a></li>
+          <li><a href="{{ url_for('todo') }}">ToDo</a></li>
+          <li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
+          <li><a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a></li>
+          <li><a href="{{ url_for('poetry') }}">Poetry</a></li>
+          <li><a href="{{ url_for('quotes') }}">Quotes</a></li>
+          <li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
         </ul>
       </div>
     </div>
@@ -228,21 +228,24 @@
 
   <input type="submit" value="Submit">
   <div id="result-container"></div>
-<br><br><br><br>
+  <br><br><br><br>
   <br><br><br><br>
 
 </form>
 
 <script>
+  const form = document.querySelector('form');
   const resultContainer = document.getElementById('result-container');
 
   form.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-    const output = document.createElement('p');
-    output.textContent = result;
-    resultContainer.innerHTML = `Based on the information provided, we have suggested content for you. <br> <a href="{{ url_for('poetry') }}" class="unique-link">Poetry</a> <br> <a href="{{ url_for('quotes') }}" class="unique-link">Quotes</a>`;
+    resultContainer.innerHTML = `Based on the information provided, we have suggested content for you.
+    <br>
+    <a href="/poetry" class="unique-link">Poetry</a>
+    <br>
+    <a href="/quotes" class="unique-link">Quotes</a>`;
   });
-
 </script>
 </body>
 </html>

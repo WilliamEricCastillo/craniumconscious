@@ -10,12 +10,18 @@
 	  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
 
 <style>
+
+	*{
+		font-family: Arial, sans-serif;
+
+	}
 	body {
 		background-color: #4686a0;
-		color:black;
 		background-attachment: fixed, fixed, fixed;
 		background-image: url('static/assets/css/images/overlay2.png'),
-		url('static/assets/css/images/overlay3.svg');
+		url('static/assets/css/images/overlay3.svg'),
+		linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+
 		background-position:
 				top left,
 				center center,
@@ -25,6 +31,7 @@
 				cover,
 				cover;
 	}
+
 </style>
 	</head>
 	<body>
@@ -56,7 +63,7 @@
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-6 text-center mb-5">
-						<h2 class="heading-section">Journal</h2>
+						<h1 class="heading-section">Journal</h1>
 					</div>
 				</div>
 				<div class="row">
@@ -127,22 +134,7 @@
 				</div>
 			</div>
 		</section>
-		<script>
-			// Get references to the HTML elements
-			const nameInput = document.getElementById('name');
-			const cancelButton = document.getElementById('cancel-button');
-			const okButton = document.getElementById('ok-button');
 
-			// Add event listeners to the buttons
-			cancelButton.addEventListener('click', function() {
-				nameInput.value = ''; // Clear the text inside the <textarea>
-			});
-
-			okButton.addEventListener('click', function() {
-				nameInput.value = ''; // Clear the text inside the <textarea>
-			});
-
-		</script>
 		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/popper.js') }}"></script>
 		<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
