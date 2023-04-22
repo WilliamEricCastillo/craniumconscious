@@ -11,13 +11,11 @@ $(document).ready(function(){
     $(".left-button").click({date: date}, prev_year);
     $(".month").click({date: date}, month_click);
     $("#add-button").click({date: date}, new_event);
-    $("#add-button-entry").click({date: date}, new_entry);
     // Set current month as active
     $(".months-row").children().eq(date.getMonth()).addClass("active-month");
     init_calendar(date);
     var events = check_events(today, date.getMonth()+1, date.getFullYear());
     show_events(events, months[date.getMonth()], today);
-    show_entries(entries, months[date.getMonth()], today);
 });
 
 // Initialize the calendar by appending the HTML dates
@@ -52,11 +50,9 @@ function init_calendar(date) {
         else {
             var curr_date = $("<td class='table-date'>"+day+"</td>");
             var events = check_events(day, month+1, year);
-            //var entries = [];
             if(today===day && $(".active-date").length===0) {
                 curr_date.addClass("active-date");
                 show_events(events, months[month], day);
-                //show_entries(entries, months[date.getMonth()], today);
             }
             // If this date has any events, style it with .event-date
             if(events.length!==0) {
@@ -86,7 +82,6 @@ function date_click(event) {
     $(".active-date").removeClass("active-date");
     $(this).addClass("active-date");
     show_events(event.data.events, event.data.month, event.data.day);
-    show_entries(entries, months[date.getMonth()], today);
 };
 
 // Event handler for when a month is clicked
@@ -132,6 +127,7 @@ function new_event(event) {
     })
     // empty inputs and hide events
     $("#dialog input[type=text]").val('');
+    $("#dialog input[type=number]").val('');
     $(".events-container").hide(250);
     $("#dialog").show(250);
     // Event handler for cancel button
@@ -145,61 +141,30 @@ function new_event(event) {
     $("#ok-button").unbind().click({date: event.data.date}, function() {
         var date = event.data.date;
         var name = $("#name").val().trim();
+        var count = parseInt($("#count").val().trim());
         var day = parseInt($(".active-date").html());
         // Basic form validation
         if(name.length === 0) {
             $("#name").addClass("error-input");
         }
+        else if(isNaN(count)) {
+            $("#count").addClass("error-input");
+        }
         else {
             $("#dialog").hide(250);
             console.log("new event");
-            new_event_json(name, date, day);
+            new_event_json(name, count, date, day);
             date.setDate(day);
-            //init_calendar(date);      //BUG: Caused some of the days on the calendar to no appear
+            init_calendar(date);
         }
     });
 }
 
-function prev_year(event) {
-    $("#dialog").hide(250);
-    var date = event.data.date;
-    var new_year = date.getFullYear()-1;
-    $("year").html(new_year);
-    date.setFullYear(new_year);
-    init_calendar(date);
-}
-
-// Event handler for clicking the new event button
-function new_entry(event) {
-    // if a date isn't selected then do nothing
-    if ($(".active-date").length === 0) return;
-  
-    // remove red error input on click
-    $("input").click(function () {
-      $(this).removeClass("error-input");
-    });
-  
-    // empty inputs and hide events
-    $("#dialog-entry input[type=text]").val("");
-    $(".journal-container").hide(250);
-
-    // show the dialog
-    $("#dialog-entry").show(250);
-  }
-  
-  // Event handler for cancel button
-  $("#cancel-button-entry").click(function () {
-    $("#name").removeClass("error-input");
-    $("#count").removeClass("error-input");
-    $("#dialog-entry").hide(250);
-    $(".journal-container").show(250);
-  });
-  
-
 // Adds a json event to event_data
-function new_event_json(name, date, day) {
+function new_event_json(name, count, date, day) {
     var event = {
         "occasion": name,
+        "invited_count": count,
         "year": date.getFullYear(),
         "month": date.getMonth()+1,
         "day": day
@@ -216,7 +181,7 @@ function show_events(events, month, day) {
     // If there are no events for this date, notify the user
     if(events.length===0) {
         var event_card = $("<div class='event-card'></div>");
-        var event_name = $("<div class='event-name'>There are no events planned for "+month+" "+day+".</div>");
+        var event_name = $("<div class='event-name'>There are no journal entries for "+month+" "+day+".</div>");
         $(event_card).css({ "border-left": "10px solid #FF1744" });
         $(event_card).append(event_name);
         $(".events-container").append(event_card);
@@ -226,6 +191,7 @@ function show_events(events, month, day) {
         for(var i=0; i<events.length; i++) {
             var event_card = $("<div class='event-card'></div>");
             var event_name = $("<div class='event-name'>"+events[i]["occasion"]+":</div>");
+            var event_count = $("<div class='event-count'>"+events[i]["invited_count"]+" Invited</div>");
             if(events[i]["cancelled"]===true) {
                 $(event_card).css({
                     "border-left": "10px solid #FF1744"
@@ -235,21 +201,6 @@ function show_events(events, month, day) {
             $(event_card).append(event_name).append(event_count);
             $(".events-container").append(event_card);
         }
-    }
-}
-
-function show_entries(entries, month, day) {
-    // Clear the dates container
-    $(".journal-container").empty();
-    $(".journal-container").show(250);
-    var entries = [];
-    // If there are no events for this date, notify the user
-    if(entries.length===0) {
-        var event_card = $("<div class='event-card'></div>");
-        var event_name = $("<div class='event-name'>There are no journal entries for "+month+" "+day+".</div>");
-        $(event_card).css({ "border-left": "10px solid #FF1744" });
-        $(event_card).append(event_name);
-        $(".journal-container").append(event_card);
     }
 }
 
