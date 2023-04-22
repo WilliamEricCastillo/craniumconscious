@@ -30,9 +30,7 @@
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  --breakpoint-xl: 1200px;}
 
 *,
 *::before,
@@ -41,8 +39,6 @@
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
-  line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
@@ -50,14 +46,11 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  margin: -100px;
   font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: red;
   text-align: left;
-  background-color: #fff; }
+  background-color: #fff;
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -68,7 +61,7 @@ hr {
   height: 0;
   overflow: visible; }
 
-h1, h2, h3, h4, h5, h6 {
+ h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem; }
 
@@ -154,7 +147,6 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em; }
 
 pre {
@@ -203,7 +195,6 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: inherit;
   font-size: inherit;
   line-height: inherit; }
 
@@ -301,14 +292,12 @@ template {
 [hidden] {
   display: none !important; }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+ h2, h3, h4, h5, h6, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2; }
 
-h1, .h1 {
-  font-size: 2.5rem; }
+
 
 h2, .h2 {
   font-size: 2rem; }
@@ -4885,7 +4874,6 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4970,7 +4958,6 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -7902,8 +7889,7 @@ button.bg-dark:focus {
   .mx-xl-auto {
     margin-left: auto !important; } }
 
-.text-monospace {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important; }
+
 
 .text-justify {
   text-align: justify !important; }
@@ -8134,7 +8120,6 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font-family: "Lato", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.8;
   font-weight: normal;
@@ -8152,11 +8137,9 @@ a:hover, a:focus {
   -webkit-box-shadow: none;
   box-shadow: none; }
 
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5 {
+ h2, h3, h4, h5,.h2, .h3, .h4, .h5 {
   line-height: 1.5;
   font-weight: 400;
-  font-family: "Lato", Arial, sans-serif;
   color: #000; }
 
 .bg-primary {
@@ -8171,9 +8154,11 @@ h1, h2, h3, h4, h5,
 .ftco-no-pb {
   padding-bottom: 0; }
 
+
+/*TITLE*/
 .heading-section {
-  font-size: 28px;
-  color: white; }
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.75); }
 
 .img {
   background-size: cover;
@@ -8344,7 +8329,10 @@ h1, h2, h3, h4, h5,
   outline: none; }
 
 #cancel-button {
-  background: indianred; }
+  background: #f44336;; }
+
+#cancel-button:hover {
+  background-color: #d32f2f}
 
 #add-button {
   display: block;
@@ -8353,18 +8341,21 @@ h1, h2, h3, h4, h5,
   bottom: 20px; }
 
 #ok-button{
-  background-color: darkgreen;
+  background-color: #4070f4;
+  color: white;
 }
 
-#add-button:hover, #ok-button:hover, #cancel-button:hover {
+#add-button:hover, #ok-button:hover{
   -webkit-transform: scale(1.03);
   -ms-transform: scale(1.03);
-  transform: scale(1.03); }
+  transform: scale(1.03);
+  background-color: #0056b3;}
 
 #add-button:active, #ok-button:active, #cancel-button:active {
   -webkit-transform: translateY(3px) scale(0.97);
   -ms-transform: translateY(3px) scale(0.97);
   transform: translateY(3px) scale(0.97); }
+
 
 /* Days/months tables */
 .days-table, .dates-table, .months-table {

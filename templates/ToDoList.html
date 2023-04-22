@@ -11,10 +11,14 @@
             font-family: Arial, sans-serif;
         }
         body {
+            padding: 6em 0 6em 0;
             background-color: #4686a0;
+            color: rgba(255, 255, 255, 0.75);
             background-attachment: fixed, fixed, fixed;
             background-image: url('static/assets/css/images/overlay2.png'),
-            url('static/assets/css/images/overlay3.svg');
+            url('static/assets/css/images/overlay3.svg'),
+            linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+
             background-position:
                     top left,
                     center center,
@@ -59,7 +63,7 @@
         form button {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #4CAF50;
+            background-color: #4070f4;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -69,7 +73,7 @@
         }
 
         form button:hover {
-            background-color: #3e8e41;
+            background-color: #0056b3;
         }
 
         ul {
@@ -212,12 +216,268 @@
             padding: 0;
         }
 
+        .help-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: white;
+            background-color: #007bff;
+            padding: 10px 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+
+        .help-icon:hover {
+            background-color: #0062cc;
+            cursor: pointer;
+        }
+
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+
+        .help-icon:hover .tooltip {
+            visibility: visible;
+            width: 750px;
+            padding-right: 660px;
+            padding-left: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+
+
+
+
+
+
     </style>
 </head>
 <body>
 <div id="navigation">
     <nav>
-        <div id="nav-block">
+        <div id="nav-block"><script>
+            const therapyForm = document.querySelector('#therapy-form');
+            const therapyInput = document.querySelector('#therapy-input');
+            const therapyList = document.querySelector('#therapy-list');
+            const therapyClearBtn = document.querySelector('.therapy-clear');
+            const therapyItemsLeft = document.querySelector('.therapy-items-left');
+            const therapyFilter = document.querySelector('.therapy-filter');
+
+            let therapyTodos = [];
+
+            window.addEventListener('load', () => {
+                const savedTherapyTodos = localStorage.getItem('therapyTodos');
+                if (savedTherapyTodos) {
+                    therapyTodos = JSON.parse(savedTherapyTodos);
+                    updateTherapyUI();
+                }
+            });
+
+            function addTherapyTodo (todo) {
+                therapyTodos.push(todo);
+
+                localStorage.setItem('therapyTodos', JSON.stringify(therapyTodos));
+
+                updateTherapyUI();
+            }
+
+            function updateTherapyUI () {
+                therapyList.innerHTML = '';
+
+                therapyTodos.forEach((todo, index) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+      <span>${todo}</span>
+      <button class="therapy-delete" data-index="${index}">Delete</button>
+    `;
+                    therapyList.appendChild(li);
+                });
+
+                therapyItemsLeft.textContent = `${therapyTodos.length} item(s) left`;
+            }
+
+            function deleteTherapyTodo (index) {
+                therapyTodos.splice(index, 1);
+
+                localStorage.setItem('therapyTodos', JSON.stringify(therapyTodos));
+
+                updateTherapyUI();
+            }
+
+            therapyForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const therapyTodo = therapyInput.value.trim();
+
+                if (therapyTodo !== '') {
+                    addTherapyTodo(therapyTodo);
+
+                    therapyInput.value = '';
+                }
+            });
+
+            therapyList.addEventListener('click', (e) => {
+                if (e.target.classList.contains('therapy-delete')) {
+                    const index = e.target.dataset.index;
+
+                    deleteTherapyTodo(index);
+                }
+            });
+
+            therapyClearBtn.addEventListener('click', () => {
+                therapyTodos = [];
+
+                localStorage.setItem('therapyTodos', JSON.stringify(therapyTodos));
+
+                updateTherapyUI();
+            });
+
+            therapyFilter.addEventListener('change', () => {
+                const therapyFilterValue = therapyFilter.value;
+
+                let therapyFilteredTodos = [];
+
+                if (therapyFilterValue === 'all') {
+                    therapyFilteredTodos = therapyTodos;
+                } else if (therapyFilterValue === 'active') {
+                    therapyFilteredTodos = therapyTodos.filter((todo) => !todo.completed);
+                } else if (therapyFilterValue === 'completed') {
+                    therapyFilteredTodos = therapyTodos.filter((todo) => todo.completed);
+                }
+
+                therapyTodos = therapyFilteredTodos;
+                updateTherapyUI();
+            });
+
+        </script>
+            <script>
+                const form = document.querySelector('form');
+                const input = document.querySelector('input');
+                const ul = document.querySelector('ul');
+                const clearBtn = document.querySelector('.clear');
+                const itemsLeft = document.querySelector('.items-left');
+                const filter = document.querySelector('.filter');
+
+                let todos = [];
+
+                // Load the todos from local storage on page load
+                window.addEventListener('load', () => {
+                    const savedTodos = localStorage.getItem('todos');
+                    if (savedTodos) {
+                        todos = JSON.parse(savedTodos);
+                        updateUI();
+                    }
+                });
+
+                function addTodo (todo) {
+                    todos.push(todo);
+
+                    // Save the updated todos to local storage
+                    localStorage.setItem('todos', JSON.stringify(todos));
+
+                    // update the UI
+                    updateUI();
+                }
+
+                function updateUI () {
+                    // clear the existing list items
+                    ul.innerHTML = '';
+
+                    // add new items to the list
+                    todos.forEach((todo, index) => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+      <span>${todo}</span>
+      <button class="delete" data-index="${index}">Delete</button>
+    `;
+                        ul.appendChild(li);
+                    });
+
+                    // update the items left count
+                    itemsLeft.textContent = `${todos.length} item(s) left`;
+                }
+
+                function deleteTodo (index) {
+                    todos.splice(index, 1);
+
+                    // Save the updated todos to local storage
+                    localStorage.setItem('todos', JSON.stringify(todos));
+
+                    // update the UI
+                    updateUI();
+                }
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    // get the todo text from the input field
+                    const todo = input.value.trim();
+
+                    // add the todo to the list if it is not empty
+                    if (todo !== '') {
+                        addTodo(todo);
+
+                        // clear the input field
+                        input.value = '';
+                    }
+                });
+
+                ul.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('delete')) {
+                        // get the index of the todo item to be deleted
+                        const index = e.target.dataset.index;
+
+                        // delete the todo item
+                        deleteTodo(index);
+                    }
+                });
+
+                clearBtn.addEventListener('click', () => {
+                    // clear the todos array
+                    todos = [];
+
+                    // Save the updated todos to local storage
+                    localStorage.setItem('todos', JSON.stringify(todos));
+
+                    // update the UI
+                    updateUI();
+                });
+
+                filter.addEventListener('change', () => {
+                    // get the filter value
+                    const filterValue = filter.value;
+
+                    // filter the todos array based on the filter value
+                    let filteredTodos = [];
+
+                    if (filterValue === 'all') {
+                        filteredTodos = todos;
+                    } else if (filterValue === 'active') {
+                        filteredTodos = todos.filter((todo) => !todo.completed);
+                    } else if (filterValue === 'completed') {
+                        filteredTodos = todos.filter((todo) => todo.completed);
+                    }
+
+                    // update the UI
+                    todos = filteredTodos;
+                    updateUI();
+                });
+
+            </script>
             <div class="nav-content">
                 <div class="logo">
                     <a href="{{ url_for('index') }}">Cranium Conscious</a>
@@ -241,7 +501,7 @@
 
 
 
-<div class="container">
+<div class="container" id="todo">
     <h1>Todo List</h1>
     <form>
         <label for="todo-input"></label><input type="text" placeholder="Add new todo" id="todo-input">
@@ -250,119 +510,21 @@
     <ul id="todo-list">
     </ul>
 </div>
-<script>
-    const form = document.querySelector('form');
-    const input = document.querySelector('input');
-    const ul = document.querySelector('ul');
-    const clearBtn = document.querySelector('.clear');
-    const itemsLeft = document.querySelector('.items-left');
-    const filter = document.querySelector('.filter');
 
-    let todos = [];
+<div class="container" id="remindme">
+    <h1>Remind me to tell my Therapist</h1>
+    <form>
+        <label for="therapy-input"></label><input type="text" placeholder="Add new reminder" id="therapy-input">
+        <button type="submit" id="add-btn-therapy">Add</button>
+    </form>
+    <ul id="therapy-list">
+    </ul>
+</div>
 
-    // Load the todos from local storage on page load
-    window.addEventListener('load', () => {
-        const savedTodos = localStorage.getItem('todos');
-        if (savedTodos) {
-            todos = JSON.parse(savedTodos);
-            updateUI();
-        }
-    });
 
-    function addTodo (todo) {
-        todos.push(todo);
 
-        // Save the updated todos to local storage
-        localStorage.setItem('todos', JSON.stringify(todos));
+<a href="#" class="help-icon">help?<span class="tooltip">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor pretium viverra suspendisse potenti nullam ac tortor. In eu mi bibendum neque egestas congue quisque. Et malesuada fames ac turpis egestas sed. Fringilla ut morbi tincidunt augue. Sed enim ut sem viverra aliquet eget sit amet. Condimentum mattis pellentesque id nibh tortor id aliquet. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Cursus euismod quis viverra nibh cras. Venenatis urna cursus eget nunc scelerisque viverra. Faucibus ornare suspendisse sed nisi lacus sed viverra. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Ipsum nunc aliquet bibendum enim facilisis gravida. Pharetra sit amet aliquam id diam. Amet purus gravida quis blandit turpis cursus in hac habitasse. Faucibus scelerisque eleifend donec pretium vulputate. Lobortis feugiat vivamus at augue eget arcu dictum.</span></a>
 
-        // update the UI
-        updateUI();
-    }
 
-    function updateUI () {
-        // clear the existing list items
-        ul.innerHTML = '';
-
-        // add new items to the list
-        todos.forEach((todo, index) => {
-            const li = document.createElement('li');
-            li.innerHTML = `
-      <span>${todo}</span>
-      <button class="delete" data-index="${index}">Delete</button>
-    `;
-            ul.appendChild(li);
-        });
-
-        // update the items left count
-        itemsLeft.textContent = `${todos.length} item(s) left`;
-    }
-
-    function deleteTodo (index) {
-        todos.splice(index, 1);
-
-        // Save the updated todos to local storage
-        localStorage.setItem('todos', JSON.stringify(todos));
-
-        // update the UI
-        updateUI();
-    }
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // get the todo text from the input field
-        const todo = input.value.trim();
-
-        // add the todo to the list if it is not empty
-        if (todo !== '') {
-            addTodo(todo);
-
-            // clear the input field
-            input.value = '';
-        }
-    });
-
-    ul.addEventListener('click', (e) => {
-        if (e.target.classList.contains('delete')) {
-            // get the index of the todo item to be deleted
-            const index = e.target.dataset.index;
-
-            // delete the todo item
-            deleteTodo(index);
-        }
-    });
-
-    clearBtn.addEventListener('click', () => {
-        // clear the todos array
-        todos = [];
-
-        // Save the updated todos to local storage
-        localStorage.setItem('todos', JSON.stringify(todos));
-
-        // update the UI
-        updateUI();
-    });
-
-    filter.addEventListener('change', () => {
-        // get the filter value
-        const filterValue = filter.value;
-
-        // filter the todos array based on the filter value
-        let filteredTodos = [];
-
-        if (filterValue === 'all') {
-            filteredTodos = todos;
-        } else if (filterValue === 'active') {
-            filteredTodos = todos.filter((todo) => !todo.completed);
-        } else if (filterValue === 'completed') {
-            filteredTodos = todos.filter((todo) => todo.completed);
-        }
-
-        // update the UI
-        todos = filteredTodos;
-        updateUI();
-    });
-
-</script>
 </body>
 </html>
