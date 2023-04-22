@@ -201,39 +201,231 @@ def todo():
 @app.route('/moodtracker', methods = ['POST', 'GET'])
 def moodtracker():
     
+    day_mood_list = [2, 2, 2, 2, 2, 2, 2]
+    
     # get current date aand week starts and ends YYYY-MM-DD
     today = datetime.date.today()
     week_start = today - datetime.timedelta(days=today.weekday() + 1)
-    week_end = week_start + datetime.timedelta(days=6)
+    day_2 = week_start + datetime.timedelta(days=1)
+    day_3 = day_2 + datetime.timedelta(days=1)
+    day_4 = day_3 + datetime.timedelta(days=1)
+    day_5 = day_4 + datetime.timedelta(days=1)
+    day_6 = day_5 + datetime.timedelta(days=1)
+    week_end = day_6 + datetime.timedelta(days=1)
+    
+    current_week = True
+    
     
     #insert code to load previous tracked moods from this week and stuff//
+    entry_1 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_start).first()
+    if entry_1:
+        if entry_1.mood is not None:
+            day_mood_list[0] = entry_1.mood
+    entry_2 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_2).first()
+    if entry_2:
+        if entry_2.mood is not None:
+            day_mood_list[1] = entry_2.mood
+    entry_3 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_3).first()
+    if entry_3:
+        if entry_3.mood is not None:
+            day_mood_list[2] = entry_3.mood
+    entry_4 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_4).first()
+    if entry_4:
+        if entry_4.mood is not None:
+            day_mood_list[3] = entry_4.mood
+    entry_5 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_5).first()
+    if entry_5:
+        if entry_5.mood is not None:
+            day_mood_list[4] = entry_5.mood
+    entry_6 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_6).first()
+    if entry_6:
+        if entry_6.mood is not None:
+            day_mood_list[5] = entry_6.mood
+    entry_7 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_end).first()
+    if entry_7:
+        if entry_7.mood is not None:
+            day_mood_list[6] = entry_7.mood
+    
     
     if request.method == 'POST':
-        if "Submit" in request.form.values():
-            selected_mood = request.form.get('mood')
-            entry = JournalEntry.query.filter_by(user_id=current_user.id, date=date).first()
+        if "mood-submit" in request.form:
+            selected_mood = int(request.form.get('mood'))
+            entry = JournalEntry.query.filter_by(user_id=current_user.id, date=today).first()
             if entry:
                 entry.mood = selected_mood
                 db.session.commit()
             else:
                 new_entry = JournalEntry(
                     mood=selected_mood,
-                    data=today,
-                    user=current_user.id
+                    date=today,
+                    user=current_user
                 )
                 db.session.add(new_entry)
                 db.session.commit()
                 
+            day_mood_list[today.weekday()+1] = selected_mood   
             
-        
-        #do things with mood, like add to database and stuff
+            return render_template (
+                "MoodTracker.html",
+                today = today,
+                week_start = week_start,
+                week_end = week_end,
+                day_mood_list = day_mood_list
+            )
+            
+        elif 'prev-button' in request.form:
+            return redirect(url_for("prev", week_start=week_start, week_end=week_end))
+                    
+        elif 'next-button' in request.form:
+            return redirect(url_for("next", week_start=week_start, week_end=week_end))
     
     return render_template (
         "MoodTracker.html",
         today = today,
         week_start = week_start,
         week_end = week_end,
+        day_mood_list = day_mood_list,
+        current_week = current_week
     )
+    
+@app.route('/next', methods = ['POST', 'GET'])
+def next():
+    day_mood_list = [2, 2, 2, 2, 2, 2, 2]
+    week_start_str = request.args.get('week_start')
+    week_end_str = request.args.get('week_end')
+    week_start = datetime.datetime.strptime(week_start_str, "%Y-%m-%d").date()
+    week_end = datetime.datetime.strptime(week_end_str, "%Y-%m-%d").date()
+
+    week_start = week_start + datetime.timedelta(days=7)
+    day_2 = week_start + datetime.timedelta(days=1)
+    day_3 = day_2 + datetime.timedelta(days=1)
+    day_4 = day_3 + datetime.timedelta(days=1)
+    day_5 = day_4 + datetime.timedelta(days=1)
+    day_6 = day_5 + datetime.timedelta(days=1)
+    week_end = day_6 + datetime.timedelta(days=1)
+    
+    today = datetime.date.today()
+    curr_week_start = today - datetime.timedelta(days=today.weekday() + 1)
+    
+    if curr_week_start == week_start:
+        current_week = True
+    else:
+        current_week = False
+
+    #insert code to load previous tracked moods from this week and stuff//
+    entry_1 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_start).first()
+    if entry_1:
+        if entry_1.mood is not None:
+            day_mood_list[0] = entry_1.mood
+    entry_2 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_2).first()
+    if entry_2:
+        if entry_2.mood is not None:
+            day_mood_list[1] = entry_2.mood
+    entry_3 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_3).first()
+    if entry_3:
+        if entry_3.mood is not None:
+            day_mood_list[2] = entry_3.mood
+    entry_4 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_4).first()
+    if entry_4:
+        if entry_4.mood is not None:
+            day_mood_list[3] = entry_4.mood
+    entry_5 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_5).first()
+    if entry_5:
+        if entry_5.mood is not None:
+            day_mood_list[4] = entry_5.mood
+    entry_6 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_6).first()
+    if entry_6:
+        if entry_6.mood is not None:
+            day_mood_list[5] = entry_6.mood
+    entry_7 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_end).first()
+    if entry_7:
+        if entry_7.mood is not None:
+            day_mood_list[6] = entry_7.mood
+                
+    if request.method == 'POST':
+        if 'prev-button' in request.form:
+            return redirect(url_for("prev", week_start=week_start, week_end=week_end))
+                    
+        elif 'next-button' in request.form:
+            return redirect(url_for("next", week_start=week_start, week_end=week_end))
+                
+    return render_template (
+        "MoodTracker.html",
+        week_start = week_start,
+        week_end = week_end,
+        day_mood_list = day_mood_list,
+        current_week=current_week
+    )
+
+@app.route('/prev', methods = ['POST', 'GET'])
+def prev():
+    day_mood_list = [2, 2, 2, 2, 2, 2, 2]
+    week_start_str = request.args.get('week_start')
+    week_end_str = request.args.get('week_end')
+    week_start = datetime.datetime.strptime(week_start_str, "%Y-%m-%d").date()
+    week_end = datetime.datetime.strptime(week_end_str, "%Y-%m-%d").date()
+    
+    week_start = week_start - datetime.timedelta(days=7)
+    day_2 = week_start + datetime.timedelta(days=1)
+    day_3 = day_2 + datetime.timedelta(days=1)
+    day_4 = day_3 + datetime.timedelta(days=1)
+    day_5 = day_4 + datetime.timedelta(days=1)
+    day_6 = day_5 + datetime.timedelta(days=1)
+    week_end = day_6 + datetime.timedelta(days=1)
+    
+    today = datetime.date.today()
+    curr_week_start = today - datetime.timedelta(days=today.weekday() + 1)
+    
+    if curr_week_start == week_start:
+        current_week = True
+    else:
+        current_week = False
+
+    #insert code to load previous tracked moods from this week and stuff//
+    entry_1 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_start).first()
+    if entry_1:
+        if entry_1.mood is not None:
+            day_mood_list[0] = entry_1.mood
+    entry_2 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_2).first()
+    if entry_2:
+        if entry_2.mood is not None:
+            day_mood_list[1] = entry_2.mood
+    entry_3 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_3).first()
+    if entry_3:
+        if entry_3.mood is not None:
+            day_mood_list[2] = entry_3.mood
+    entry_4 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_4).first()
+    if entry_4:
+        if entry_4.mood is not None:
+            day_mood_list[3] = entry_4.mood
+    entry_5 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_5).first()
+    if entry_5:
+        if entry_5.mood is not None:
+            day_mood_list[4] = entry_5.mood
+    entry_6 = JournalEntry.query.filter_by(user_id=current_user.id, date=day_6).first()
+    if entry_6:
+        if entry_6.mood is not None:
+            day_mood_list[5] = entry_6.mood
+    entry_7 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_end).first()
+    if entry_7:
+        if entry_7.mood is not None:
+            day_mood_list[6] = entry_7.mood
+            
+    if request.method == 'POST':
+        if 'prev-button' in request.form:
+            return redirect(url_for("prev", week_start=week_start, week_end=week_end))
+                    
+        elif 'next-button' in request.form:
+            return redirect(url_for("next", week_start=week_start, week_end=week_end))
+                
+    return render_template (
+        "MoodTracker.html",
+        week_start = week_start,
+        week_end = week_end,
+        day_mood_list = day_mood_list,
+        current_week=current_week
+    )
+
     
 @app.route('/mindfulactivities', methods = ['GET'])
 def mindfulactivities():

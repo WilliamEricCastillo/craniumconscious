@@ -199,109 +199,62 @@
     <br>
 <div id="formdiv">
   <br>
-  <h2>How are you feeling today?</h2>
-<br>
-
-  <form method="post">
-      <fieldset>
-        <div class="radio-group">
-          <input type="radio" id="emoji1" name="mood" value="0">
-          <label for="emoji1"><img src="static/images/icons8-in-love-96.png" alt="Happy"></label>
-          <div class="radio-value">Value 4</div>
-        </div>
-        <div class="radio-group">
-          <input type="radio" id="emoji2" name="mood" value="1">
-          <label for="emoji2"><img src="static/images/icons8-smiling-96.png" alt="In Love"></label>
-          <div class="radio-value">Value 3</div>
-        </div>
-        <div class="radio-group">
-          <input type="radio" id="emoji3" name="mood" value="2">
-          <label for="emoji3"><img src="static/images/icons8-neutral-96.png" alt="Neutral"></label>
-          <div class="radio-value">Value 2</div>
-        </div>
-        <div class="radio-group">
-          <input type="radio" id="emoji4" name="mood" value="3">
-          <label for="emoji4"><img src="static/images/icons8-frowning-face-96.png" alt="Sad"></label>
-          <div class="radio-value">Value 1</div>
-        </div>
-        <div class="radio-group">
-          <input type="radio" id="emoji5" name="mood" value="4">
-          <label for="emoji5"><img src="static/images/icons8-angry-96.png" alt="Angry"></label>
-          <div class="radio-value">Value 0</div>
-        </div>
-        <br>
-        <input type="submit" value="Submit" style="padding: 10px 20px; font-size: 16px; background-color: blue; color: white; border: none; border-radius: 4px;">
-      </fieldset>
-
-
-
+  {%if current_week %}
+    <div id="submission-div">
+      <h2>How are you feeling today?</h2>
+      <br>
+    <form method="post">
+        <fieldset>
+          <div class="radio-group">
+            <input type="radio" id="emoji1" name="mood" value="4">
+            <label for="emoji1"><img src="static/images/icons8-in-love-96.png" alt="Happy"></label>
+            <div class="radio-value">Value 4</div>
+          </div>
+          <div class="radio-group">
+            <input type="radio" id="emoji2" name="mood" value="3">
+            <label for="emoji2"><img src="static/images/icons8-smiling-96.png" alt="In Love"></label>
+            <div class="radio-value">Value 3</div>
+          </div>
+          <div class="radio-group">
+            <input type="radio" id="emoji3" name="mood" value="2">
+            <label for="emoji3"><img src="static/images/icons8-neutral-96.png" alt="Neutral"></label>
+            <div class="radio-value">Value 2</div>
+          </div>
+          <div class="radio-group">
+            <input type="radio" id="emoji4" name="mood" value="1">
+            <label for="emoji4"><img src="static/images/icons8-frowning-face-96.png" alt="Sad"></label>
+            <div class="radio-value">Value 1</div>
+          </div>
+          <div class="radio-group">
+            <input type="radio" id="emoji5" name="mood" value="0">
+            <label for="emoji5"><img src="static/images/icons8-angry-96.png" alt="Angry"></label>
+            <div class="radio-value">Value 0</div>
+          </div>
+          <br>
+          <input type="submit" name="mood-submit" value="Submit" style="padding: 10px 20px; font-size: 16px; background-color: blue; color: white; border: none; border-radius: 4px;">
+        </fieldset>
+    </div>
+  {% endif %}
   <div id="graph-style">
     <canvas id="chart"></canvas>
   </div>
 </form>
   <br><br>
-  <div id="iscurrent" style="text-align: center; background-color: black; font-weight: bold; cursor: pointer;"></div>
-  <div id="weeklydate" style="background-color: black">
-    <button id="prev-button"></button>
-    <div id="date-range"></div>
-    <button id="next-button"></button>
+<form method="post" id="update-date-range">
+  {% if current_week %}
+    <p style="text-align: center; background-color: black; font-weight: bold; cursor: pointer;">Current Week</p>
+  {% endif %}
+    <div id="weeklydate" style="background-color: black">
+      <input type="submit" name="prev-button" id="prev-button" value="leftarrow">
+      <p id="date-range"> {{week_start}} - {{week_end}}</p>
+      <input type="submit" name="next-button" id="next-button" value="rightarrow">
+    </div>
   </div>
-</div>
-
-    <script>
-        const weekStart = new Date();
-        weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-        const weekEnd = new Date(weekStart);
-        weekEnd.setDate(weekEnd.getDate() + 6);
-
-        const dateRangeElem = document.getElementById('date-range');
-        dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-
-        const nextButton = document.getElementById('next-button');
-        nextButton.addEventListener('click', function() {
-            weekStart.setDate(weekStart.getDate() + 7);
-            weekEnd.setDate(weekEnd.getDate() + 7);
-            dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-            updateCurrentWeekText();
-        });
-
-        const prevButton = document.getElementById('prev-button');
-        prevButton.addEventListener('click', function() {
-            weekStart.setDate(weekStart.getDate() - 7);
-            weekEnd.setDate(weekEnd.getDate() - 7);
-            dateRangeElem.innerText = formatDate(weekStart) + ' - ' + formatDate(weekEnd);
-            updateCurrentWeekText();
-        });
-
-        function formatDate(date) {
-            const year = date.getFullYear();
-            let month = date.getMonth() + 1;
-            if (month < 10) {
-                month = '0' + month;
-            }
-            let day = date.getDate();
-            if (day < 10) {
-                day = '0' + day;
-            }
-            return `${year}-${month}-${day}`;
-        }
-
-        function updateCurrentWeekText() {
-            const today = new Date();
-            if (today >= weekStart && today <= weekEnd) {
-                document.getElementById('iscurrent').innerText = 'Current Week';
-            } else {
-                document.getElementById('iscurrent').innerText = '';
-            }
-        }
-
-        updateCurrentWeekText();
-    </script>
-
+</form>
 
 <script>
-
   // Get the chart canvas and initialize the Chart object
+  const dayMoodList = {{day_mood_list|tojson}};
   const chartCanvas = document.getElementById('chart');
   const moodChart = new Chart(chartCanvas, {
     type: 'line',
@@ -309,7 +262,7 @@
       labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       datasets: [{
         label: 'Mood',
-        data: [1,2,2,4,1,3,4],
+        data: dayMoodList,
         borderColor: 'black',
         backgroundColor: '#007bff',
         fill: false,
@@ -361,40 +314,35 @@
       }
     }
   });
-
-
-  // Add an event listener to the Submit button
-  const submitButton = document.getElementById('submit-button');
-  submitButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    const moodRadios = document.getElementsByName('mood');
-    let moodValue;
-    for (let i = 0; i < moodRadios.length; i++) {
-      if (moodRadios[i].checked) {
-        moodValue = moodRadios[i].value;
-        break;
-      }
-    }
-    if (moodValue) {
-      const currentDate = new Date();
-      const currentDayOfWeek = currentDate.getDay();
-      moodChart.data.datasets[0].data[currentDayOfWeek] = [4, 3, 2, 1, 0].indexOf(parseInt(moodValue));
-      moodChart.update();
-    }
-  });
-
-
 </script>
 
+<script>
+  $(document).ready(function() {
+      $("#prev-button, #next-button").click(function(event) {
+          event.preventDefault();
+          $.ajax({
+              type: "POST",
+              url: "/update_variables",
+              data: $("#update-date-range").serialize(),
+              success: function(response) {
+                  // Update the variables on the HTML page
+                  $("#week_start").text(response.week_start);
+                  $("#day_mood_list_0").text(response.day_mood_list[0]);
+                  $("#day_mood_list_1").text(response.day_mood_list[1]);
+                  $("#day_mood_list_2").text(response.day_mood_list[2]);
+                  $("#day_mood_list_3").text(response.day_mood_list[3]);
+                  $("#day_mood_list_4").text(response.day_mood_list[4]);
+                  $("#day_mood_list_5").text(response.day_mood_list[5]);
+                  $("#day_mood_list_6").text(response.day_mood_list[6]);
+                  $("#week_end").text(response.week_end);
+              },
+              error: function(xhr, status, error) {
+                  console.error(error);
+              }
+          });
+      });
+  });
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
