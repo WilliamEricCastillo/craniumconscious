@@ -270,7 +270,8 @@ def moodtracker():
                 today = today,
                 week_start = week_start,
                 week_end = week_end,
-                day_mood_list = day_mood_list
+                day_mood_list = day_mood_list,
+                current_week = current_week
             )
             
         elif 'prev-button' in request.form:
@@ -306,11 +307,10 @@ def next():
     
     today = datetime.date.today()
     curr_week_start = today - datetime.timedelta(days=today.weekday() + 1)
+    current_week = False
     
     if curr_week_start == week_start:
-        current_week = True
-    else:
-        current_week = False
+        return redirect(url_for("moodtracker"))
 
     #insert code to load previous tracked moods from this week and stuff//
     entry_1 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_start).first()
@@ -375,11 +375,10 @@ def prev():
     
     today = datetime.date.today()
     curr_week_start = today - datetime.timedelta(days=today.weekday() + 1)
+    current_week = False
     
     if curr_week_start == week_start:
-        current_week = True
-    else:
-        current_week = False
+        return redirect(url_for("moodtracker"))
 
     #insert code to load previous tracked moods from this week and stuff//
     entry_1 = JournalEntry.query.filter_by(user_id=current_user.id, date=week_start).first()
