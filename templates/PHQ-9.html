@@ -129,7 +129,7 @@
                     <li><a href="{{ url_for('journal') }}">Journal</a></li>
                     <li><a href="{{ url_for('todo') }}">ToDo</a></li>
                     <li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
-                    <li><a href="{{ url_for('mindfulactivites') }}">MindfulActivities</a></li>
+                    <li><a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a></li>
                     <li><a href="{{ url_for('poetry') }}">Poetry</a></li>
                     <li><a href="{{ url_for('quotes') }}">Quotes</a></li>
                     <li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
@@ -147,7 +147,7 @@
     <p>The PHQ-9 questionnaire provided on this website is intended for informational purposes only and should not be used to diagnose or treat any medical or mental health conditions. It is not a substitute for professional medical advice, diagnosis, or treatment.</p>
 </div>
 
-<form id="phq9-form">
+<form id="phq9-form" method="post">
     <fieldset>
 
         <label for="q1">Little interest or pleasure in doing things</label>
@@ -246,51 +246,18 @@
 </form>
 
 <script>
-    const form = document.querySelector('form');
     const submitButton = document.querySelector('input[type="submit"]');
     const resultDiv = document.createElement('div');
     form.appendChild(resultDiv);
 
     submitButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        const q1Value = parseInt(document.querySelector('input[name="q1"]:checked').value);
-        const q2Value = parseInt(document.querySelector('input[name="q2"]:checked').value);
-        const q3Value = parseInt(document.querySelector('input[name="q3"]:checked').value);
-        const q4Value = parseInt(document.querySelector('input[name="q4"]:checked').value);
-        const q5Value = parseInt(document.querySelector('input[name="q5"]:checked').value);
-        const q6Value = parseInt(document.querySelector('input[name="q6"]:checked').value);
-        const q7Value = parseInt(document.querySelector('input[name="q7"]:checked').value);
-        const q8Value = parseInt(document.querySelector('input[name="q8"]:checked').value);
-        const q9Value = parseInt(document.querySelector('input[name="q9"]:checked').value);
 
-        const totalScore = q1Value + q2Value + q3Value + q4Value + q5Value + q6Value + q7Value + q8Value + q9Value;
-
-        let resultText = '';
-
-        if (totalScore >= 0 && totalScore <= 4) {
-            resultText = 'minimal depression';
-        } else if (totalScore >= 5 && totalScore <= 9) {
-            resultText = 'mild depression';
-        } else if (totalScore >= 10 && totalScore <= 14) {
-            resultText = 'moderate depression';
-        } else if (totalScore >= 15 && totalScore <= 19) {
-            resultText = 'moderately severe depression';
-        } else {
-            resultText = 'severe depression';
-        }
-
-        const resultDiv = document.getElementById('result');
-        resultDiv.innerHTML = `Based on the information provided, we have suggested content for you.
-<br>
-<a href="{{ url_for('poetry') }}" class="unique-link">Poetry</a>
-<br>
-<a href="{{ url_for('quotes') }}" class="unique-link">Quotes</a>`;
-
+        resultDiv.innerHTML = `Based on the information provided, we have suggested content for you. <br> <a href="{{ url_for('poetry') }}" class="unique-link">Poetry</a> <br> <a href="{{ url_for('quotes') }}" class="unique-link">Quotes</a>`;
         resultDiv.style.textAlign = 'center';
         resultDiv.style.fontSize = '24px';
         resultDiv.style.color ='black';
-        document.getElementById("phq9-form").reset();
     });
 </script>
+
 </body>
 </html>
