@@ -156,7 +156,7 @@
   <p>The GAD-7 questionnaire provided on this website is intended for informational purposes only and should not be used to diagnose or treat any medical or mental health conditions. It is not a substitute for professional medical advice, diagnosis, or treatment.</p>
 </div>
 
-<form onsubmit="clearForm()">
+<form method="post">
   <fieldset>
 
     <label for="q1">Feeling nervous, anxious, or on edge</label>
@@ -234,49 +234,13 @@
 </form>
 
 <script>
-
-  const form = document.querySelector('form');
   const resultContainer = document.getElementById('result-container');
 
   form.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const scores = [];
-
-    for (let i = 1; i <= 7; i++) {
-      const q = `q${i}`;
-      const value = parseInt(document.querySelector(`input[name=${q}]:checked`).value);
-      scores.push(value);
-    }
-
-    const totalScore = scores.reduce((a, b) => a + b, 0);
-
-    //let result = '';
-
-    // if (totalScore < 5) {
-    //   result = 'minimal anxiety.';
-    // } else if (totalScore < 10) {
-    //   result = 'mild anxiety.';
-    // } else if (totalScore < 15) {
-    //   result = 'moderate anxiety.';
-    // } else {
-    //   result = 'severe anxiety.';
-    // }
 
     const output = document.createElement('p');
     output.textContent = result;
-
-    resultContainer.innerHTML = `Based on the information provided, we have suggested content for you.
-<br>
-<a href="{{ url_for('poetry') }}" class="unique-link">Poetry</a>
-<br>
-<a href="{{ url_for('quotes') }}" class="unique-link">Quotes</a>`;
-
-    const inputs = document.querySelectorAll('form input[type="radio"]');
-
-      // Reset all input elements to their default values
-    inputs.forEach(input => input.checked = false);
-
+    resultContainer.innerHTML = `Based on the information provided, we have suggested content for you. <br> <a href="{{ url_for('poetry') }}" class="unique-link">Poetry</a> <br> <a href="{{ url_for('quotes') }}" class="unique-link">Quotes</a>`;
   });
 
 </script>

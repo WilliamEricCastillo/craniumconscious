@@ -132,20 +132,48 @@ def home():
         "HomePage.html"
     )
     
-@app.route('/gad')
+@app.route('/gad', methods=['POST', 'GET'])
 def gad():
-    #Insert code to get the result integer and put it into the database
+    
+    if request.method == 'POST':
+        q1 = int(request.form.get('q1'))
+        q2 = int(request.form.get('q2'))
+        q3 = int(request.form.get('q3'))
+        q4 = int(request.form.get('q4'))
+        q5 = int(request.form.get('q5'))
+        q6 = int(request.form.get('q6'))
+        q7 = int(request.form.get('q7'))
+        
+        gad_score = q1 + q2 + q3 + q4 + q5 + q6 + q7
+        current_user.gad7_score = gad_score
+        db.session.commit()
 
     return render_template (
         "GAD-7.html"
     )
     
-@app.route('/phq')
+@app.route('/phq', methods=['POST', 'GET'])
 def phq():
-    #Insert code to get the result integer and put it into the database
+    phq_score = 0
+    
+    if request.method == 'POST':
+        q1 = int(request.form.get('q1'))
+        q2 = int(request.form.get('q2'))
+        q3 = int(request.form.get('q3'))
+        q4 = int(request.form.get('q4'))
+        q5 = int(request.form.get('q5'))
+        q6 = int(request.form.get('q6'))
+        q7 = int(request.form.get('q7'))
+        q8 = int(request.form.get('q8'))
+        q9 = int(request.form.get('q9'))
+        
+        phq_score = q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8 + q9
+        
+        current_user.phq9_score = phq_score
+        db.session.commit()
 
     return render_template (
-        "PHQ-9.html"
+        "PHQ-9.html",
     )
     
 @app.route('/journal')
@@ -183,7 +211,7 @@ def moodtracker():
     if request.method == 'POST':
         if "Submit" in request.form.values():
             selected_mood = request.form.get('mood')
-            entry = JournalEntry.query.filter_by(user_id=user_id, date=date).first()
+            entry = JournalEntry.query.filter_by(user_id=current_user.id, date=date).first()
             if entry:
                 entry.mood = selected_mood
                 db.session.commit()
