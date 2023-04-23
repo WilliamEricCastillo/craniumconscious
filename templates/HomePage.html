@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
 	<link href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}" rel="stylesheet">
 	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/helpiconstyle.css') }}">
 
 	<style>
 
@@ -89,7 +90,7 @@
 		<nav>
 			<div class="nav-content">
 				<div class="logo">
-					<a href="{{ url_for('index') }}">Cranium Conscious</a>
+					<a>Cranium Conscious</a>
 				</div>
 				<ul class="nav-links">
 					<li><a href="{{ url_for('home') }}" id="currentpage">Home</a></li>
@@ -136,8 +137,23 @@
 
 			</section>
 
-<!-- Footer -->
+
+
+	<!-- Footer -->
 	<section id="footer">
+		<a class="help-icon" style="margin-bottom: 200px" >Help?
+<p class="tooltip" style="text-align: left;">Welcome to your Home Page!
+
+In the center of the screen, you have large icons for our prominent features.
+Take a moment to familiarize yourself with your Journal, Mood Tracker, personalized Poetry collection, and information on Crisis Support services.
+
+At the top of the screen, we included a navigation bar so you can easily explore our other amazing features.
+
+If you have any questions, feel free to reach out via our social-media accounts located at the bottom of every screen or send us an email!
+
+We hope you enjoy your time here! </p></a>
+
+
 		<ul class="icons">
 			<li><a href="https://twitter.com/Cranium__C" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
 			<li><a href="https://facebook.com/CraniumConscious" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>

@@ -13,7 +13,7 @@
             font-family: Arial, sans-serif;
         }
         body {
-          padding: 2em 0 0em 0;
+          padding: 2em 0  0;
           background-color: #4686a0;
           color: rgba(255, 255, 255, 0.75);
           background-attachment: fixed, fixed, fixed;
@@ -115,11 +115,20 @@
 
         #footer {
           position: fixed;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #4686a0;
+          color: rgba(255, 255, 255, 0.75);
           background-attachment: fixed, fixed, fixed;
           background-image: url('static/assets/css/images/overlay2.png'),
           url('static/assets/css/images/overlay3.svg'),
           linear-gradient(100deg, black 80%, #4362b0 100%);
-
+          text-align: center;
+          background-position: top left, center center, center center;
+          background-size: auto, cover, cover;
+          width: 100%;
+          transition: all 0.4s ease;
         }
 
     </style>
@@ -188,7 +197,9 @@
     </div>
 
 
-    <a class="help-icon">help?<span class="tooltip">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor pretium viverra suspendisse potenti nullam ac tortor. In eu mi bibendum neque egestas congue quisque. Et malesuada fames ac turpis egestas sed. Fringilla ut morbi tincidunt augue. Sed enim ut sem viverra aliquet eget sit amet. Condimentum mattis pellentesque id nibh tortor id aliquet. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Cursus euismod quis viverra nibh cras. Venenatis urna cursus eget nunc scelerisque viverra. Faucibus ornare suspendisse sed nisi lacus sed viverra. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Ipsum nunc aliquet bibendum enim facilisis gravida. Pharetra sit amet aliquam id diam. Amet purus gravida quis blandit turpis cursus in hac habitasse. Faucibus scelerisque eleifend donec pretium vulputate. Lobortis feugiat vivamus at augue eget arcu dictum.</span></a>
+<a class="help-icon">Help?<span class="tooltip">Welcome to your Mindful Activities page!
+
+Here, we provide a variety of suggested activities to help you improve your mental well-being based on the mood you select.</span></a>
 
     <section id="footer">
       <ul class="icons">

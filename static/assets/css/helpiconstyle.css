@@ -4,7 +4,7 @@
     right: 20px;
     font-size: 20px;
     color: white;
-    background-color: #007bff;
+    background-color: #7bb790;
     padding: 10px 15px;
     border-radius: 50%;
     text-decoration: none;
@@ -20,34 +20,21 @@
 }
 
 .tooltip {
+    margin-bottom: 10px;
     visibility: hidden;
     position: absolute;
     bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
+    transform: translateX(-100%);
+    background-color: black;
     color: white;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 20px;
+    width: 750px;
+    padding: 10px 10px 10px 10px;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
-
 
 .help-icon:hover .tooltip {
     visibility: visible;
-    width: 750px;
-    padding-right: 660px;
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-#currentpage{
-    background-color: #4070f4;
-    border-radius: 10px;
-}
-
-#logoutlink:hover {
-    background-color: red;
-    border-radius: 10px;
-    color: white;
 }
