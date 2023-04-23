@@ -5,11 +5,32 @@
     <meta charset="utf-8" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
 	<link href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
 
 	<style>
+
+		.main.style2 {
+			background-color: #4686a0;
+			color: rgba(255, 255, 255, 0.75);
+			background-attachment: fixed, fixed, fixed;
+			background-image: url('static/assets/css/images/overlay2.png'),
+			url('static/assets/css/images/overlay3.svg'),
+			linear-gradient(45deg, #9dc66b 5%, #4fa49a 30%, #4361c2);
+
+			background-position:
+					top left,
+					center center,
+					center center;
+			background-size:
+					auto,
+					cover,
+					cover;
+		}
+
 		body{
 			background-color: #4686a0;
 		}
+
 		.major-icons li a:hover .icon {
 			box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
 		}
@@ -24,6 +45,37 @@
 			position: fixed;
 			z-index: 1;
 		}
+
+		#currentpage{
+			background-color: #4070f4;
+			border-radius: 10px;
+		}
+		#logoutlink:hover {
+			background-color: red;
+			border-radius: 10px;
+			color: white;
+		}
+
+		#footer {
+			position: fixed;
+			padding: 3em 0;
+			background-color: #4686a0;
+			background-attachment: fixed, fixed, fixed;
+			background-image: url('static/assets/css/images/overlay2.png'),
+			url('static/assets/css/images/overlay3.svg'),
+			linear-gradient(100deg, black 80%, #4362b0 100%);
+			text-align: center;
+			background-position: top left, center center, center center;
+			background-size: auto, cover, cover;
+			width: 100%;
+			transition: all 0.4s ease;
+		}
+
+		.style2{
+			height: 100%;
+			padding-bottom: 30%;
+		}
+
 	</style>
 </head>
 
@@ -35,7 +87,7 @@
 					<a href="{{ url_for('index') }}">Cranium Conscious</a>
 				</div>
 				<ul class="nav-links">
-					<li><a href="{{ url_for('home') }}">Home</a></li>
+					<li><a href="{{ url_for('home') }}" id="currentpage">Home</a></li>
 					<li><a href="{{ url_for('gad') }}">GAD7</a></li>
 					<li><a href="{{ url_for('phq') }}">PHQ9</a></li>
 					<li><a href="{{ url_for('journal') }}">Journal</a></li>
@@ -45,6 +97,7 @@
 					<li><a href="{{ url_for('poetry') }}">Poetry</a></li>
 					<li><a href="{{ url_for('quotes') }}">Quotes</a></li>
 					<li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
+					<li><a href="{{ url_for('logout') }}" id="logoutlink">Logout</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -58,7 +111,7 @@
 						<div class="col-6 col-12-medium">
 							<form method='post'>
 								<ul class="major-icons">
-									<li><a href="{{ url_for('journal') }}"><span class="icon solid style1 major fa-pen-square"></span><span class="icon-label">Journal</span></li>
+									<li ><a href="{{ url_for('journal') }}"><span class="icon solid style1 major fa-pen-square"></span><span class="icon-label">Journal</span></li>
 									<li><a href="{{ url_for('moodtracker') }}"><span class="icon solid style3 major fa-smile"></span><span class="icon-label">Mood Tracker</span></li>
 									<li><a href="{{ url_for('poetry') }}"><span class="icon solid style2 major fa-book"></span><span class="icon-label">Poetry</span></li>
 									<li><a href="{{ url_for('crisis') }}"><span class="icon solid style4 major fa-exclamation-triangle"></span><span class="icon-label">Crisis Support</span></a></li>
