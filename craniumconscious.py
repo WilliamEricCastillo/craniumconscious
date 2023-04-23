@@ -2,7 +2,7 @@ from flask import *
 import os
 from dotenv import load_dotenv, find_dotenv
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 import datetime
 
 load_dotenv(find_dotenv())
@@ -22,7 +22,7 @@ def load_user(id):
 
 
 #DATABASE MODELS
-class Person(db.Model):
+class Person(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -481,9 +481,14 @@ def quotes():
 @app.route('/crisissupport')
 def crisis():
     #this shouldnt need more code, unless we want the website to automatically update based on users locations
-    
+    if current_user.is_authenticated:
+        logged_in = True
+    else:
+        logged_in = False
+        
     return render_template (
-        "CrisisSupportInformation.html"
+        "CrisisSupportInformation.html",
+        logged_in=logged_in
     )
     
 app.run(debug=True)
