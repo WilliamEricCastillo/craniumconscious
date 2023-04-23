@@ -2,7 +2,7 @@ from flask import *
 import os
 from dotenv import load_dotenv, find_dotenv
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, logout_user, current_user
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 import datetime
 
 load_dotenv(find_dotenv())
@@ -22,7 +22,7 @@ def load_user(id):
 
 
 #DATABASE MODELS
-class Person(db.Model):
+class Person(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -126,6 +126,7 @@ def logout():
     return redirect(url_for("index"))
 
 @app.route('/home')
+@login_required
 def home():
     #shouldnt need more code 
     return render_template (
@@ -133,6 +134,7 @@ def home():
     )
     
 @app.route('/gad', methods=['POST', 'GET'])
+@login_required
 def gad():
     
     if request.method == 'POST':
@@ -153,6 +155,7 @@ def gad():
     )
     
 @app.route('/phq', methods=['POST', 'GET'])
+@login_required
 def phq():
     phq_score = 0
     
@@ -177,6 +180,7 @@ def phq():
     )
     
 @app.route('/journal')
+@login_required
 def journal():
     
     # get current date
@@ -192,6 +196,7 @@ def journal():
     )
     
 @app.route('/todo')
+@login_required
 def todo():
     #dont really need any more code here unless we want lists to persist
     return render_template (
@@ -199,6 +204,7 @@ def todo():
     )
     
 @app.route('/moodtracker', methods = ['POST', 'GET'])
+@login_required
 def moodtracker():
     
     day_mood_list = [2, 2, 2, 2, 2, 2, 2]
@@ -290,6 +296,7 @@ def moodtracker():
     )
     
 @app.route('/next', methods = ['POST', 'GET'])
+@login_required
 def next():
     day_mood_list = [2, 2, 2, 2, 2, 2, 2]
     week_start_str = request.args.get('week_start')
@@ -358,6 +365,7 @@ def next():
     )
 
 @app.route('/prev', methods = ['POST', 'GET'])
+@login_required
 def prev():
     day_mood_list = [2, 2, 2, 2, 2, 2, 2]
     week_start_str = request.args.get('week_start')
@@ -427,6 +435,7 @@ def prev():
 
     
 @app.route('/mindfulactivities', methods = ['GET'])
+@login_required
 def mindfulactivities():
     #this shouldnt need more code
     return render_template (
@@ -434,6 +443,7 @@ def mindfulactivities():
     )
     
 @app.route('/poetry', methods = ['POST', 'GET'])
+@login_required
 def poetry():
     
     if request.method == 'POST':
@@ -451,6 +461,7 @@ def poetry():
     )
     
 @app.route('/quotes', methods = ['POST', 'GET'])
+@login_required
 def quotes():
     
     if request.method == 'POST':
@@ -470,9 +481,14 @@ def quotes():
 @app.route('/crisissupport')
 def crisis():
     #this shouldnt need more code, unless we want the website to automatically update based on users locations
-    
+    if current_user.is_authenticated:
+        logged_in = True
+    else:
+        logged_in = False
+        
     return render_template (
-        "CrisisSupportInformation.html"
+        "CrisisSupportInformation.html",
+        logged_in=logged_in
     )
     
 app.run(debug=True)

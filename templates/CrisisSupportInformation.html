@@ -184,16 +184,18 @@
                     <a href="{{ url_for('index') }}">Cranium Conscious</a>
                 </div>
                 <p class="nav-links">
-                    <a href="{{ url_for('home') }}">Home</a>
-                    <a href="{{ url_for('gad') }}">GAD7</a>
-                    <a href="{{ url_for('phq') }}">PHQ9</a>
-                    <a href="{{ url_for('journal') }}">Journal</a>
-                    <a href="{{ url_for('todo') }}">ToDo</a>
-                    <a href="{{ url_for('moodtracker') }}">MoodTracker</a>
-                    <a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a>
-                    <a href="{{ url_for('poetry') }}">Poetry</a>
-                    <a href="{{ url_for('quotes') }}">Quotes</a>
-                    <a href="{{ url_for('crisis') }}">CrisisSupport</a>
+                    {% if logged_in %}
+                        <a href="{{ url_for('home') }}">Home</a>
+                        <a href="{{ url_for('gad') }}">GAD7</a>
+                        <a href="{{ url_for('phq') }}">PHQ9</a>
+                        <a href="{{ url_for('journal') }}">Journal</a>
+                        <a href="{{ url_for('todo') }}">ToDo</a>
+                        <a href="{{ url_for('moodtracker') }}">MoodTracker</a>
+                        <a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a>
+                        <a href="{{ url_for('poetry') }}">Poetry</a>
+                        <a href="{{ url_for('quotes') }}">Quotes</a>
+                        <a href="{{ url_for('crisis') }}">CrisisSupport</a>
+                    {% endif %}
                 </p>
             </div>
         </div>
