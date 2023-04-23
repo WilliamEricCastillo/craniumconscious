@@ -3,10 +3,16 @@
 <head>
   <title>GAD-7</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/helpiconstyle.css') }}">
 
   <style>
+
+    * {
+      font-family: Arial, sans-serif;
+    }
     body {
-      padding: 3em 0 3em 0;
+      padding: 3em 0 0em 0;
       background-color: #4686a0;
       color: rgba(255, 255, 255, 0.75);
       background-attachment: fixed, fixed, fixed;
@@ -120,6 +126,35 @@
       color: blue;
     }
 
+    #currentpage{
+      background-color: #4070f4;
+      border-radius: 10px;
+    }
+    #logoutlink:hover {
+      background-color: red;
+      border-radius: 10px;
+      color: white;
+    }
+
+    #currentpage{
+      background-color: #4070f4;
+      border-radius: 10px;
+    }
+
+    #logoutlink:hover {
+      background-color: red;
+      border-radius: 10px;
+      color: white;
+    }
+
+    #footer {
+      background-attachment: fixed, fixed, fixed;
+      background-image: url('static/assets/css/images/overlay2.png'),
+      url('static/assets/css/images/overlay3.svg'),
+      linear-gradient(100deg, black 80%, #4362b0 100%);
+
+    }
+
   </style>
 </head>
 <body>
@@ -128,11 +163,11 @@
     <div id="nav-block">
       <div class="nav-content">
         <div class="logo">
-          <a href="{{ url_for('index') }}">Cranium Conscious</a>
+          <a>Cranium Conscious</a>
         </div>
         <ul class="nav-links">
           <li><a href="{{ url_for('home') }}">Home</a></li>
-          <li><a href="{{ url_for('gad') }}">GAD7</a></li>
+          <li><a href="{{ url_for('gad') }}" id="currentpage">GAD7</a></li>
           <li><a href="{{ url_for('phq') }}">PHQ9</a></li>
           <li><a href="{{ url_for('journal') }}">Journal</a></li>
           <li><a href="{{ url_for('todo') }}">ToDo</a></li>
@@ -141,6 +176,8 @@
           <li><a href="{{ url_for('poetry') }}">Poetry</a></li>
           <li><a href="{{ url_for('quotes') }}">Quotes</a></li>
           <li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
+          <li><a href="{{ url_for('logout') }}" id="logoutlink">Logout</a></li>
+
         </ul>
       </div>
     </div>
@@ -231,7 +268,23 @@
   <br><br><br><br>
   <br><br><br><br>
 
+
 </form>
+
+<a class="help-icon">help?<span class="tooltip">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor pretium viverra suspendisse potenti nullam ac tortor. In eu mi bibendum neque egestas congue quisque. Et malesuada fames ac turpis egestas sed. Fringilla ut morbi tincidunt augue. Sed enim ut sem viverra aliquet eget sit amet. Condimentum mattis pellentesque id nibh tortor id aliquet. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Cursus euismod quis viverra nibh cras. Venenatis urna cursus eget nunc scelerisque viverra. Faucibus ornare suspendisse sed nisi lacus sed viverra. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Ipsum nunc aliquet bibendum enim facilisis gravida. Pharetra sit amet aliquam id diam. Amet purus gravida quis blandit turpis cursus in hac habitasse. Faucibus scelerisque eleifend donec pretium vulputate. Lobortis feugiat vivamus at augue eget arcu dictum.</span></a>
+
+
+<section id="footer">
+  <ul class="icons">
+    <li><a href="https://twitter.com/Cranium__C" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+    <li><a href="https://facebook.com/CraniumConscious" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+    <li><a href="https://www.instagram.com/CraniumConscious/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+    <li><a href="https://github.com/WilliamEricCastillo/craniumconscious" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+    <li><a href="mailto:craniumconscious@gmail.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>				</ul>
+  <ul class="copyright">
+    <li>&copy; CraniumConscious</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+  </ul>
+</section>
 
 <script>
   const form = document.querySelector('form');

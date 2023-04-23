@@ -12,9 +12,24 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
     <noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
     <style>
+
         body{
 			background-color: #4686a0;
 		}
+
+        .main.style2 {
+            padding: 3em 0;
+            background-attachment: fixed, fixed, fixed;
+            background-image: url('static/assets/css/images/overlay2.png'),
+            url('static/assets/css/images/overlay3.svg');
+            text-align: center;
+            background-position: top left, center center, center center;
+            background-size: auto, cover, cover;
+            width: 100%;
+            transition: all 0.4s ease;
+        }
+
+
     </style>
 </head>
 <body class="is-preload">

@@ -1,0 +1,53 @@
+.help-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 175px;
+}
+
+
+.help-icon:hover {
+    background-color: #0062cc;
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+.help-icon:hover .tooltip {
+    visibility: visible;
+    width: 750px;
+    padding-right: 660px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#currentpage{
+    background-color: #4070f4;
+    border-radius: 10px;
+}
+
+#logoutlink:hover {
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+}

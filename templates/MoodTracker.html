@@ -5,6 +5,8 @@
   <title>Mood Tracker</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/helpiconstyle.css') }}">
 
   <style>
     * {
@@ -12,7 +14,7 @@
     }
 
     body {
-      padding: 9em 0 9em 0;
+      padding: 9em 0 0em 0;
       background-color: #4686a0;
       color: rgba(255, 255, 255, 0.75);
       background-attachment: fixed, fixed, fixed;
@@ -98,7 +100,7 @@
   }
 
   #graph-style{
-    width: 70%;
+    width: 800px;
     margin: auto;
   }
 
@@ -115,9 +117,10 @@
 
     #formdiv {
       background-color: rgba(0, 0, 0, 0.5);
-      margin-left: 10%;
-      margin-right: 10%;
-      min-width: 80%;
+      margin-left: 15%;
+      margin-right: 15%;
+      margin-bottom: 10px;
+      min-width: 1000px;
       display: inline-block;
       border-radius: 10px;
     }
@@ -153,6 +156,20 @@
       background-color: #0069d9;
     }
 
+    /*emoji submit buton*/
+    input[type="submit"]{
+      background-color: #4070f4;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
+      border: none;
+      border-radius: 4px;"
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2040a0;
+    }
+
     #weeklydate {
       color: #4070f4;
       display: flex;
@@ -171,6 +188,23 @@
       content: ' \2192';
     }
 
+    #currentpage{
+      background-color: #4070f4;
+      border-radius: 10px;
+    }
+    #logoutlink:hover {
+      background-color: red;
+      border-radius: 10px;
+      color: white;
+    }
+
+    #footer {
+      background-attachment: fixed, fixed, fixed;
+      background-image: url('static/assets/css/images/overlay2.png'),
+      url('static/assets/css/images/overlay3.svg'),
+      linear-gradient(100deg, black 80%, #4362b0 100%);
+
+    }
 
   </style>
 </head>
@@ -178,68 +212,72 @@
     <nav>
       <div class="nav-content">
         <div class="logo">
-					<a href="{{ url_for('index') }}">Cranium Conscious</a>
-				</div>
-				<ul class="nav-links">
-					<li><a href="{{ url_for('home') }}">Home</a></li>
-					<li><a href="{{ url_for('gad') }}">GAD7</a></li>
-					<li><a href="{{ url_for('phq') }}">PHQ9</a></li>
-					<li><a href="{{ url_for('journal') }}">Journal</a></li>
-					<li><a href="{{ url_for('todo') }}">ToDo</a></li>
-					<li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
-					<li><a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a></li>
-					<li><a href="{{ url_for('poetry') }}">Poetry</a></li>
-					<li><a href="{{ url_for('quotes') }}">Quotes</a></li>
-					<li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
-				</ul>
+          <a>Cranium Conscious</a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="{{ url_for('home') }}">Home</a></li>
+          <li><a href="{{ url_for('gad') }}">GAD7</a></li>
+          <li><a href="{{ url_for('phq') }}">PHQ9</a></li>
+          <li><a href="{{ url_for('journal') }}">Journal</a></li>
+          <li><a href="{{ url_for('todo') }}">ToDo</a></li>
+          <li><a href="{{ url_for('moodtracker') }}" id="currentpage">MoodTracker</a></li>
+          <li><a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a></li>
+          <li><a href="{{ url_for('poetry') }}">Poetry</a></li>
+          <li><a href="{{ url_for('quotes') }}">Quotes</a></li>
+          <li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
+          <li><a href="{{ url_for('logout') }}" id="logoutlink">Logout</a></li>
+        </ul>
       </div>
     </nav>
 
-<h1 >Mood Tracker</h1>
+    <h1 >Mood Tracker</h1>
     <br>
-<div id="formdiv">
-  <br>
-  {%if current_week %}
-    <div id="submission-div">
-      <h2>How are you feeling today?</h2>
+    <div id="container" style="text-align: center;">
+    <div id="formdiv">
       <br>
-    <form method="post">
-        <fieldset>
-          <div class="radio-group">
-            <input type="radio" id="emoji1" name="mood" value="4" required>
-            <label for="emoji1"><img src="static/images/icons8-in-love-96.png" alt="Happy"></label>
-            <div class="radio-value">Value 4</div>
+      {%if current_week %}
+      <div id="submission-div">
+        <h2>How are you feeling today?</h2>
+        <form method="post">
+          <fieldset>
+            <div class="radio-group">
+              <input type="radio" id="emoji1" name="mood" value="4" required>
+              <label for="emoji1"><img src="static/images/icons8-in-love-96.png" alt="Happy"></label>
+              <div class="radio-value">Value 4</div>
+            </div>
+            <div class="radio-group">
+              <input type="radio" id="emoji2" name="mood" value="3" required>
+              <label for="emoji2"><img src="static/images/icons8-smiling-96.png" alt="In Love"></label>
+              <div class="radio-value">Value 3</div>
+            </div>
+            <div class="radio-group">
+              <input type="radio" id="emoji3" name="mood" value="2" required>
+              <label for="emoji3"><img src="static/images/icons8-neutral-96.png" alt="Neutral"></label>
+              <div class="radio-value">Value 2</div>
+            </div>
+            <div class="radio-group">
+              <input type="radio" id="emoji4" name="mood" value="1" required>
+              <label for="emoji4"><img src="static/images/icons8-frowning-face-96.png" alt="Sad"></label>
+              <div class="radio-value">Value 1</div>
+            </div>
+            <div class="radio-group">
+              <input type="radio" id="emoji5" name="mood" value="0" required>
+              <label for="emoji5"><img src="static/images/icons8-angry-96.png" alt="Angry"></label>
+              <div class="radio-value">Value 0</div>
+            </div>
+            <br><br>
+
+            <input type="submit" name="mood-submit" value="Submit">
+          </fieldset>
+          {% endif %}
+          <div id="graph-style">
+            <canvas id="chart"></canvas>
           </div>
-          <div class="radio-group">
-            <input type="radio" id="emoji2" name="mood" value="3" required>
-            <label for="emoji2"><img src="static/images/icons8-smiling-96.png" alt="In Love"></label>
-            <div class="radio-value">Value 3</div>
-          </div>
-          <div class="radio-group">
-            <input type="radio" id="emoji3" name="mood" value="2" required>
-            <label for="emoji3"><img src="static/images/icons8-neutral-96.png" alt="Neutral"></label>
-            <div class="radio-value">Value 2</div>
-          </div>
-          <div class="radio-group">
-            <input type="radio" id="emoji4" name="mood" value="1" required>
-            <label for="emoji4"><img src="static/images/icons8-frowning-face-96.png" alt="Sad"></label>
-            <div class="radio-value">Value 1</div>
-          </div>
-          <div class="radio-group">
-            <input type="radio" id="emoji5" name="mood" value="0" required>
-            <label for="emoji5"><img src="static/images/icons8-angry-96.png" alt="Angry"></label>
-            <div class="radio-value">Value 0</div>
-          </div>
-          <br>
-          <input type="submit" name="mood-submit" value="Submit" style="padding: 10px 20px; font-size: 16px; background-color: blue; color: white; border: none; border-radius: 4px;">
-        </fieldset>
-    </div>
-  {% endif %}
-  <div id="graph-style">
-    <canvas id="chart"></canvas>
-  </div>
 </form>
-<form method="post" id="update-date-range">
+      </div>
+
+
+      <form method="post" id="update-date-range">
   {% if current_week %}
     <p style="text-align: center; background-color: black; font-weight: bold; cursor: pointer;">Current Week</p>
   {% endif %}
@@ -248,99 +286,115 @@
       <p id="date-range"> {{week_start}} - {{week_end}}</p>
       <input type="submit" name="next-button" id="next-button" value="&rarr;" style="font-size: 1.5em;">
     </div>
-  </div>
 </form>
+      </div>
+    </div>
 
-<script>
-  // Get the chart canvas and initialize the Chart object
-  const dayMoodList = {{day_mood_list|tojson}};
-  const chartCanvas = document.getElementById('chart');
-  const moodChart = new Chart(chartCanvas, {
-    type: 'line',
-    data: {
-      labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      datasets: [{
-        label: 'Mood',
-        data: dayMoodList,
-        borderColor: 'black',
-        backgroundColor: '#007bff',
-        fill: false,
-        pointBackgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#red', '#343a40', '#17a2b8'],
-        pointBorderColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff']
-      }]
+    <a class="help-icon">help?<span class="tooltip">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor pretium viverra suspendisse potenti nullam ac tortor. In eu mi bibendum neque egestas congue quisque. Et malesuada fames ac turpis egestas sed. Fringilla ut morbi tincidunt augue. Sed enim ut sem viverra aliquet eget sit amet. Condimentum mattis pellentesque id nibh tortor id aliquet. Egestas tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Cursus euismod quis viverra nibh cras. Venenatis urna cursus eget nunc scelerisque viverra. Faucibus ornare suspendisse sed nisi lacus sed viverra. At tempor commodo ullamcorper a lacus vestibulum sed arcu. Ipsum nunc aliquet bibendum enim facilisis gravida. Pharetra sit amet aliquam id diam. Amet purus gravida quis blandit turpis cursus in hac habitasse. Faucibus scelerisque eleifend donec pretium vulputate. Lobortis feugiat vivamus at augue eget arcu dictum.</span></a>
 
-    },
-    options: {
-      responsive: true,
-      title: {
-        display: true,
-        text: 'Mood Tracker'
-      },
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            max: 4,
-            stepSize: 1,
-            callback: function(value) {
-              switch (value) {
-                case 0:
-                  return {text: '&#x1F621;', color: 'red'};
-                case 1:
-                  return {text: '&#x1F622;', color: 'orange'};
-                case 2:
-                  return {text: '&#x1F610;', color: 'yellow'};
-                case 3:
-                  return {text: '&#x1F60D;', color: 'lightgreen'};
-                case 4:
-                  return {text: '&#x1F60E;', color: 'green'};
-                default:
-                  return '';
-              }
-            }
-          },
-          scaleLabel: {
-            display: true,
-            labelString: 'Mood'
-          }
-        }],
-        xAxes: [{
-          scaleLabel: {
-            display: true,
-            labelString: 'Day of the week'
-          }
+    <section id="footer">
+      <ul class="icons">
+        <li><a href="https://twitter.com/Cranium__C" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="https://facebook.com/CraniumConscious" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+        <li><a href="https://www.instagram.com/CraniumConscious/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/WilliamEricCastillo/craniumconscious" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+        <li><a href="mailto:craniumconscious@gmail.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>				</ul>
+      <ul class="copyright">
+        <li>&copy; CraniumConscious</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+    </section>
+
+  <script>
+    // Get the chart canvas and initialize the Chart object
+    const dayMoodList = {{day_mood_list|tojson}};
+    const chartCanvas = document.getElementById('chart');
+    const moodChart = new Chart(chartCanvas, {
+      type: 'line',
+      data: {
+        labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        datasets: [{
+          label: 'Mood',
+          data: dayMoodList,
+          borderColor: 'black',
+          backgroundColor: '#007bff',
+          fill: false,
+          pointBackgroundColor: ['#007bff', '#28a745', '#ffc107', '#dc3545', '#red', '#343a40', '#17a2b8'],
+          pointBorderColor: ['#fff', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff']
         }]
-      }
-    }
-  });
-</script>
 
-<script>
-  $(document).ready(function() {
-      $("#prev-button, #next-button").click(function(event) {
-          event.preventDefault();
-          $.ajax({
-              type: "POST",
-              url: "/update_variables",
-              data: $("#update-date-range").serialize(),
-              success: function(response) {
-                  // Update the variables on the HTML page
-                  $("#week_start").text(response.week_start);
-                  $("#day_mood_list_0").text(response.day_mood_list[0]);
-                  $("#day_mood_list_1").text(response.day_mood_list[1]);
-                  $("#day_mood_list_2").text(response.day_mood_list[2]);
-                  $("#day_mood_list_3").text(response.day_mood_list[3]);
-                  $("#day_mood_list_4").text(response.day_mood_list[4]);
-                  $("#day_mood_list_5").text(response.day_mood_list[5]);
-                  $("#day_mood_list_6").text(response.day_mood_list[6]);
-                  $("#week_end").text(response.week_end);
-              },
-              error: function(xhr, status, error) {
-                  console.error(error);
+      },
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Mood Tracker'
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 4,
+              stepSize: 1,
+              callback: function(value) {
+                switch (value) {
+                  case 0:
+                    return {text: '&#x1F621;', color: 'red'};
+                  case 1:
+                    return {text: '&#x1F622;', color: 'orange'};
+                  case 2:
+                    return {text: '&#x1F610;', color: 'yellow'};
+                  case 3:
+                    return {text: '&#x1F60D;', color: 'lightgreen'};
+                  case 4:
+                    return {text: '&#x1F60E;', color: 'green'};
+                  default:
+                    return '';
+                }
               }
-          });
-      });
-  });
-</script>
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Mood'
+            }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Day of the week'
+            }
+          }]
+        }
+      }
+    });
+  </script>
+  <script>
+
+    $(document).ready(function() {
+        $("#prev-button, #next-button").click(function(event) {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "/update_variables",
+                data: $("#update-date-range").serialize(),
+                success: function(response) {
+                    // Update the variables on the HTML page
+                    $("#week_start").text(response.week_start);
+                    $("#day_mood_list_0").text(response.day_mood_list[0]);
+                    $("#day_mood_list_1").text(response.day_mood_list[1]);
+                    $("#day_mood_list_2").text(response.day_mood_list[2]);
+                    $("#day_mood_list_3").text(response.day_mood_list[3]);
+                    $("#day_mood_list_4").text(response.day_mood_list[4]);
+                    $("#day_mood_list_5").text(response.day_mood_list[5]);
+                    $("#day_mood_list_6").text(response.day_mood_list[6]);
+                    $("#week_end").text(response.week_end);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+  </script>
+
 </body>
 </html>

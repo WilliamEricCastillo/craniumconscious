@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/calendarstyle.css') }}">
 	  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
+	  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
 
 <style>
 
@@ -32,6 +33,36 @@
 				cover;
 	}
 
+	#curentpage{
+		background-color: #4070f4;
+		border-radius: 10px;
+	}
+
+	#logoname{
+		color:#4070f4 ;
+	}
+
+	#logoutlink:hover {
+		background-color: red;
+		border-radius: 10px;
+		color: white;
+	}
+
+	#footer {
+		position: fixed;
+		padding: 3em 0;
+		background-color: #4686a0;
+		background-attachment: fixed, fixed, fixed;
+		background-image: url('static/assets/css/images/overlay2.png'),
+		url('static/assets/css/images/overlay3.svg'),
+		linear-gradient(100deg, black 80%, #4362b0 100%);
+		text-align: center;
+		background-position: top left, center center, center center;
+		background-size: auto, cover, cover;
+		width: 100%;
+		transition: all 0.4s ease;
+	}
+
 </style>
 	</head>
 	<body>
@@ -40,19 +71,20 @@
 				<div id="nav-block">
 					<div class="nav-content">
 						<div class="logo">
-							<a href="{{ url_for('index') }}">Cranium Conscious</a>
+							<a id="logoname">Cranium Conscious</a>
 						</div>
 						<ul class="nav-links">
 							<li><a href="{{ url_for('home') }}">Home</a></li>
 							<li><a href="{{ url_for('gad') }}">GAD7</a></li>
 							<li><a href="{{ url_for('phq') }}">PHQ9</a></li>
-							<li><a href="{{ url_for('journal') }}">Journal</a></li>
+							<li><a href="{{ url_for('journal') }}" id="curentpage">Journal</a></li>
 							<li><a href="{{ url_for('todo') }}">ToDo</a></li>
 							<li><a href="{{ url_for('moodtracker') }}">MoodTracker</a></li>
 							<li><a href="{{ url_for('mindfulactivities') }}">MindfulActivities</a></li>
 							<li><a href="{{ url_for('poetry') }}">Poetry</a></li>
 							<li><a href="{{ url_for('quotes') }}">Quotes</a></li>
 							<li><a href="{{ url_for('crisis') }}">CrisisSupport</a></li>
+							<li><a href="{{ url_for('logout') }}" id="logoutlink">Logout</a></li>
 						</ul>
 					</div>
 				 </div>
@@ -133,6 +165,18 @@
 					</div>
 				</div>
 			</div>
+		</section>
+
+		<section id="footer">
+			<ul class="icons">
+				<li><a href="https://twitter.com/Cranium__C" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="https://facebook.com/CraniumConscious" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="https://www.instagram.com/CraniumConscious/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+				<li><a href="https://github.com/WilliamEricCastillo/craniumconscious" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+				<li><a href="mailto:craniumconscious@gmail.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>				</ul>
+			<ul class="copyright">
+				<li style="color: white">&copy; CraniumConscious</li><li style="color: white">Design: <a href="http://html5up.net">HTML5 UP</a></li>
+			</ul>
 		</section>
 
 		<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
