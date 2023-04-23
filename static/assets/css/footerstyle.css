@@ -1,0 +1,211 @@
+@import url("fontawesome-all.min.css");
+
+
+body {
+	height: 100%;
+}
+
+#footer {
+	position: inherit;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 3em 0 3em 0;
+	background-color: #4686a0;
+	color: rgba(255, 255, 255, 0.75);
+	background-attachment: fixed, fixed, fixed;
+	background-image: url('static/assets/css/images/overlay2.png'),
+	url('static/assets/css/images/overlay3.svg'),
+	linear-gradient(100deg, black 80%, #4362b0 100%);
+	text-align: center;
+	background-position: top left, center center, center center;
+	background-size: auto, cover, cover;
+	width: 100%;
+	transition: all 0.4s ease;
+}
+
+
+#footer a {
+	border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+#footer a:hover {
+	color: white;
+}
+
+
+#footer .copyright {
+	font-size: 0.8em;
+	list-style: none;
+	margin: 2em 0 0 0;
+	padding: 0;
+}
+
+#footer .copyright li {
+	border-left: solid 1px;
+	display: inline-block;
+	line-height: 1em;
+	margin-left: 1em;
+	padding: 0 0 0 1em;
+}
+
+#footer .copyright li:first-child {
+	border-left: 0;
+	margin-left: 0;
+	padding: 0;
+}
+
+
+ul.icons {
+	cursor: default;
+	list-style: none;
+	padding-left: 0;
+}
+
+ul.icons li {
+	display: inline-block;
+	padding: 0 1.25em 0 0;
+}
+
+ul.icons li:last-child {
+	padding-right: 0;
+}
+
+ul.icons li .icon:before {
+	font-size: 1.5em;
+}
+
+
+
+/* Icon */
+
+.icon, a {
+
+	position: relative;
+	color: #d4e7e7;
+}
+
+
+.icon:before {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+	text-transform: none !important;
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 400;
+}
+
+.icon > .label {
+	display: none;
+}
+
+.icon:before {
+	line-height: inherit;
+}
+
+.icon.solid:before {
+	font-weight: 900 !important;
+}
+
+.icon.brands:before {
+	font-family: 'Font Awesome 5 Brands';
+}
+
+.icon.style1:before {
+	color: #c3e895;
+}
+
+.icon.style2:before {
+	color: #8addaa;
+}
+
+.icon.style3:before {
+	color: #6bd4c8;
+}
+
+.icon.style4:before {
+	color: #57aed3;
+}
+
+.icon.style5:before {
+	color: #4a87d3;
+}
+
+.icon.style6:before {
+	color: #6b88e6;
+}
+
+.icon.major {
+	text-decoration: none;
+	color: #555;
+	cursor: default;
+	display: inline-block;
+	margin: 0 0 1.5em 0;
+}
+
+.icon.major:before {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+	text-transform: none !important;
+	font-family: 'Font Awesome 5 Free';
+	font-weight: 400;
+}
+
+.icon.major:before {
+	font-size: 4em;
+	line-height: 1em;
+}
+
+/* Image */
+
+.image {
+	border-radius: 4px;
+	border: 0;
+	display: inline-block;
+	position: relative;
+}
+
+.image img {
+	border-radius: 4px;
+	display: block;
+}
+
+.image.left {
+	float: left;
+	padding: 0 1.5em 1em 0;
+	top: 0.25em;
+}
+
+.image.right {
+	float: right;
+	padding: 0 0 1em 1.5em;
+	top: 0.25em;
+}
+
+.image.left, .image.right {
+	max-width: 40%;
+}
+
+.image.left img, .image.right img {
+	width: 100%;
+}
+
+.image.fit {
+	display: block;
+	margin: 0 0 2em 0;
+	width: 100%;
+}
+
+.image.fit img {
+	width: 100%;
+}
+
