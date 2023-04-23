@@ -37,8 +37,10 @@
 		.icon-label {
 			display: block;
 			text-align: center;
-			margin-top: -30%;
+			margin-top: -25%;
 			font-size: 14px;
+			position: relative;
+			z-index: 9999;
 		}
 
 		nav {
@@ -76,6 +78,9 @@
 			padding-bottom: 30%;
 		}
 
+		.bg-black {
+			background-color: black;
+		}
 	</style>
 </head>
 
@@ -111,10 +116,10 @@
 						<div class="col-6 col-12-medium">
 							<form method='post'>
 								<ul class="major-icons">
-									<li ><a href="{{ url_for('journal') }}"><span class="icon solid style1 major fa-pen-square"></span><span class="icon-label">Journal</span></li>
-									<li><a href="{{ url_for('moodtracker') }}"><span class="icon solid style3 major fa-smile"></span><span class="icon-label">Mood Tracker</span></li>
-									<li><a href="{{ url_for('poetry') }}"><span class="icon solid style2 major fa-book"></span><span class="icon-label">Poetry</span></li>
-									<li><a href="{{ url_for('crisis') }}"><span class="icon solid style4 major fa-exclamation-triangle"></span><span class="icon-label">Crisis Support</span></a></li>
+									<li ><a href="{{ url_for('journal') }}"><span class="icon solid style1 major fa-pen-square bg-black"></span><span class="icon-label">Journal</span></li>
+									<li><a href="{{ url_for('moodtracker') }}"><span class="icon solid style3 major fa-smile bg-black"></span><span class="icon-label">Mood Tracker</span></li>
+									<li><a href="{{ url_for('poetry') }}"><span class="icon solid style2 major fa-book bg-black"></span><span class="icon-label">Poetry</span></li>
+									<li><a href="{{ url_for('crisis') }}"><span class="icon solid style4 major fa-exclamation-triangle bg-black"></span><span class="icon-label">Crisis Support</span></a></li>
 								</ul>
 							</form>
 						</div>
