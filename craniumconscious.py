@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 
 load_dotenv(find_dotenv())
@@ -26,7 +27,7 @@ class Person(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(128), nullable=False)
     gad7_score = db.Column(db.Integer)
     phq9_score = db.Column(db.Integer)
     journal_entries = db.relationship('JournalEntry', backref='user', lazy=True)
@@ -36,6 +37,12 @@ class Person(UserMixin, db.Model):
     
     def get_id(self):
         return str(self.id)
+
+    def password_hash(self, passwd):
+        self.password = generate_password_hash(passwd)
+
+    def check_password(self, passwd):
+        return check_password_hash(self.password, passwd)
 
 class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
