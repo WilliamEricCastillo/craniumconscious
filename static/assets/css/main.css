@@ -2900,11 +2900,11 @@ button:disabled,
 }
 
 .main.style2 ul.major-icons li .icon {
-	border-color: #000000;
+	border-color: white;
 }
 
 .main.style2 .icon.major {
-	color: #000000;
+	background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* Header */
