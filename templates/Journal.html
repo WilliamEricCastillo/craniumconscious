@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="en">
-  <head>
-  	<title>Calendar</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+	<title>Calendar</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/calendarstyle.css') }}">
-	  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
-	  <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/helpiconstyle.css') }}">
 
-<style>
+	<style>
 
 	*{
 		font-family: Arial, sans-serif;
@@ -50,7 +51,6 @@
 
 	#footer {
 		position: fixed;
-		padding: 3em 0;
 		background-color: #4686a0;
 		background-attachment: fixed, fixed, fixed;
 		background-image: url('static/assets/css/images/overlay2.png'),
@@ -59,13 +59,56 @@
 		text-align: center;
 		background-position: top left, center center, center center;
 		background-size: auto, cover, cover;
-		width: 100%;
 		transition: all 0.4s ease;
 	}
 
-</style>
+	.help-icon {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		font-size: 20px;
+		color: white;
+		background-color: #7bb790;
+		padding: 10px 15px;
+		border-radius: 50%;
+		text-decoration: none;
+		display: inline-block;
+		vertical-align: middle;
+		margin-bottom: 175px;
+
+	}
+
+
+	.help-icon:hover {
+		background-color: #0062cc;
+		cursor: pointer;
+	}
+
+	.tool-tipper {
+		margin-bottom: 10px;
+		visibility: hidden;
+		position: absolute;
+		bottom: 100%;
+		transform: translateX(-100%);
+		background-color: black;
+		color: white;
+		border-radius: 5px;
+		font-size: 20px;
+		width: 750px;
+		padding: 10px 10px 10px 10px;
+		overflow-wrap: break-word;
+		white-space: pre-wrap;
+	}
+
+	.help-icon:hover .tool-tipper {
+		visibility: visible;
+	}
+
+	</style>
 	</head>
 	<body>
+
+<!--		Navigation Bar-->
 		<div id="navigation">
 			<nav>
 				<div id="nav-block">
@@ -91,6 +134,7 @@
 			</nav>
 		</div>
 
+<!--Calendar Section-->
 		<section class="ftco-section">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -167,6 +211,17 @@
 			</div>
 		</section>
 
+<!--Help Icon-->
+<a class="help-icon" style="color: white">Help?<span class="tool-tipper">Welcome to your personalized journal!
+
+Here you can express your thoughts and revisit past entries with ease. The convenient calendar allows you to view your entries by date, making it simple to track your entires and reflect on your journey.
+
+Rest assured that your data will be encrypted for your security.
+</span></a>
+
+
+
+<!--Footer-->
 		<section id="footer">
 			<ul class="icons">
 				<li><a href="https://twitter.com/Cranium__C" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
