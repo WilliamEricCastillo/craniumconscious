@@ -7,17 +7,31 @@
     box-sizing: border-box;
     text-decoration: none;
     font-family: Arial, sans-serif;
+
 }
 
+
 nav {
+    background-attachment: fixed, fixed, fixed;
+    background-image: url('static/assets/css/images/overlay2.png'),
+    url('static/assets/css/images/overlay3.svg'),
+    linear-gradient(100deg, black 80%, #4362b0 100%);
+
+    background-position:
+            top left,
+            center center,
+            center center;
+    background-size:
+            auto,
+            cover,
+            cover;
+
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
     padding: 5px;
-    transition: all 0.4s ease;
-    background-color: black; /* slightly transparent white background */
 }
 
 nav.sticky {
@@ -61,7 +75,6 @@ nav.sticky .logo a {
     font-size: 18px;
     font-weight: 500;
     padding: 10px 4px;
-    transition: all 0.3s ease;
 }
 
 .nav-links li a:hover {
@@ -70,7 +83,6 @@ nav.sticky .logo a {
 
 nav.sticky .nav-links li a {
     color: #fff;
-    transition: all 0.4s ease;
 }
 
 nav.sticky .nav-links li a:hover {
@@ -102,16 +114,17 @@ h2 {
     padding-bottom: 8%;
 }
 
-.logo a:hover {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
 .nav-links {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
+#logoutlink:hover {
+    background-color: red;
+    border-radius: 10px;
+    color: white;
+}
 
 
 
