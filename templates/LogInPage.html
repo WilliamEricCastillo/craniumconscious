@@ -4,6 +4,7 @@
   <title>Login</title>
   <meta charset="utf-8"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/NavBarStyle.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/footerstyle.css') }}">
 
     <style>
         body {
@@ -27,46 +28,86 @@
             max-width: 400px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .form-group {
-            margin-bottom: 15px;
+        .inner h2 {
+            text-align: center;
+            margin-bottom: 20px;
         }
 
-        label {
+        .inner label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
         }
 
-        input[type="text"],
-        input[type="password"] {
-            display: block;
+        .inner input[type="text"],
+        .inner input[type="password"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
+            margin-bottom: 20px;
             border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
         }
 
-        input[type="submit"]:hover {
-            background-color: #0069d9;
+        .inner input[type="submit"] {
+            background-color: #4070f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .inner input[type="submit"]:hover {
+            background-color: #294dad;
+        }
+
+        .center-button {
+            text-align: center;
+        }
+
+
+
+
+        #footer {
+            position: fixed;
+            padding: 3em 0;
+            background-color: #4686a0;
+            color: rgba(255, 255, 255, 0.75);
+            background-attachment: fixed, fixed, fixed;
+            background-image: url('static/assets/css/images/overlay2.png'),
+            url('static/assets/css/images/overlay3.svg'),
+            linear-gradient(100deg, black 80%, #4362b0 100%);
+            text-align: center;
+            background-position: top left, center center, center center;
+            background-size: auto, cover, cover;
+            width: 100%;
+            transition: all 0.4s ease;
+        }
+
+        .center-button {
+            text-align: center;
         }
 
   </style>
+
+    <style>
+        #login-link {
+            color: blue;
+            text-decoration: none;
+        }
+
+        #login-link:hover {
+            text-decoration: underline;
+            color: red;
+        }
+    </style>
+
 </head>
 <body class="is-preload">
   <div id="navigation">
@@ -95,11 +136,26 @@
               <label for="password">Password:</label>
               <input type="password" id="password" name="password" required>
           </div>
-          <div class="form-group">
+          <div class="form-group center-button">
               <input type="submit" value="Login">
           </div>
+          <br>
+          <p>New User? <a id="login-link" href="{{ url_for('signup') }}">Log in</a></p>
+
       </form>
   </div>
+
+  <section id="footer">
+      <ul class="icons">
+          <li><a href="https://twitter.com/Cranium__C" class="icon brands alt fa-twitter"><span class="label">Twitter</span></a></li>
+          <li><a href="https://facebook.com/CraniumConscious" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
+          <li><a href="https://www.instagram.com/CraniumConscious/" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
+          <li><a href="https://github.com/WilliamEricCastillo/craniumconscious" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+          <li><a href="mailto:craniumconscious@gmail.com" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>				</ul>
+      <ul class="copyright">
+          <li>&copy; CraniumConscious</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+      </ul>
+  </section>
 
 </body>
 </html>
