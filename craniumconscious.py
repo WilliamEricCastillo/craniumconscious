@@ -125,7 +125,7 @@ def register():
         flash("User already exists.")
         return redirect(url_for('home'))
     elif user is None:
-        user = Person(email=email, username=username, password=user.generate_password_hash(password))
+        user = Person(email=email, username=username, password=generate_password_hash(password))
         db.session.add(user)
         db.session.commit()
         login_user(user)
