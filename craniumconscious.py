@@ -89,8 +89,12 @@ def login():
     user = Person.query.filter_by(username=username).first()
     
     if user:
-        login_user(user)
-        return redirect(url_for('home'))
+        if user.check_password(password):
+            login_user(user)
+            return redirect(url_for('home'))
+        else:
+            flash("Incorrect password.")
+            return redirect(url_for("index"))
     else:
         flash("No user found.")
         return redirect(url_for("index"))
@@ -121,7 +125,7 @@ def register():
         flash("User already exists.")
         return redirect(url_for('home'))
     elif user is None:
-        user = Person(email=email, username=username, password=password)
+        user = Person(email=email, username=username, password=user.generate_password_hash(password))
         db.session.add(user)
         db.session.commit()
         login_user(user)
