@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv, find_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 
 load_dotenv(find_dotenv())
@@ -26,7 +27,7 @@ class Person(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(128), nullable=False)
     gad7_score = db.Column(db.Integer)
     phq9_score = db.Column(db.Integer)
     journal_entries = db.relationship('JournalEntry', backref='user', lazy=True)
@@ -36,6 +37,12 @@ class Person(UserMixin, db.Model):
     
     def get_id(self):
         return str(self.id)
+
+    def password_hash(self, passwd):
+        self.password = generate_password_hash(passwd)
+
+    def check_password(self, passwd):
+        return check_password_hash(self.password, passwd)
 
 class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -82,8 +89,12 @@ def login():
     user = Person.query.filter_by(username=username).first()
     
     if user:
-        login_user(user)
-        return redirect(url_for('home'))
+        if user.check_password(password):
+            login_user(user)
+            return redirect(url_for('home'))
+        else:
+            flash("Incorrect password.")
+            return redirect(url_for("index"))
     else:
         flash("No user found.")
         return redirect(url_for("index"))
@@ -114,7 +125,7 @@ def register():
         flash("User already exists.")
         return redirect(url_for('home'))
     elif user is None:
-        user = Person(email=email, username=username, password=password)
+        user = Person(email=email, username=username, password=generate_password_hash(password))
         db.session.add(user)
         db.session.commit()
         login_user(user)
