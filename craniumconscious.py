@@ -280,7 +280,7 @@ def moodtracker():
                 db.session.add(new_entry)
                 db.session.commit()
                 
-            day_mood_list[today.weekday()] = selected_mood   
+            day_mood_list[today.weekday() + 1] = selected_mood  
             
             return render_template (
                 "MoodTracker.html",
