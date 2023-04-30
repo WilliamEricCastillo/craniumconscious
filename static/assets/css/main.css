@@ -2824,9 +2824,10 @@ button:disabled,
 .main.style2 {
 	background-color: #333;
 	color: rgba(255, 255, 255, 0.75);
-	background-attachment: fixed, fixed;
-	background-image: url("static/assets/css/images/overlay1.png"),
-	url("static/images/header.jpg");
+	background-attachment: fixed, fixed, fixed;
+	background-image: url('static/assets/css/images/overlay2.png'),
+	url('static/assets/css/images/overlay3.svg'),
+	linear-gradient(100deg, black 80%, #4362b0 100%);
 	background-size: auto, cover;
 }
 

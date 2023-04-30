@@ -51,86 +51,6 @@
             display: flex;
         }
 
-        form input {
-            flex: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-right: 10px;
-
-        }
-
-        form button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4070f4;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-
-        form button:hover {
-            background-color: #0056b3;
-        }
-
-
-
-        /*actual list below input*/
-        #todo-list {
-            margin: 0;
-            list-style: none;
-            padding: 10px 10px 0 0;
-            max-height: 475px;
-            overflow: auto; /* Add a scrollbar when the content overflows the element */
-        }
-
-
-        /*scrollbar color*/
-        #todo-list::-webkit-scrollbar {
-            width: 10px;
-            background-color: black ;
-        }
-
-        #todo-list::-webkit-scrollbar-thumb {
-            background-color: white;
-        }
-
-        .todoitems {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #eee;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .todoitems span {
-            flex: 1;
-            margin-right: 10px;
-        }
-
-        .todoitems button {
-            padding: 5px 10px;
-            font-size: 14px;
-            background-color: #f44336;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-
-        .todoitems button:hover {
-            background-color: #d32f2f;
-        }
 
         /*Do not edit below, this is navbar css.*/
         .nav-links {
@@ -272,6 +192,75 @@
             linear-gradient(100deg, black 80%, #4362b0 100%);
 
         }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="datetime-local"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        button[type="submit"] {
+            background-color: #1e90ff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #007fff;
+        }
+
+        .list-group-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .list-group-item .delete-btn {
+            color: red;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .list-group-item .delete-btn:hover {
+            transform: scale(1.2);
+        }
+
     </style>
 
 
@@ -305,21 +294,31 @@
 
 <div id="wrapper">
     <div class="container">
-        <h1>Todo List</h1>
-        <form>
-            <label for="todo-input"></label><input type="text" placeholder="Add new todo" id="todo-input">
-            <button type="submit" id="add-btn">Add</button>
+        <h1>To-Do List</h1>
+        <form id="todo-form" style="color: white">
+            <div class="form-group" style="width: 310px">
+                <label for="description">Description</label>
+                <input type="text" id="description" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="datetime">Date and Time</label>
+                <input type="datetime-local" id="datetime" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
         </form>
-        <ul id="todo-list">
+        <ul id="todo-list" class="list-group">
         </ul>
-<a class="help-icon">Help?<span class="tooltip">Welcome to your to-do list feature!
+    </div>
+
+</div>
+
+    
+    <a class="help-icon">Help?<span class="tooltip">Welcome to your to-do list feature!
 
 This section is designed to help you keep track of your daily tasks and stay organized. Simply write down your tasks for the day, and as you complete them, you can easily delete them from the list.
 
 This feature is especially useful if you have a lot going on and need a quick and easy way to prioritize and manage your tasks. With our to-do list, you can stay on top of everything and ensure that you're always making progress towards your goals.</span></a>
 
-
-    </div>
 
     <div id="push"></div>
 
@@ -334,122 +333,82 @@ This feature is especially useful if you have a lot going on and need a quick an
                 <li>&copy; CraniumConscious</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
             </ul>
         </section>
-</div>
 
 <script>
-    const form = document.querySelector('form');
-    const input = document.querySelector('input');
-    const ul = document.querySelector('ul');
-    const clearBtn = document.querySelector('.clear');
-    const itemsLeft = document.querySelector('.items-left');
-    const filter = document.querySelector('.filter');
+    const form = document.getElementById('todo-form');
+    const descriptionInput = document.getElementById('description');
+    const datetimeInput = document.getElementById('datetime');
+    const todoList = document.getElementById('todo-list');
 
     let todos = [];
 
-    // Load the todos from local storage on page load
-    window.addEventListener('load', () => {
-        const savedTodos = localStorage.getItem('todos');
-        if (savedTodos) {
-            todos = JSON.parse(savedTodos);
-            updateUI();
-        }
-    });
+    function addTodo() {
+        const description = descriptionInput.value;
+        const datetime = datetimeInput.value;
 
-    function addTodo (todo) {
+        if (description === '' || datetime === '') {
+            alert('Please enter a description and a date and time');
+            return;
+        }
+
+        const todo = { description, datetime };
         todos.push(todo);
 
-        // Save the updated todos to local storage
-        localStorage.setItem('todos', JSON.stringify(todos));
+        renderTodos();
+        descriptionInput.value = '';
+        datetimeInput.value = '';
 
-        // update the UI
-        updateUI();
+        // Store the updated todos array in local storage
+        localStorage.setItem('todos', JSON.stringify(todos));
     }
 
-    function updateUI () {
-        // clear the existing list items
-        ul.innerHTML = '';
+    function renderTodos() {
+        todoList.innerHTML = '';
 
-        // add new items to the list
         todos.forEach((todo, index) => {
-            const li = document.createElement('p');
-            li.classList.add('todoitems');
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
             li.innerHTML = `
-            <span>${todo}</span>
-             <button class="delete" data-index="${index}">Delete</button>
+      <div>${todo.description}</div>
+      <div>${new Date(todo.datetime).toLocaleString()}</div>
+      <div class="delete-btn" data-index="${index}">X</div>
     `;
-            ul.appendChild(li);
+            todoList.appendChild(li);
         });
-
-        // update the items left count
-        itemsLeft.textContent = `${todos.length} item(s) left`;
     }
 
-    function deleteTodo (index) {
+    function deleteTodo(index) {
         todos.splice(index, 1);
+        renderTodos();
 
-        // Save the updated todos to local storage
+        // Update the todos array in local storage
         localStorage.setItem('todos', JSON.stringify(todos));
-
-        // update the UI
-        updateUI();
     }
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // get the todo text from the input field
-        const todo = input.value.trim();
-
-        // add the todo to the list if it is not empty
-        if (todo !== '') {
-            addTodo(todo);
-
-            // clear the input field
-            input.value = '';
-        }
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        addTodo();
     });
 
-    ul.addEventListener('click', (e) => {
-        if (e.target.classList.contains('delete')) {
-            // get the index of the todo item to be deleted
-            const index = e.target.dataset.index;
+    todoList.addEventListener('click', (event) => {
+        const target = event.target;
 
-            // delete the todo item
+        if (target.classList.contains('delete-btn')) {
+            const index = target.getAttribute('data-index');
             deleteTodo(index);
         }
     });
 
-    clearBtn.addEventListener('click', () => {
-        // clear the todos array
-        todos = [];
+    // Load the todos array from local storage when the page is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        const storedTodos = localStorage.getItem('todos');
 
-        // Save the updated todos to local storage
-        localStorage.setItem('todos', JSON.stringify(todos));
-
-        // update the UI
-        updateUI();
-    });
-
-    filter.addEventListener('change', () => {
-        // get the filter value
-        const filterValue = filter.value;
-
-        // filter the todos array based on the filter value
-        let filteredTodos = [];
-
-        if (filterValue === 'all') {
-            filteredTodos = todos;
-        } else if (filterValue === 'active') {
-            filteredTodos = todos.filter((todo) => !todo.completed);
-        } else if (filterValue === 'completed') {
-            filteredTodos = todos.filter((todo) => todo.completed);
+        if (storedTodos) {
+            todos = JSON.parse(storedTodos);
+            renderTodos();
         }
-
-        // update the UI
-        todos = filteredTodos;
-        updateUI();
     });
 
-</script>
+    </script>
 </body>
 </html>
