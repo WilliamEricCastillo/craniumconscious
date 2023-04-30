@@ -197,9 +197,6 @@ def journal():
     # get current date
     today = datetime.date.today() #YYYY-MM-DD
 
-
-    #insert code to load journal and reminder information and display it
-    #insert a bunch of database stuff and grabbing info from submissions
     
     return render_template (
         "Journal.html",
