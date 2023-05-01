@@ -494,5 +494,3 @@ def crisis():
         "CrisisSupportInformation.html",
         logged_in=logged_in
     )
-    
-app.run(debug=True)
