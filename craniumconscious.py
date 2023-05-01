@@ -479,7 +479,7 @@ def quotes():
             like = False
     
     return render_template (
-        "Quotes.html"
+        "quotes.html"
     )
     
 @app.route('/crisissupport')
