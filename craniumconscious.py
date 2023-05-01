@@ -458,11 +458,9 @@ def poetry():
         if "Like" in request.form.values():
             like = True
             dislike = False
-            #do something machine learning or whatever
         if "Dislike" in request.form.values():
             dislike = True
             like = False
-            #do something machine learning or whatever
         
     return render_template (
         "Poetry.html"
@@ -476,14 +474,12 @@ def quotes():
         if "Like" in request.form.values():
             like = True
             dislike = False
-            #do something machine learning or whatever
         if "Dislike" in request.form.values():
             dislike = True
             like = False
-            #do something machine learning or whatever
     
     return render_template (
-        "Quotes.html"
+        "quotes.html"
     )
     
 @app.route('/crisissupport')
@@ -498,5 +494,3 @@ def crisis():
         "CrisisSupportInformation.html",
         logged_in=logged_in
     )
-    
-app.run(debug=True)
